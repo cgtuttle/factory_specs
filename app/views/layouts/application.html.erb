@@ -1,0 +1,24 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <title><%= @title %></title>
+  <%= stylesheet_link_tag    "application" %>
+  <%= javascript_include_tag "application" %>
+  <%= csrf_meta_tags %>
+</head>
+<body>
+	<div class="page_header">
+		<%= render 'layouts/header' %>
+	</div>
+	
+	<div class="page_body">
+		<section class="left_box">
+			
+		</section>
+		<section class="right_box">
+			<%= yield %>
+		</section>
+	</div>
+
+</body>
+</html>

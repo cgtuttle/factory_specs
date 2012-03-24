@@ -1,0 +1,32 @@
+/*
+Document   : gradient.css
+Created on : Mar 3, 2012, 12:57:57 PM
+Author     : ctuttle
+Description:
+Purpose of the stylesheet follows.
+*/
+
+/*Gradients*/
+
+@import "colors";
+
+.gradient{
+	width: 100%;
+  background-color: #B4CDCD;
+	border-top-color: white;
+	border-top-width: 1px;
+	border-top-style: solid;
+	border-bottom-color: lighten($scheme-color, 50%);
+	border-bottom-width: 1px;
+	border-bottom-style: solid;
+	
+  height: 40px;
+  /* For WebKit (Safari, Google Chrome etc) */
+  background: -webkit-gradient(linear, left top, left bottom, from($top-color), to($bottom-color));
+  /* For Mozilla/Gecko (Firefox etc) */
+  background:  -moz-linear-gradient(top , $top-color, $bottom-color);
+  /* For Internet Explorer 5.5 - 7 */
+  filter: progid:DXImageTransform.Microsoft.gradient(startColorstr=$top-color, endColorstr=$bottom-color, GradientType=0);
+  /* For Internet Explorer 8 */
+  filter: progid:DXImageTransform.Microsoft.gradient(startColorstr=$top-color, endColorstr=$bottom-color);
+}

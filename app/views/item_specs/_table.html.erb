@@ -1,0 +1,21 @@
+<tr class="<%= is.date_status %>">
+	<td><%= is.item.code %></td>
+	<td><%= is.spec.code %></td>			
+	<td><%= is.string_value %></td>
+	<td><%= is.text_value %>
+	<td><%= is.numeric_value %></td>
+	<td><%= is.usl %></td>
+	<td><%= is.lsl %></td>
+	<td><%= is.unit_of_measure %></td>
+	<td><%= is.document_title %></td>
+	<td><%= is.document_url %></td>
+	<td><%= is.document_version %></td>
+	<td><%= is.test.code if is.test %></td>
+	<td><%= is.eff_date %></td>
+	<td><%= is.version %></td>
+	<td><%= is.date_status %></td>
+	<td><%= is.changed_by %></td>
+	<td><%= link_to "Edit", edit_item_spec_path(is), :class => 'link' %>
+			<%= link_to "Delete", item_spec_path(is), :method => :delete, :confirm => "Are you sure?", :class => 'link' %>
+	</td>
+</tr>

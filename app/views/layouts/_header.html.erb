@@ -1,0 +1,17 @@
+<header class="page-header">
+	<div class="gradient">
+		<div class="flash">
+			<% flash.each do |key, value| %>
+				<div class="<%= key %>"> <%= value %></div>
+			<% end %>
+		</div>
+		<nav>
+			<ul>
+				<li><%= link_to "Items", items_path %></li>
+				<li><%= link_to "Spec Definitions", specs_path %></li>
+				<li><%= link_to "Item Specifications", item_specs_path %></li>
+				<li><%= link_to "Tests", items_path %></li>
+			</ul>
+		</nav>
+	</div>
+</header>

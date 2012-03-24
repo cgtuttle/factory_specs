@@ -1,0 +1,60 @@
+
+<%= search_form_for @q do |f| %>
+	<p class="search_field">
+		<%= f.label :item_code_cont %>
+		<%= f.text_field :item_code_cont %>
+		<%= f.label :spec_code_cont %>
+		<%= f.text_field :spec_code_cont %>
+	</p>
+	<p class="sort_link">Sort on
+		<%= f.sort_link :item_code, "Item" %> |
+		<%= f.sort_link :spec_code, "Spec" %>
+	</p>
+	<p class="check_box"><%= check_box_tag "include_future", "future", @future %> Include future </p>
+	<p class="check_box"><%= check_box_tag "include_history", "history", @history %> Include history </p>
+	<p class="check_box"><%= check_box_tag "include_deleted", "deleted", @deleted %> Include deleted </p>
+	<p class="button"><%= f.submit "Submit" %></p>
+<% end %>
+
+
+<table class="data">
+	<thead>
+		<th>Item</th>
+		<th>Spec</th>
+		<th>Text</th>
+		<th>Multi-Line Text</th>
+		<th>Value</th>
+		<th>USL</th>
+		<th>LSL</th>
+		<th>UOM</th>
+		<th>Document</th>
+		<th>URL</th>
+		<th>Doc Ver</th>
+		<th>Test</th>
+		<th>Eff Dt</th>
+		<th>Ver</th>
+		<th>Status</th>
+		<th>Edited By</th>
+		<th></th>
+	</thead>
+	<tbody>
+		<tr>
+			<%= render 'new' %>
+		</tr>
+		<% @item_specs.each do |is| %>
+		
+			<% if @history == true && is.date_status == 'past' %>											
+				<%= render :partial => 'table', :locals => { :is => is }  %>				
+			<% end %>	
+		
+			<% if @future == true && is.date_status == "future" %>							
+				<%= render :partial => 'table', :locals => { :is => is }  %>				
+			<% end %>
+				
+			<% if is.date_status == "current" %>					
+				<%= render :partial => 'table', :locals => { :is => is }  %>
+			<% end %>
+		
+		<% end %>
+	</tbody>
+</table>

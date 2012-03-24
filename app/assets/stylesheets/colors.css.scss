@@ -1,0 +1,53 @@
+/*
+Document   : colors.css
+Created on : Mar 3, 2012, 4:54:12 PM
+Author     : ctuttle
+Description:
+Purpose of the stylesheet follows.
+*/
+
+
+// $scheme-color: #333300;
+$scheme-color: #666633;
+// $scheme-color: #999966;
+// $scheme-color: #996633;
+// $scheme-color: #663300;
+// $scheme-color: blue;
+// $scheme-color: green;
+// $scheme-color: gray;
+
+$lf: 1;		//Lightness Factor
+$sf: .5;	//Saturation Factor
+$af: 1;		//Alpha Factor
+
+$text-color: $scheme-color;
+
+// Pages
+$background-color: change_color($scheme-color, $lightness: 95% * $lf);
+$body-background-color: $background-color;
+$header-background-color: $background-color;
+$page-background-color: $background-color;
+
+// Tables
+
+$table-color: $scheme-color;
+$border-color: change_color($table-color, $lightness: $lf * 25%, $alpha: $af * 0.1);
+$header-back-color: change_color($table-color, $lightness: 65%, $saturation: 55%, $alpha: 0.6);
+$table-bottom-color: $header-back-color;
+$odd-back-color: change_color($table-color, $lightness: $lf * 90%, $saturation: $sf * 75%, $alpha: $af * .5);
+$even-back-color: change_color($odd-back-color, $lightness: 80%);
+$header-text-color: darken($text-color, 5%);
+$table-text-color: lighten(#000000, 30%);
+$past-data-color: lighten($table-text-color, 30%);
+$future-data-color: change_color(blue, $lightness: 80%);
+
+// Gradients
+$top-color: change_color($scheme-color, $lightness: 25%, $saturation: 95%, $alpha: 0.2);
+$bottom-color: change_color($scheme-color, $lightness: 25%, $saturation: 95%, $alpha: 0.02);
+
+// Lists
+$nav-text-color: darken($text-color, 0%);
+$nav-hover-color: darken($text-color, 30%);
+
+// Forms
+$label-color: darken($text-color, 20%);

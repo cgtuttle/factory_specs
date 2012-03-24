@@ -1,0 +1,17 @@
+# Read about fixtures at http://api.rubyonrails.org/classes/Fixtures.html
+
+one:
+  item_id: 1
+  spec_id: 1
+  version: MyString
+  eff_date: 2012-02-26
+  tag: MyString
+  test_id: 1
+
+two:
+  item_id: 1
+  spec_id: 1
+  version: MyString
+  eff_date: 2012-02-26
+  tag: MyString
+  test_id: 1

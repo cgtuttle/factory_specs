@@ -1,0 +1,31 @@
+<table class="data">
+	<thead>
+		<th>Category</th>
+		<th>Definition Code</th>
+		<th>Definition Name</th>
+		<th>USL</th>
+		<th>LSL</th>
+		<th>Label</th>
+		<th>Default<br />Order</th>
+		<th></th>
+	</thead>
+	<tbody>
+		<tr>
+			<%= render 'new' %>
+		</tr>
+		<% @specs.each do |s| %>
+		<tr>
+			<td><%= s.category %></td>
+			<td><%= s.code %></td>
+			<td><%= s.name %></td>			
+			<td><%= s.usl ? image_tag("pixim_icon_set/dark/accept.gif", :class => 'checkbox') : nil %></td>			
+			<td><%= s.lsl ? image_tag("pixim_icon_set/dark/accept.gif", :class => 'checkbox') : nil %></td>
+			<td><%= s.label %></td>
+			<td><%= s.display_order %></td>
+			<td><%= link_to "Edit", edit_spec_path(s), :class => 'link' %>
+					<%= link_to "Delete", spec_path(s), :method => :delete, :confirm => "Are you sure?", :class => 'link' %>
+			</td>
+		</tr>
+		<% end %>
+	</tbody>
+</table>

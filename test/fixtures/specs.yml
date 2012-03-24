@@ -1,0 +1,25 @@
+# Read about fixtures at http://api.rubyonrails.org/classes/Fixtures.html
+
+one:
+  code: MyString
+  name: MyString
+  type: 
+  category: MyString
+  usl: false
+  lsl: false
+  purpose: MyString
+  label: MyString
+  order: 1
+  account_id: 1
+
+two:
+  code: MyString
+  name: MyString
+  type: 
+  category: MyString
+  usl: false
+  lsl: false
+  purpose: MyString
+  label: MyString
+  order: 1
+  account_id: 1

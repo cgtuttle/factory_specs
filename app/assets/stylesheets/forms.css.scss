@@ -1,0 +1,50 @@
+/*
+Document   : forms.css
+Created on : Mar 4, 2012, 7:04:33 PM
+Author     : ctuttle
+Description:
+Purpose    :
+*/
+
+@import "colors";
+
+.field_label {
+	display: block;
+	color: $label-color;
+	font-family:"arial",Verdana,Sans-serif;
+	font-size: 1em;
+	padding-top: 1em;
+	padding-bottom: .2em;
+}
+
+.text_field {
+	color: $text-color;
+	width: 10em;
+}
+
+.number_field_short {
+	width: 3em;
+}
+
+.number_field {
+	width: 5em;
+}
+
+.date_field {
+	width: 6em;	
+}
+
+.check_box {
+	padding: 2px;
+	font-size: .8em;
+}
+
+.search_field {
+	padding: 2px;
+	font-size: .8em;
+}
+
+.sort_link {
+	padding: 4px;
+	font-size: .8em;
+}

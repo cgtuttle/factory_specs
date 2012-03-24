@@ -1,0 +1,12 @@
+
+	<tr>
+		<%= form_for(@item) do |f| %>		
+			<div class="field">
+				<td><%= f.text_field :code %></td>
+				<td><%= f.text_field :name %></td>
+			</div>
+			<div class="actions">
+				<td><%= f.submit "Submit New Item" %></td>
+			</div>
+		<% end %>		
+	</tr>

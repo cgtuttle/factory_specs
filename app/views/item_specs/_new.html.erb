@@ -1,0 +1,27 @@
+
+	<%= form_for(@item_spec) do |f| %>
+			<div class="form">
+				<div>
+					<td><%= f.collection_select :item_id, Item.filtered(@item_filter), :id, :code, :prompt => (@item_filter == "%") %></td>
+					<td><%= f.collection_select :spec_id, Spec.filtered(@spec_filter), :id, :code, :prompt => (@spec_filter == "%")%></td>
+					<td><%= f.text_field :string_value, :size => 15 %></td>
+					<td><%= f.text_area :text_value, :rows => 1, :cols => 15 %></td>
+					<td><%= f.text_field :numeric_value, :class => "number_field" %></td>
+					<td><%= f.text_field :usl, :class => "number_field" %></td>
+					<td><%= f.text_field :lsl, :class => "number_field" %></td>
+					<td><%= f.text_field :unit_of_measure, :size => 6 %></td>
+					<td><%= f.text_field :document_title, :size => 15 %></td>
+					<td><%= f.url_field :document_url, :size => 15 %></td>
+					<td><%= f.text_field :document_version, :size => 3 %></td>
+					<td><%= f.collection_select :test_id, Test.order('code'), :id, :code, :prompt => true %></td>
+					<td><%= f.text_field :eff_date, :class => 'date_field' %></td>
+					<td></td>
+					<td></td>
+					<td></td>
+					<td><%= f.submit "Add Item Spec" %></td>
+					<%= raw hash_as_hidden_fields :q => params[:q] %>
+					<%= raw hash_as_hidden_fields :include_future => params[:include_future] %>
+					<%= raw hash_as_hidden_fields :include_past => params[:include_past] %>
+				</div>
+			</div>
+		<% end %>		

@@ -4,8 +4,8 @@ class ItemSpecsController < ApplicationController
 		set_scope
 		@title = 'Item Specifications'
 		@q = ItemSpec.search(params[:q])
-		@spec_filter = "#{params[:q][:spec_code_cont]}%"
-		@item_filter = "#{params[:q][:item_code_cont]}%"
+		@spec_filter = params[:q] ? "#{params[:q][:spec_code_cont]}%" : "%"
+		@item_filter = params[:q] ? "#{params[:q][:item_code_cont]}%" : "%"
 		@item_specs = @q.result(:distinct => true).joins(:item, :spec).order('items.code, specs.code, eff_date, version DESC')
 		@item_spec = ItemSpec.new()
 		@item_spec.eff_date = Date.today

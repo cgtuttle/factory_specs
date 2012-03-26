@@ -3,7 +3,9 @@ class ItemsController < ApplicationController
 	
   def index
 		@title = "Items"
-		@item = Item.new
+		@new_item = Item.new	
+		@item = Item.last
+		@specs = Spec.all
   end
 
   def edit
@@ -12,14 +14,18 @@ class ItemsController < ApplicationController
   end
 
   def update
-		if params[:commit] == 'Update'
-			@item = Item.find(params[:id])
-			if @item.update_attributes(params[:item])
+		@item = Item.find(params[:id])
+		case params[:commit]
+		when 'Update'
+			if _update
 				flash[:success] = "Item updated"
 				redirect_to items_path
-			else
-				redirect_to items_path
 			end
+		when 'Update item'
+			if _update
+				flash[:success] = "Item specs updated"
+				redirect_to item_specs_path :item => @item
+			end			
 		else
 			redirect_to items_path
 		end
@@ -46,6 +52,14 @@ class ItemsController < ApplicationController
 		flash[:success] = "Item deleted"
 		redirect_to items_path
   end
+	
+	def _update
+		if @item.update_attributes(params[:item])
+			true
+		else
+			false
+		end
+	end
 	
 	def find_items
 		@items = Item.find(:all, :order => 'code')

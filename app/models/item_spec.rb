@@ -3,6 +3,9 @@ class ItemSpec < ActiveRecord::Base
 	belongs_to :spec
 	belongs_to :test
 	
+	before_create :set_eff_date
+	before_create :set_version
+	
 	def last_version
 		if self.version
 			ItemSpec.where(:item_id => self.item_id, :spec_id => self.spec_id).order('version DESC').first.version
@@ -20,6 +23,14 @@ class ItemSpec < ActiveRecord::Base
 		else
 			"current"
 		end
+	end
+	
+	def set_eff_date
+		self.eff_date = Date.today
+	end
+	
+	def set_version
+		self.version = self.last_version + 1
 	end
 	
 	

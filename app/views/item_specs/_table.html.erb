@@ -1,5 +1,5 @@
 <tr class="<%= is.date_status %>">
-	<td><%= is.item.code %></td>
+	<td><%= is.spec.category %></td>
 	<td><%= is.spec.code %></td>			
 	<td><%= is.string_value %></td>
 	<td><%= is.text_value %>
@@ -15,7 +15,5 @@
 	<td><%= is.version %></td>
 	<td><%= is.date_status %></td>
 	<td><%= is.changed_by %></td>
-	<td><%= link_to "Edit", edit_item_spec_path(is), :class => 'link' %>
-			<%= link_to "Delete", item_spec_path(is), :method => :delete, :confirm => "Are you sure?", :class => 'link' %>
-	</td>
+	<td><%= link_to "Edit", edit_item_spec_path(is), :class => 'link' %></td>
 </tr>

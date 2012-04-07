@@ -61,12 +61,17 @@ h1, h2, h3, h4, h5, h6, p {
 	color: $text-color;
 }
 
+h4 {
+	margin: 4px 2px 6px 2px;
+}
+
 h5 {
 	font-size: 1em;
 }
 
 textarea {
 	padding: 2px;
+	margin: 4px 4px 4px 10px;
 	font-family: $font_family;
 }
 
@@ -83,15 +88,16 @@ img {
 a {
   color: $nav-text-color;
   text-decoration: underline;
-}
+	font-size: 80%;
 
-a:hover {
-  color: $nav-hover-color;
-  text-decoration: underline;
-}
 
-a:visited {
-  color: $nav-text-color;
+	a:hover {
+		color: $nav-hover-color;
+	}
+
+	a:visited {
+		color: $nav-text-color;
+	}
 }
 
 // Navigation

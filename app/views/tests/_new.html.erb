@@ -1,0 +1,10 @@
+<%= form_for @test do |f| %>
+	<div class="form">
+		<div>
+			<td><%= f.text_field :code, :class => 'text_field' %></td>
+			<td><%= f.text_field :name, :class => 'text_field' %></td>
+			<td><%= f.text_area :instructions, :class => 'text_area', :rows => '1', :cols => '20' %></td>
+			<td><%= f.submit "Add Test" %></td>
+		</div>
+	</div>
+<% end %>

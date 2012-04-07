@@ -1,9 +1,5 @@
 Factory::Application.routes.draw do
 	
-  get "tests/index"
-
-  get "tests/edit"
-
   devise_for :users
 
   resources :item_specs
@@ -11,6 +7,8 @@ Factory::Application.routes.draw do
 	resources :specs
 	resources :categories
 	resources :tests
+	
+	match 'test/:id/instructions' => 'tests#instructions'
 	
 	root :to => "main#contents"
 

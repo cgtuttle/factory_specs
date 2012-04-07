@@ -1,2 +1,11 @@
-<h1>Tests#edit</h1>
-<p>Find me in app/views/tests/edit.html.erb</p>
+<h4>Edit Test</h4>
+<%= form_for @test do |f| %>
+	<p><%= f.label :code, :class => 'field_label' %></p>
+	<p><%= f.text_field :code, :class => 'text_field' %></p>
+	<p><%= f.label :name, :class => 'field_label' %></p>
+	<p><%= f.text_field :name, :class => 'text_field' %></p>
+	<p><%= f.label :instructions, :class => 'field_label' %></p>
+	<p><%= f.text_area :instructions, :class => 'text_area' %></p>
+	<p><%= f.submit :class => 'submit_button' %></p>
+	<p><%= f.submit "Cancel", :class => 'submit_button' %></p>
+<% end %>

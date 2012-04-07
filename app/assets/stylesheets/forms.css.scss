@@ -20,6 +20,7 @@ Purpose    :
 .text_field {
 	color: $text-color;
 	width: 10em;
+	margin: 4px;
 }
 
 .number_field_short {
@@ -47,4 +48,8 @@ Purpose    :
 .sort_link {
 	padding: 4px;
 	font-size: .8em;
+}
+
+.submit_button {
+	margin: 10px 4px 4px 4px;
 }

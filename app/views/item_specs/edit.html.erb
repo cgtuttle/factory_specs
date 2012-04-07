@@ -3,7 +3,7 @@
 <p>Spec: <%= @item_spec.spec.code %></p>
 	
 
-		<%= form_for(@item_spec) do |f| %>
+		<%= form_for(@new_item_spec) do |f| %>
 			<div class="form">
 				
 				<%= f.hidden_field :item_id %>
@@ -35,7 +35,7 @@
 			<%= f.label "Effective Date of Edit" %>
 			<%= f.text_field :eff_date, :class => "date_field" %>
 			<div class="actions">
-				<%= f.submit "Submit Changes" %>
+				<%= f.submit "Update Item" %>
 				<%= f.submit "Cancel" %>
 			</div>
 		<% end %>		

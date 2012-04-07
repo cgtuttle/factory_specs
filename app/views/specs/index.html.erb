@@ -15,7 +15,7 @@
 		</tr>
 		<% @specs.each do |s| %>
 		<tr>
-			<td><%= s.category %></td>
+			<td><%= s.category_id ? s.category.name : nil %></td>
 			<td><%= s.code %></td>
 			<td><%= s.name %></td>			
 			<td><%= s.usl ? image_tag("pixim_icon_set/dark/accept.gif", :class => 'checkbox') : nil %></td>			

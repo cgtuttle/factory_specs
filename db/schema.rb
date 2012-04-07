@@ -10,7 +10,16 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20120318151359) do
+ActiveRecord::Schema.define(:version => 20120401154214) do
+
+  create_table "categories", :force => true do |t|
+    t.string   "code",          :limit => 64,  :null => false
+    t.string   "name",          :limit => 256
+    t.integer  "display_order"
+    t.datetime "created_at"
+    t.datetime "updated_at"
+    t.integer  "account_id"
+  end
 
   create_table "item_specs", :force => true do |t|
     t.integer  "item_id"
@@ -44,7 +53,6 @@ ActiveRecord::Schema.define(:version => 20120318151359) do
   create_table "specs", :force => true do |t|
     t.string   "code",          :limit => 64,  :null => false
     t.string   "name",          :limit => 128
-    t.string   "category",      :limit => 64
     t.boolean  "usl"
     t.boolean  "lsl"
     t.string   "label",         :limit => 64
@@ -54,6 +62,7 @@ ActiveRecord::Schema.define(:version => 20120318151359) do
     t.string   "changed_by"
     t.datetime "created_at"
     t.datetime "updated_at"
+    t.integer  "category_id"
   end
 
   create_table "tests", :force => true do |t|

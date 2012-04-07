@@ -2,7 +2,7 @@
 	<%= form_for(@spec) do |f| %>
 			<div class="form">
 				<div>
-					<td><%= f.text_field :category, :class => 'text_field' %></td>
+					<td><%= f.collection_select :category_id, Category.all, :id, :code, :prompt => :true %></td>
 					<td><%= f.text_field :code, :class => 'text_field' %></td>
 					<td><%= f.text_field :name, :class => 'text_field' %></td>
 					<td><%= f.check_box :usl %></td>

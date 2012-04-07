@@ -1,6 +1,7 @@
 class Spec < ActiveRecord::Base
 	has_many :item_specs
 	has_many :items, :through => :item_specs
+	belongs_to :category
 	
 	
 	def self.filtered(filter)

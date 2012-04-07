@@ -26,7 +26,7 @@
 	<tbody>
 		<% @item_specs.each do |is| %>
 		
-			<% if @history == true && is.date_status == 'past' %>											
+			<% if @history == true && is.date_status == 'past' %>
 				<%= render :partial => 'table', :locals => { :is => is }  %>				
 			<% end %>	
 		

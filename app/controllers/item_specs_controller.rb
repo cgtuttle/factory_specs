@@ -5,17 +5,26 @@ class ItemSpecsController < ApplicationController
 		if params[:commit] =='Apply'
 			@item = Item.find(params[:item_spec][:item_id])
 		end
+		if params[:item_id]
+			@item = Item.find(params[:item_id])
+		end
 		@title = "Specifications for #{@item.code}"
-		@item_specs = ItemSpec.joins(:spec).where(:item_id => @item.id).order('specs.category', 'specs.display_order')
+		#@item_specs = ItemSpec.where(:item_id => @item.id)
+		@item_specs = ItemSpec.by_item(@item.id)
 		@specs = Spec.order(:code)
 		@items = Item.order(:code)
   end
 	
 	
 	def edit	
-		@existing_item_spec = ItemSpec.find(params[:id])		
-		@item_spec = ItemSpec.new(@existing_item_spec.attributes)
-		@item_spec.eff_date = Date.today
+		@item_spec = ItemSpec.find(params[:id])
+		@new_item_spec = @item_spec.dup
+	end
+	
+	def create
+		@new_item_spec = ItemSpec.new(params[:item_spec])
+		@new_item_spec.save
+		redirect_to item_specs_path :item_id => params[:item_spec][:item_id]
 	end
 	
 	def set_scope

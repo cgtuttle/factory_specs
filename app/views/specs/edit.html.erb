@@ -8,7 +8,7 @@
 					<%=f.label "Definition Name", :class => "field_label"%>
 					<%= f.text_field :name %>
 					<%=f.label "Category", :class => "field_label"%>
-					<%= f.text_field :category %>
+					<%= f.collection_select :category_id, Category.all, :id, :code %>
 					<%=f.label "USL", :class => "field_label"%>
 					<%= f.check_box :usl %>
 					<%=f.label "LSL", :class => "field_label"%>

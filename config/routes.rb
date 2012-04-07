@@ -1,10 +1,15 @@
 Factory::Application.routes.draw do
 	
+  get "tests/index"
+
+  get "tests/edit"
+
   devise_for :users
 
   resources :item_specs
 	resources :items
 	resources :specs
+	resources :categories
 	resources :tests
 	
 	root :to => "main#contents"

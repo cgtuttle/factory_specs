@@ -18,8 +18,8 @@
 			<td><%= s.category_id ? s.category.name : nil %></td>
 			<td><%= s.code %></td>
 			<td><%= s.name %></td>			
-			<td><%= s.usl ? image_tag("pixim_icon_set/dark/accept.gif", :class => 'checkbox') : nil %></td>			
-			<td><%= s.lsl ? image_tag("pixim_icon_set/dark/accept.gif", :class => 'checkbox') : nil %></td>
+			<td><%= s.lsl == 1 ? image_tag("pixim_icon_set/dark/accept.gif", :class => 'checkbox') : nil %></td>			
+			<td><%= s.usl == 1 ? image_tag("pixim_icon_set/dark/accept.gif", :class => 'checkbox') : nil %></td>
 			<td><%= s.label %></td>
 			<td><%= s.display_order %></td>
 			<td><%= link_to "Edit", edit_spec_path(s), :class => 'link' %>

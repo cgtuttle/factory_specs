@@ -10,7 +10,7 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20120401154214) do
+ActiveRecord::Schema.define(:version => 20120408142527) do
 
   create_table "categories", :force => true do |t|
     t.string   "code",          :limit => 64,  :null => false
@@ -53,8 +53,8 @@ ActiveRecord::Schema.define(:version => 20120401154214) do
   create_table "specs", :force => true do |t|
     t.string   "code",          :limit => 64,  :null => false
     t.string   "name",          :limit => 128
-    t.boolean  "usl"
-    t.boolean  "lsl"
+    t.integer  "usl"
+    t.integer  "lsl"
     t.string   "label",         :limit => 64
     t.integer  "display_order"
     t.integer  "account_id",                   :null => false

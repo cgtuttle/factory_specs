@@ -41,6 +41,7 @@ module Factory
 
     # Enable the asset pipeline
     config.assets.enabled = true
+		config.assets.precompile += ['admin_data.css', 'admin_data.js']
 		config.assets.initialize_on_precompile = false
 
     # Version of your assets, change this if you want to expire all your assets

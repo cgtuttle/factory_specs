@@ -9,6 +9,7 @@ gem 'pg'
 gem 'json'
 gem 'devise'
 gem 'ransack'
+gem 'admin_data', '>= 1.1.16'
 
 # Gems used only for assets and not required
 # in production environments by default.

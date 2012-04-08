@@ -28,6 +28,9 @@ GEM
     activesupport (3.2.0)
       i18n (~> 0.6)
       multi_json (~> 1.0)
+    admin_data (1.2.0)
+      rails (~> 3.1)
+      will_paginate (>= 3.0.0)
     arel (3.0.2)
     bcrypt-ruby (3.0.1-x86-mingw32)
     builder (3.0.0)
@@ -151,11 +154,13 @@ GEM
       nokogiri (>= 1.2.0)
       rack (>= 1.0)
       rack-test (>= 0.5.3)
+    will_paginate (3.0.3)
 
 PLATFORMS
   x86-mingw32
 
 DEPENDENCIES
+  admin_data (>= 1.1.16)
   coffee-rails (~> 3.2.1)
   devise
   factory_girl_rails (= 1.0)

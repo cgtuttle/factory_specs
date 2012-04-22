@@ -2,12 +2,17 @@ class ItemSpecsController < ApplicationController
 	
   def index
 		set_scope
-		if params[:commit] =='Apply'
+		if params.has_key?(:item_spec)
 			@item = Item.find(params[:item_spec][:item_id])
+		else
+			@item = Item.first
 		end
-		if params[:item_id]
-			@item = Item.find(params[:item_id])
-		end
+		#if params[:item_id]
+			#@item = Item.find(params[:item_id])
+		#end
+		#if params[:item_spec][:item_id]
+			#@item = Item.find(params[:item_spec][:item_id])
+		#end
 		@title = "Specifications for #{@item.code}"
 		#@item_specs = ItemSpec.where(:item_id => @item.id)
 		@item_specs = ItemSpec.by_item(@item.id)
@@ -35,23 +40,10 @@ class ItemSpecsController < ApplicationController
 			@item = Item.order(:code).first
 		end
 		
-		if params[:include_future] && !params[:include_future].blank?
-			@future = params[:include_future] == "future"
-		else
-			@future = false
-		end
+		@future = params[:include_future] && !params[:include_future].blank?
+		@history = params[:include_history] && !params[:include_history].blank?
+		@deleted = params[:include_deleted] && !params[:include_deleted].blank?
 		
-		if params[:include_history] && !params[:include_history].blank?
-			@history = params[:include_history] == "history"
-		else
-			@history = false
-		end
-		
-		if params[:include_deleted] && !params[:include_deleted].blank?
-			@deleted = params[:include_deleted] == "deleted"
-		else
-			@deleted = false
-		end
 	end
 	
 end

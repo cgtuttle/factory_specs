@@ -1,22 +1,23 @@
 
 <% content_for :left do %>
-	<%= form_tag('item_specs', :method => :get) do %>
-		<div id="left_top">
-			<p class="search_field">Item <%= collection_select :item_spec, :item_id, @items, :id, :code, {:selected => @item.id} %></p>
-			<p class="check_box"><%= check_box_tag "include_future", "future", @future %> Include future </p>
-			<p class="check_box"><%= check_box_tag "include_history", "history", @history %> Include history </p>
-			<p class="check_box"><%= check_box_tag "include_deleted", "deleted", @deleted %> Include deleted </p>
-			<%= submit_tag "Apply" %>
-		</div>
-	<% end %>
-	
-	<h5>Included Specs</h5>
-	<%= form_for @item do -%>		
-		<% @specs.each do |spec| -%>
-			<p class="check_box"><%= check_box_tag :spec_ids, spec.id, @item.specs.include?(spec), :name => 'item[spec_ids][]' -%>
-			<%= label_tag :spec_ids, spec.code %></p>
+	<section class="left_box">
+		<%= form_tag('item_specs', :method => :get) do %>
+			<div id="left_top">
+				<p class="search_field">Item <%= collection_select :item_spec, :item_id, @items, :id, :code, {:selected => @item.id}, {:onchange => "this.form.submit();"} %></p>
+				<p class="check_box"><%= check_box_tag "include_future", "future", @future %> Include future </p>
+				<p class="check_box"><%= check_box_tag "include_history", "history", @history %> Include history </p>
+				<p class="check_box"><%= check_box_tag "include_deleted", "deleted", @deleted %> Include deleted </p>
+				<%= submit_tag "Apply" %>
+			</div>
+		<% end %>
+		
+		<h5>Included Specs</h5>
+		<%= form_for @item do -%>		
+			<% @specs.each do |spec| -%>
+				<p class="check_box"><%= check_box_tag :spec_ids, spec.id, @item.specs.include?(spec), :name => 'item[spec_ids][]' -%>
+				<%= label_tag :spec_ids, spec.code %></p>
+			<% end -%>
+			<%= submit_tag "Update item" -%>
 		<% end -%>
-		<%= submit_tag "Update item" -%>
-	<% end -%>
-	
+	</section>
 <% end %>

@@ -8,7 +8,10 @@ Factory::Application.routes.draw do
 	resources :categories
 	resources :tests
 	
+	#match 'main/display' => 'main#display', :via => :put
+	#match 'items/display/:id' => 'items#display', :as => :display_item
 	match 'test/:id/instructions' => 'tests#instructions'
+	match '/display' => 'items#display', :via => :get
 	
 	root :to => "main#contents"
 

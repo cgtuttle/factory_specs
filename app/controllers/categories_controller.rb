@@ -1,7 +1,7 @@
 class CategoriesController < ApplicationController
   
 	def index
-		@categories = Category.find(:all)
+		@categories = Category.order('display_order')
 		@category = Category.new
 	end
 	
@@ -9,10 +9,13 @@ class CategoriesController < ApplicationController
 		if params[:commit] != 'Cancel'
 			@category = Category.new(params[:category])
 			@category.account_id = 1
+			order = (params[:category][:display_order]).to_i
+			@category.reorder(order)
 			if @category.save
 				flash[:success] = "Category added"
 			end
 		end
+		redirect_to categories_path
 	end
 
   def edit
@@ -22,6 +25,8 @@ class CategoriesController < ApplicationController
 	def update
 		if params[:commit] != 'Cancel'
 			@category = Category.find(params[:id])
+			order = (params[:category][:display_order]).to_i
+			@category.reorder(order)
 			if @category.update_attributes(params[:category])
 				flash[:success] = 'Category updated'
 			end

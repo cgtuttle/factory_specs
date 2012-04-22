@@ -14,6 +14,8 @@ class SpecsController < ApplicationController
 		if params[:commit] != 'Cancel'
 			@spec = Spec.new(params[:spec])
 			@spec.account_id = 1
+			order = (params[:spec][:display_order]).to_i
+			@spec.reorder(order)
 			if @spec.save
 				flash[:success] = "Definition added"
 				redirect_to specs_path
@@ -32,6 +34,8 @@ class SpecsController < ApplicationController
 	def update
 		if params[:commit] != 'Cancel'
 			@spec = Spec.find(params[:id])
+			order = (params[:spec][:display_order]).to_i
+			@spec.reorder(order)
 			if @spec.update_attributes(params[:spec])
 				flash[:success] = "Definition updated"
 				redirect_to specs_path

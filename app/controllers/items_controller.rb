@@ -44,7 +44,6 @@ class ItemsController < ApplicationController
 		else
 			redirect_to items_path
 		end
-		
 	end
 
   def destroy
@@ -52,6 +51,18 @@ class ItemsController < ApplicationController
 		flash[:success] = "Item deleted"
 		redirect_to items_path
   end
+	
+	def display
+		if params.has_key?(:item)
+			@item = Item.find(params[:item][:id])
+		else
+			@item = Item.order(:code).first
+		end
+		@title = @item.code
+		@item_specs = @item.item_specs
+		@specs = @item.specs
+		@categories = @specs.collect{|spec| spec.category}.uniq
+	end
 	
 	def _update
 		if @item.update_attributes(params[:item])

@@ -1,0 +1,28 @@
+
+@mixin respond-to($media) {
+  @if $media == handhelds {
+    @media only screen and (max-width: 320px) { @content; }
+  }
+  @else if $media == small-screens {
+    @media only screen and (min-width: 321px) and (max-width: 1023px) { @content; }
+  }
+  @else if $media == medium-screens {
+    @media only screen and (min-width: 1024px) and (max-width: 1599px) { @content; }
+  }
+	@else if $media == wide-screens {
+    @media only screen and (min-width: 1600px) and (max-width: 1919px) { @content; }
+  }
+	@else if $media == hd-screens {
+    @media only screen and (min-width: 1920px) { @content; }
+  }
+}
+
+/*
+.profile-pic {
+  float: left;
+  width: 250px;
+  @include respond-to(handhelds) { width: 100% ;}
+  @include respond-to(medium-screens) { width: 125px; }
+  @include respond-to(wide-screens) { float: none; }
+}
+*/

@@ -7,6 +7,13 @@ Purpose		 : Provide system wide formatting for page layout and text styles
 */
 
 @import "colors";
+//@import "media";
+
+/*
+@mixin left_width {
+	width: 150px;
+}
+*/
 
 $font_family: Arial, Helvetica, sans-serif;
 $left_column_width: 200px;
@@ -41,9 +48,15 @@ section {
 
 .left_box {
 	float: left;
-	width: $left_column_width;
+  width: $left_column_width;
+//@include left_width;
 	height: 100%;
 	margin: 2px 10px;
+//	@include respond-to(handhelds){width: 25px;}
+//	@include respond-to(small-screens){width: 50px;}
+//	@include respond-to(med-screens){width: 100px;}
+//	@include respond-to(wide-screens){width: 200px;}
+//	@include respond-to(hd-screens){width: 250px;}
 }
 
 .right_box {

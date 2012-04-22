@@ -21,6 +21,10 @@ $sf: .5;	//Saturation Factor
 $af: 1;		//Alpha Factor
 
 $text-color: $scheme-color;
+$dark-color: #000000;
+
+// Displays
+$display-border-color: change_color($scheme-color, $lightness: $lf * 10%, $alpha: $af * 0.3);
 
 // Pages
 $background-color: change_color($scheme-color, $lightness: 95% * $lf);

@@ -1,7 +1,2 @@
 <h1>Factory Floor</h1>
 <h4>Item Specifications</h4>
-<%= form_tag ({:action => "display"}, :method => "put") do %>
-	<p>View Item</p>
-	<%= select_tag :selected_item, options_from_collection_for_select(@items, :id, :code), {:prompt => 'Select Item'} %>
-	<%= submit_tag "View Item" %>
-<% end %>

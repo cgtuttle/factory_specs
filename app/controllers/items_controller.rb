@@ -60,8 +60,9 @@ class ItemsController < ApplicationController
 		end
 		@title = @item.code
 		@item_specs = @item.item_specs
-		@specs = @item.specs
-		@categories = @specs.collect{|spec| spec.category}.uniq
+		@categories = @item_specs.group_by{|is| is.spec.category}
+		# @specs = @item.specs
+		# @categories = @specs.collect{|spec| spec.category}.uniq
 	end
 	
 	def _update

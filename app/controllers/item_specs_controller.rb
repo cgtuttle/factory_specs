@@ -1,21 +1,11 @@
 class ItemSpecsController < ApplicationController
+
+require 'will_paginate/array' 
 	
   def index
 		set_scope
-		if params.has_key?(:item_spec)
-			@item = Item.find(params[:item_spec][:item_id])
-		else
-			@item = Item.first
-		end
-		#if params[:item_id]
-			#@item = Item.find(params[:item_id])
-		#end
-		#if params[:item_spec][:item_id]
-			#@item = Item.find(params[:item_spec][:item_id])
-		#end
 		@title = "Specifications for #{@item.code}"
-		#@item_specs = ItemSpec.where(:item_id => @item.id)
-		@item_specs = ItemSpec.by_item(@item.id)
+		@item_specs = ItemSpec.by_status(@item.id, @history, @future).paginate(:page => params[:page], :per_page => 30)
 		@specs = Spec.order(:code)
 		@items = Item.order(:code)
   end
@@ -27,15 +17,17 @@ class ItemSpecsController < ApplicationController
 	end
 	
 	def create
+		logger.debug "Ran create"
 		@new_item_spec = ItemSpec.new(params[:item_spec])
 		@new_item_spec.save
 		redirect_to item_specs_path :item_id => params[:item_spec][:item_id]
 	end
 	
 	def set_scope
-		
 		if params[:item] && !params[:item].blank?
 			@item = Item.find(params[:item])
+		elsif params.has_key?(:item_spec)
+			@item = Item.find(params[:item_spec][:item_id])
 		else
 			@item = Item.order(:code).first
 		end

@@ -6,6 +6,7 @@
 			<div><%= collection_select :item, :id, @items, :id, :code, {:selected => @item.id}, {:onchange => "this.form.submit();", :class => "display-item-select"} %></div>
 		</div>
 	<% end %>
+	<div class="display-body-box">
 	<% @categories.each do |category, item_specs| %>
 		<p class="display-category"><%= category.name %></p>
 		<% i = 0 %>
@@ -20,9 +21,10 @@
 						<span class="display-body-value"><%= s.string_value %></span>
 					<% end %>
 				</div>
-			<% end %>
-			<br />
-			<% i==0 ? i=1 : i=0 %>			
+				<% i==0 ? i=1 : i=0 %>	
+				<br />	
+			<% end %>			
 		<% end %>
 	<% end %>
+	</div>
 </div>

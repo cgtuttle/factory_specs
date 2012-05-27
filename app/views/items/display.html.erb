@@ -1,30 +1,31 @@
 
-<div class="display-box">
-	<%= form_tag('display', :method => :get) do %>		
-		<div class="display-title-box">
-			<div class="display-title-label">Specifications for</div>
-			<div><%= collection_select :item, :id, @items, :id, :code, {:selected => @item.id}, {:onchange => "this.form.submit();", :class => "display-item-select"} %></div>
-		</div>
-	<% end %>
-	<div class="display-body-box">
-	<% @categories.each do |category, item_specs| %>
-		<p class="display-category"><%= category.name %></p>
-		<% i = 0 %>
-		<% for s in item_specs %>
-			<% if s.date_status == "current" %>
-				<div class="display-body-box-<%= i %>">
-					<span class="display-body-label"><%= s.spec.name %></span>
-					<% if s.numeric_value %>
-						<span class="display-body-value"><%= s.numeric_value %></span>
-					<% end %>
-					<% if s.string_value %>
-						<span class="display-body-value"><%= s.string_value %></span>
-					<% end %>
-				</div>
-				<% i==0 ? i=1 : i=0 %>	
-				<br />	
-			<% end %>			
+	<div class="display-box">
+		<%= form_tag('display', :method => :get) do %>		
+			<div class="display-title-box">
+				<span class="display-title-label">Specifications for</span>
+				<%= collection_select :item, :id, @items, :id, :code, {:selected => @item.id}, {:onchange => "this.form.submit();", :class => "display-item-select"} %>
+			</div>
 		<% end %>
-	<% end %>
+		<div class="display-body-box">
+		<% @categories.each do |category, item_specs| %>
+			<div class="display-category"><%= category.name %></div>
+			<br />
+			<% i = 0 %>
+			<% for s in item_specs %>
+				<% if s.date_status == "current" %>
+					<div class="display-body-box-<%= i %>">
+						<div class="display-body-label"><%= s.spec.name %></div>
+						<% if s.numeric_value %>
+							<span class="display-body-value"><%= s.numeric_value %></span>
+						<% end %>
+						<% if s.string_value %>
+							<span class="display-body-value"><%= s.string_value %></span>
+						<% end %>
+					</div>
+					<% i==0 ? i=1 : i=0 %>	
+					<br />	
+				<% end %>			
+			<% end %>
+		<% end %>
+		</div>
 	</div>
-</div>

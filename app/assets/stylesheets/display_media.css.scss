@@ -1,0 +1,45 @@
+$b: 1px;
+$mt: 10px;
+$mb: 10px;
+$ml: 5px;
+$mr: 5px;
+$pt: 5px;
+$pb: 0;
+$mt_body: 0px;
+$mb_body: 5px;
+$title: 60px;
+$easement: 2 * $b + $mt + $mb + $pt + $pb;
+$easement_body: $easement + $title + $mt_body + $mb_body;
+$edge_hor: 10px;
+
+@mixin display_box_height {
+	height: 398px;
+	@media all and (min-height: 1100px) and (max-height: 1200px) { height: 1060px - $easement;}
+	@media all and (min-height: 1000px) and (max-height: 1099px) { height: 960px - $easement;}
+	@media all and (min-height: 900px) and (max-height: 999px) { height: 860px - $easement;}
+	@media all and (min-height: 800px) and (max-height: 899px) { height: 760px - $easement;}
+	@media all and (min-height: 700px) and (max-height: 799px) { height: 660px - $easement;}
+	@media all and (min-height: 600px) and (max-height: 699px) { height: 560px - $easement;}
+}
+
+@mixin display_body_box_height {
+	height: 330px;
+	@media all and (min-height: 1100px) and (max-height: 1200px) { height: 1060px - $easement_body;}
+	@media all and (min-height: 1000px) and (max-height: 1099px) { height: 960px - $easement_body;}
+	@media all and (min-height: 900px) and (max-height: 999px) { height: 860px - $easement_body;}
+	@media all and (min-height: 800px) and (max-height: 899px) { height: 760px - $easement_body;}
+	@media all and (min-height: 700px) and (max-height: 799px) { height: 660px - $easement_body;}
+	@media all and (min-height: 600px) and (max-height: 699px) { height: 560px - $easement_body;}
+}
+
+@mixin display_box_width {
+	width: 800px;
+	@media all and (min-width: 1900px) and (max-width: 2560px) { width: 1900px - $edge_hor;}
+	@media all and (min-width: 1800px) and (max-width: 1899px) { width: 1800px - $edge_hor;}
+	@media all and (min-width: 1700px) and (max-width: 1799px) { width: 1700px - $edge_hor;}
+	@media all and (min-width: 1600px) and (max-width: 1699px) { width: 1600px - $edge_hor;}
+	@media all and (min-width: 1500px) and (max-width: 1599px) { width: 1500px - $edge_hor;}
+	@media all and (min-width: 1400px) and (max-width: 1499px) { width: 1400px - $edge_hor;}
+	@media all and (min-width: 1300px) and (max-width: 1399px) { width: 1300px - $edge_hor;}
+	@media all and (min-width: 1200px) and (max-width: 1299px) { width: 1200px - $edge_hor;}
+}

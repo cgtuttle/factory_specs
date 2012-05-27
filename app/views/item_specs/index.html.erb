@@ -1,54 +1,54 @@
 
-<%= form_tag('item_specs', :method => :get) do %>
-	<div class="search_field">Specifications for </div> 
-	<%= collection_select :item_spec, :item_id, @items, :id, :code, {:selected => @item.id}, {:onchange => "this.form.submit();", :class => "search-field"} %>
-	<div class="check_box inline-controls"><%= check_box_tag "include_future", "future", @future %> Include future </div>
-	<div class="check_box inline-controls"><%= check_box_tag "include_history", "history", @history %> Include history </div>
-	<div class="check_box inline-controls"><%= check_box_tag "include_deleted", "deleted", @deleted %> Include deleted </div>
-	<%= submit_tag "Apply" %>
-<% end %>
+<section class="right_box">
+	<%= form_tag('item_specs', :method => :get) do %>
+		<div class="search_field">Specifications for </div> 
+		<%= collection_select :item_spec, :item_id, @items, :id, :code, {:selected => @item.id}, {:onchange => "this.form.submit();", :class => "search-field"} %>
+		<div class="check_box inline-controls"><%= check_box_tag "include_future", "future", @future %> Include future </div>
+		<div class="check_box inline-controls"><%= check_box_tag "include_history", "history", @history %> Include history </div>
+		<%= submit_tag "Apply" %>
+	<% end %>
 
-<%= render 'relationship' %>
+	<%= render 'relationship' %>
 
-<div class="paginate"><%= will_paginate @item_specs %></div>
+	<div class="paginate"><%= will_paginate @item_specs %></div>
 
-<table class="data">
-	<thead>
-		<th>Category</th>
-		<th>Spec</th>
-		<th>Text</th>
-		<th>Multi-Line Text</th>
-		<th>Value</th>
-		<th>USL</th>
-		<th>LSL</th>
-		<th>UOM</th>
-		<th>Document</th>
-		<th>URL</th>
-		<th>Doc Ver</th>
-		<th>Test</th>
-		<th>Eff Dt</th>
-		<th>Ver</th>
-		<th>Status</th>
-		<th>Edited By</th>
-		<th></th>
-	</thead>
-	<tbody>
-		<% @item_specs.each do |is| %>
-		
-			<% if @history == true && is.date_status == 'past' %>
-				<%= render :partial => 'table', :locals => { :is => is }  %>				
-			<% end %>	
-		
-			<% if @future == true && is.date_status == "future" %>							
-				<%= render :partial => 'table', :locals => { :is => is }  %>				
+	<table class="data">
+		<thead>
+			<th>Category</th>
+			<th>Spec</th>
+			<th>Text</th>
+			<th>Multi-Line Text</th>
+			<th>Value</th>
+			<th>USL</th>
+			<th>LSL</th>
+			<th>UOM</th>
+			<th>Document</th>
+			<th>URL</th>
+			<th>Doc Ver</th>
+			<th>Test</th>
+			<th>Eff Dt</th>
+			<th>Ver</th>
+			<th>Status</th>
+			<th>Edited By</th>
+			<th></th>
+		</thead>
+		<tbody>
+			<% @item_specs.each do |is| %>
+			
+				<% if @history == true && is.date_status == 'past' %>
+					<%= render :partial => 'table', :locals => { :is => is }  %>				
+				<% end %>	
+			
+				<% if @future == true && is.date_status == "future" %>							
+					<%= render :partial => 'table', :locals => { :is => is }  %>				
+				<% end %>
+					
+				<% if is.date_status == "current" %>					
+					<%= render :partial => 'table', :locals => { :is => is }  %>
+				<% end %>
+			
 			<% end %>
-				
-			<% if is.date_status == "current" %>					
-				<%= render :partial => 'table', :locals => { :is => is }  %>
-			<% end %>
+		</tbody>
+	</table>
+</section>		
 		
-		<% end %>
-	</tbody>
-</table>
-	
-	

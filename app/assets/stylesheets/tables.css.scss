@@ -5,6 +5,7 @@ table {
 	border-collapse: collapse;
 	margin-top: 10px;
 	border-bottom: 3px solid $table-bottom-color;
+	width: 99%;
 	th {
 		background-color: $header-back-color;
 		color: $header-text-color;

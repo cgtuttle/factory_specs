@@ -26,3 +26,33 @@
   @include respond-to(wide-screens) { float: none; }
 }
 */
+
+@mixin page_body_height {
+	height: 400px;
+	@media all and (min-height: 1100px) and (max-height: 1200px) { height: 1060px;}
+	@media all and (min-height: 1000px) and (max-height: 1099px) { height: 960px;}
+	@media all and (min-height: 900px) and (max-height: 999px) { height: 860px;}
+	@media all and (min-height: 800px) and (max-height: 899px) { height: 760px;}
+	@media all and (min-height: 700px) and (max-height: 799px) { height: 660px;}
+	@media all and (min-height: 600px) and (max-height: 699px) { height: 560px;}
+}
+
+@mixin right_width {
+	width: 800px;	
+	@media all and (min-width: 1900px) and (max-width: 2000px) { width: 1600px;}
+	@media all and (min-width: 1800px) and (max-width: 1899px) { width: 1500px;}
+	@media all and (min-width: 1700px) and (max-width: 1799px) { width: 1400px;}
+	@media all and (min-width: 1600px) and (max-width: 1699px) { width: 1300px;}
+	@media all and (min-width: 1500px) and (max-width: 1599px) { width: 1200px;}
+	
+	@media all and (min-width: 1400px) and (max-width: 1499px) { width: 1100px;}
+	@media all and (min-width: 1300px) and (max-width: 1399px) { width: 1000px;}
+	@media all and (min-width: 1200px) and (max-width: 1299px) { width: 900px;}
+	@media all and (min-width: 1024x) and (max-width: 1199px) { width: 824px;}	
+}
+
+@mixin left_width {
+	width: 150px;	
+	@media all and (min-width: 1500px) and (max-width: 2099px) { width: 300px;}
+	@media all and (min-width: 1024px) and (max-width: 1499px) { width: 200px;}	
+}

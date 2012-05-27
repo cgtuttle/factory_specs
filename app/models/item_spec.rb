@@ -12,7 +12,9 @@ class ItemSpec < ActiveRecord::Base
 	
 	def self.by_status(item, past, future)
 			sql_string_current =
-			"SELECT *, 'current' as status  
+			"(SELECT *, 'current' as status, categories.display_order as cat_seq,
+				specs.display_order as spec_seq, item_specs.eff_date as date_seq,
+				item_specs.version as ver_seq  
 				FROM item_specs, specs, categories 
 				WHERE item_specs.spec_id = specs.id
 					AND specs.category_id = categories.id
@@ -28,12 +30,14 @@ class ItemSpec < ActiveRecord::Base
 						WHERE B.item_id = item_specs.item_id
 						AND B.spec_id = item_specs.spec_id
 					)
-				AND item_specs.item_id = #{item}"
+				AND item_specs.item_id = #{item})"
 		
 		if past
 			sql_string_past = 
 			" UNION ALL 
-				SELECT *, 'history' as status
+				(SELECT *, 'history' as status, categories.display_order as cat_seq,
+					specs.display_order as spec_seq, item_specs.eff_date as date_seq,
+					item_specs.version as ver_seq
 				FROM item_specs, specs, categories 
 				WHERE item_specs.spec_id = specs.id
 					AND specs.category_id = categories.id
@@ -50,7 +54,7 @@ class ItemSpec < ActiveRecord::Base
 						AND D.spec_id = item_specs.spec_id
 					)
 				AND item_specs.eff_date <= current_date
-				AND item_specs.item_id = #{item}"
+				AND item_specs.item_id = #{item})"
 		else
 			sql_string_past = ""
 		end
@@ -58,18 +62,20 @@ class ItemSpec < ActiveRecord::Base
 		if future
 			sql_string_future =
 			" UNION ALL
-				SELECT *, 'future' as status
+				(SELECT *, 'future' as status, categories.display_order as cat_seq,
+					specs.display_order as spec_seq, item_specs.eff_date as date_seq,
+					item_specs.version as ver_seq
 				FROM item_specs, specs, categories 
 				WHERE item_specs.spec_id = specs.id
 					AND specs.category_id = categories.id 
 				AND item_specs.eff_date > current_date
-				AND item_specs.item_id = #{item}"
+				AND item_specs.item_id = #{item})"
 		else
 			sql_string_future = ""
 		end
 				
 			sql_string_order =	
-			" ORDER BY categories.display_order, specs.display_order, item_specs.eff_date DESC, item_specs.version DESC"
+			" ORDER BY cat_seq, spec_seq, date_seq DESC, ver_seq DESC"
 		
 		sql_string = "#{sql_string_current}#{sql_string_past}#{sql_string_future}#{sql_string_order}"
 		ItemSpec.find_by_sql(sql_string)

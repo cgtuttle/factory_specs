@@ -33,21 +33,7 @@
 			<th></th>
 		</thead>
 		<tbody>
-			<% @item_specs.each do |is| %>
-			
-				<% if @history == true && is.date_status == 'past' %>
-					<%= render :partial => 'table', :locals => { :is => is }  %>				
-				<% end %>	
-			
-				<% if @future == true && is.date_status == "future" %>							
-					<%= render :partial => 'table', :locals => { :is => is }  %>				
-				<% end %>
-					
-				<% if is.date_status == "current" %>					
-					<%= render :partial => 'table', :locals => { :is => is }  %>
-				<% end %>
-			
-			<% end %>
+			<%= render :partial => 'item_spec', :collection => @item_specs %>
 		</tbody>
 	</table>
 </section>		

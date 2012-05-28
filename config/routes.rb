@@ -3,13 +3,17 @@ Factory::Application.routes.draw do
   devise_for :users
 
   resources :item_specs
-	resources :items
+	resources :items do
+		collection do
+			get 'display'
+		end
+	end
 	resources :specs
 	resources :categories
 	resources :tests
 	
 	match 'test/:id/instructions' => 'tests#instructions'
-	match '/display' => 'items#display', :via => :get
+	#match '/display' => 'items#display', :via => :get
 	
 	root :to => "main#contents"
 

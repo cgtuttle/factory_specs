@@ -11,6 +11,7 @@ class ItemSpec < ActiveRecord::Base
 	end
 	
 	def self.by_status(item, past, future)
+			logger.debug "past -> #{past}, future -> #{future}"
 			sql_string_current =
 			"(SELECT *, 'current' as status, categories.display_order as cat_seq,
 				specs.display_order as spec_seq, item_specs.eff_date as date_seq,
@@ -33,6 +34,7 @@ class ItemSpec < ActiveRecord::Base
 				AND item_specs.item_id = #{item})"
 		
 		if past
+			logger.debug "past true - past? -> #{past}"
 			sql_string_past = 
 			" UNION ALL 
 				(SELECT *, 'history' as status, categories.display_order as cat_seq,
@@ -56,10 +58,12 @@ class ItemSpec < ActiveRecord::Base
 				AND item_specs.eff_date <= current_date
 				AND item_specs.item_id = #{item})"
 		else
+			logger.debug "past false - past? -> #{past}"
 			sql_string_past = ""
 		end
 			
 		if future
+			logger.debug "future true - future? -> #{future}"
 			sql_string_future =
 			" UNION ALL
 				(SELECT *, 'future' as status, categories.display_order as cat_seq,
@@ -72,12 +76,14 @@ class ItemSpec < ActiveRecord::Base
 				AND item_specs.item_id = #{item})"
 		else
 			sql_string_future = ""
+			logger.debug "future false - future? -> #{future}"
 		end
 				
 			sql_string_order =	
 			" ORDER BY cat_seq, spec_seq, date_seq DESC, ver_seq DESC"
 		
 		sql_string = "#{sql_string_current}#{sql_string_past}#{sql_string_future}#{sql_string_order}"
+		logger.debug "sql_string -> #{sql_string}"
 		ItemSpec.find_by_sql(sql_string)
 	end
 	

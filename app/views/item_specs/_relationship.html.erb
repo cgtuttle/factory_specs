@@ -7,6 +7,8 @@
 				<p class="check_box"><%= check_box_tag :spec_ids, spec.id, @item.specs.include?(spec), :name => "item[spec_ids][]" %>
 				<%= label_tag :spec_ids, spec.code %></p>
 			<% end %>
+			<%= hidden_field_tag "history", @history %>
+			<%= hidden_field_tag "future", @future %>
 			<%= submit_tag "Update item" %>
 		<% end %>
 	</section>

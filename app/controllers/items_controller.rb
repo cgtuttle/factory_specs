@@ -14,7 +14,10 @@ class ItemsController < ApplicationController
   end
 
   def update
+		logger.debug "Running items_controller.update"
 		@item = Item.find(params[:id])
+		@history = params[:history]
+		@future = params[:future]
 		case params[:commit]
 		when 'Update'
 			if _update
@@ -24,7 +27,7 @@ class ItemsController < ApplicationController
 		when 'Update item'
 			if _update
 				flash[:success] = "Item specs updated"
-				redirect_to item_specs_path :item => @item
+				redirect_to item_specs_path :item => @item, :history => @history, :future => @future
 			end			
 		else
 			redirect_to items_path
@@ -55,6 +58,8 @@ class ItemsController < ApplicationController
 	def display
 		if params.has_key?(:item)
 			@item = Item.find(params[:item][:id])
+		elsif params.has_key?(:item_id)
+			@item = Item.find(params[:item_id])		
 		else
 			@item = Item.order(:code).first
 		end
@@ -64,11 +69,7 @@ class ItemsController < ApplicationController
 	end
 	
 	def _update
-		if @item.update_attributes(params[:item])
-			true
-		else
-			false
-		end
+		@item.update_attributes(params[:item])
 	end
 	
 	def find_items

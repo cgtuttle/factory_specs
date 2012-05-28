@@ -4,13 +4,15 @@ require 'will_paginate/array'
 	
   def index
 		logger.debug "Running index"
+		@history = params[:history]
+		@future = params[:future]
+		logger.debug "@history -> #{@history}, @future -> #{@future}"
 		set_scope
 		@title = "Specifications for #{@item.code}"
 		@item_specs = ItemSpec.by_status(@item.id, @history, @future).paginate(:page => params[:page], :per_page => 30)
 		@specs = Spec.order(:code)
 		@items = Item.order(:code)
   end
-	
 	
 	def edit
 		logger.debug "Running edit"
@@ -34,11 +36,11 @@ require 'will_paginate/array'
 		else
 			@item = Item.order(:code).first
 		end
+		logger.debug "@history -> #{@history}, @future -> #{@future}"
+		logger.debug "params -> #{params[:include_future]}"
 		
-		@future = params[:include_future] && !params[:include_future].blank?
-		@history = params[:include_history] && !params[:include_history].blank?
-		@deleted = params[:include_deleted] && !params[:include_deleted].blank?
-		
+		@history = (params[:include_history] && !params[:include_history].blank?) || (@history && !@history.blank?)
+		@future = (params[:include_future] && !params[:include_future].blank?) || (@future && !@future.blank?)
+		logger.debug "@history -> #{@history}, @future -> #{@future}"
 	end
-	
 end

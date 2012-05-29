@@ -33,9 +33,10 @@ require 'will_paginate/array'
 			@item = Item.find(params[:item])
 		elsif params.has_key?(:item_spec)
 			@item = Item.find(params[:item_spec][:item_id])
-		else
-			@item = Item.order(:code).first
+	#	else
+	#		@item = Item.order(:code).first
 		end
+		cookies[:item_id] = @item.id
 		logger.debug "@history -> #{@history}, @future -> #{@future}"
 		logger.debug "params -> #{params[:include_future]}"
 		

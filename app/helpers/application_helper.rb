@@ -9,6 +9,10 @@ module ApplicationHelper
     end
   end
 	
+	def get_item_id
+		cookies[:item_id] ? cookies[:item_id] : Item.find(:first).id
+	end
+	
 	def flatten_hash(hash = params, ancestor_names = [])
     flat_hash = {}
     hash.each do |k, v|

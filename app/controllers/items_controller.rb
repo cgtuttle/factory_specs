@@ -1,4 +1,5 @@
 class ItemsController < ApplicationController
+	include ApplicationHelper
 	before_filter :find_items
 	
   def index
@@ -24,7 +25,7 @@ class ItemsController < ApplicationController
 				flash[:success] = "Item updated"
 				redirect_to items_path
 			end
-		when 'Update item'
+		when 'Update Item'
 			if _update
 				flash[:success] = "Item specs updated"
 				redirect_to item_specs_path :item => @item, :history => @history, :future => @future
@@ -43,6 +44,7 @@ class ItemsController < ApplicationController
 		@item.account_id = 1
 		if @item.save
 			flash[:success] = "Item added"
+			cookies[:item_id] = @item.id
 			redirect_to items_path
 		else
 			redirect_to items_path
@@ -61,8 +63,9 @@ class ItemsController < ApplicationController
 		elsif params.has_key?(:item_id)
 			@item = Item.find(params[:item_id])		
 		else
-			@item = Item.order(:code).first
+			@item = Item.find(get_item_id)
 		end
+		cookies[:item_id] = @item.id
 		@title = @item.code
 		@item_specs = @item.item_specs
 		@categories = @item_specs.group_by{|is| is.spec.category}

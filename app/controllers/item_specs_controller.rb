@@ -1,5 +1,6 @@
 class ItemSpecsController < ApplicationController
 
+include ApplicationHelper
 require 'will_paginate/array' 
 	
   def index
@@ -33,8 +34,8 @@ require 'will_paginate/array'
 			@item = Item.find(params[:item])
 		elsif params.has_key?(:item_spec)
 			@item = Item.find(params[:item_spec][:item_id])
-	#	else
-	#		@item = Item.order(:code).first
+		else
+			@item = Item.find(get_item_id)
 		end
 		cookies[:item_id] = @item.id
 		logger.debug "@history -> #{@history}, @future -> #{@future}"

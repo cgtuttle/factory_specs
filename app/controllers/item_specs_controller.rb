@@ -17,6 +17,7 @@ require 'will_paginate/array'
 	
 	def edit
 		logger.debug "Running edit"
+		logger.debug "params[:id] -> #{params[:id]}"
 		@item_spec = ItemSpec.find(params[:id])
 		@new_item_spec = @item_spec.dup
 	end

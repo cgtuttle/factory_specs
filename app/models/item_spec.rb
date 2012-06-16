@@ -7,56 +7,56 @@ class ItemSpec < ActiveRecord::Base
 	before_create :set_version
 	
 	def self.by_item(item_id)
-		@item_specs = ItemSpec.joins(:spec => :category).where(:item_id => item_id).order('categories.display_order, specs.display_order, item_specs.eff_date DESC, item_specs.version DESC')
+		@item_specs = ItemSpec.joins(:spec => :category).where(:item_id => item_id).order('categories.display_order, s.display_order, i.eff_date DESC, i.version DESC')
 	end
 	
 	def self.by_status(item, past, future)
 			logger.debug "past -> #{past}, future -> #{future}"
 			sql_string_current =
-			"(SELECT *, 'current' as status, categories.display_order as cat_seq,
-				specs.display_order as spec_seq, item_specs.eff_date as date_seq,
-				item_specs.version as ver_seq  
-				FROM item_specs, specs, categories 
-				WHERE item_specs.spec_id = specs.id
-					AND specs.category_id = categories.id
-					AND	item_specs.eff_date =        
+			"(SELECT i.*, s.*, 'current' as status, categories.display_order as cat_seq,
+				s.display_order as spec_seq, i.eff_date as date_seq,
+				i.version as ver_seq  
+				FROM item_specs as i, specs as s, categories 
+				WHERE i.spec_id = s.id
+					AND s.category_id = categories.id
+					AND	i.eff_date =        
 					(SELECT max(eff_date)
 						FROM item_specs A
-						WHERE A.item_id = item_specs.item_id
-						AND A.spec_id = item_specs.spec_id
+						WHERE A.item_id = i.item_id
+						AND A.spec_id = i.spec_id
 					)
-					AND item_specs.version =
+					AND i.version =
 					(SELECT max(version)
 					FROM item_specs B
-						WHERE B.item_id = item_specs.item_id
-						AND B.spec_id = item_specs.spec_id
+						WHERE B.item_id = i.item_id
+						AND B.spec_id = i.spec_id
 					)
-				AND item_specs.item_id = #{item})"
+				AND i.item_id = #{item})"
 		
 		if past
 			logger.debug "past true - past? -> #{past}"
 			sql_string_past = 
 			" UNION ALL 
-				(SELECT *, 'history' as status, categories.display_order as cat_seq,
-					specs.display_order as spec_seq, item_specs.eff_date as date_seq,
-					item_specs.version as ver_seq
-				FROM item_specs, specs, categories 
-				WHERE item_specs.spec_id = specs.id
-					AND specs.category_id = categories.id
-					AND item_specs.eff_date <= 
+				(SELECT i.*, s.*, 'history' as status, categories.display_order as cat_seq,
+					s.display_order as spec_seq, i.eff_date as date_seq,
+					i.version as ver_seq
+				FROM item_specs as i, specs as s, categories 
+				WHERE i.spec_id = s.id
+					AND s.category_id = categories.id
+					AND i.eff_date <= 
 					(SELECT max(eff_date)
 						FROM item_specs C
-						WHERE C.item_id = item_specs.item_id
-						AND C.spec_id = item_specs.spec_id
+						WHERE C.item_id = i.item_id
+						AND C.spec_id = i.spec_id
 					)
-					AND item_specs.version <
+					AND i.version <
 					(SELECT max(version)
 					FROM item_specs D
-						WHERE D.item_id = item_specs.item_id
-						AND D.spec_id = item_specs.spec_id
+						WHERE D.item_id = i.item_id
+						AND D.spec_id = i.spec_id
 					)
-				AND item_specs.eff_date <= current_date
-				AND item_specs.item_id = #{item})"
+				AND i.eff_date <= current_date
+				AND i.item_id = #{item})"
 		else
 			logger.debug "past false - past? -> #{past}"
 			sql_string_past = ""
@@ -66,14 +66,14 @@ class ItemSpec < ActiveRecord::Base
 			logger.debug "future true - future? -> #{future}"
 			sql_string_future =
 			" UNION ALL
-				(SELECT *, 'future' as status, categories.display_order as cat_seq,
-					specs.display_order as spec_seq, item_specs.eff_date as date_seq,
-					item_specs.version as ver_seq
-				FROM item_specs, specs, categories 
-				WHERE item_specs.spec_id = specs.id
-					AND specs.category_id = categories.id 
-				AND item_specs.eff_date > current_date
-				AND item_specs.item_id = #{item})"
+				(SELECT i.*, s.*, 'future' as status, categories.display_order as cat_seq,
+					s.display_order as spec_seq, i.eff_date as date_seq,
+					i.version as ver_seq
+				FROM item_specs as i, specs as s, categories 
+				WHERE i.spec_id = s.id
+					AND s.category_id = categories.id 
+				AND i.eff_date > current_date
+				AND i.item_id = #{item})"
 		else
 			sql_string_future = ""
 			logger.debug "future false - future? -> #{future}"

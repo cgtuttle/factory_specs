@@ -5,7 +5,7 @@ class ItemsController < ApplicationController
   def index
 		@title = "Items"
 		@new_item = Item.new	
-		@item = Item.last
+	#	@item = Item.last
 		@specs = Spec.all
   end
 

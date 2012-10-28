@@ -11,79 +11,24 @@ class ItemSpec < ActiveRecord::Base
 	end
 	
 	def self.by_status(item, past, future)
-			logger.debug "past -> #{past}, future -> #{future}"
-			sql_string_current =
-			"(SELECT i.*, s.*, 'current' as status, categories.display_order as cat_seq,
-				s.display_order as spec_seq, i.eff_date as date_seq,
-				i.version as ver_seq  
-				FROM item_specs as i, specs as s, categories 
-				WHERE i.spec_id = s.id
-					AND s.category_id = categories.id
-					AND	i.eff_date =        
-					(SELECT max(eff_date)
-						FROM item_specs A
-						WHERE A.item_id = i.item_id
-						AND A.spec_id = i.spec_id
-					)
-					AND i.version =
-					(SELECT max(version)
-					FROM item_specs B
-						WHERE B.item_id = i.item_id
-						AND B.spec_id = i.spec_id
-					)
-				AND i.item_id = #{item})"
+		sql_string_current = self.new.select_string("current", item)
 		
 		if past
-			logger.debug "past true - past? -> #{past}"
-			sql_string_past = 
-			" UNION ALL 
-				(SELECT i.*, s.*, 'history' as status, categories.display_order as cat_seq,
-					s.display_order as spec_seq, i.eff_date as date_seq,
-					i.version as ver_seq
-				FROM item_specs as i, specs as s, categories 
-				WHERE i.spec_id = s.id
-					AND s.category_id = categories.id
-					AND i.eff_date <= 
-					(SELECT max(eff_date)
-						FROM item_specs C
-						WHERE C.item_id = i.item_id
-						AND C.spec_id = i.spec_id
-					)
-					AND i.version <
-					(SELECT max(version)
-					FROM item_specs D
-						WHERE D.item_id = i.item_id
-						AND D.spec_id = i.spec_id
-					)
-				AND i.eff_date <= current_date
-				AND i.item_id = #{item})"
+			sql_string_past = " UNION ALL #{self.new.select_string("history", item)}"
 		else
-			logger.debug "past false - past? -> #{past}"
 			sql_string_past = ""
 		end
 			
 		if future
-			logger.debug "future true - future? -> #{future}"
-			sql_string_future =
-			" UNION ALL
-				(SELECT i.*, s.*, 'future' as status, categories.display_order as cat_seq,
-					s.display_order as spec_seq, i.eff_date as date_seq,
-					i.version as ver_seq
-				FROM item_specs as i, specs as s, categories 
-				WHERE i.spec_id = s.id
-					AND s.category_id = categories.id 
-				AND i.eff_date > current_date
-				AND i.item_id = #{item})"
+			sql_string_future = " UNION ALL #{self.new.select_string("future", item)}"
 		else
 			sql_string_future = ""
-			logger.debug "future false - future? -> #{future}"
 		end
 				
 			sql_string_order =	
 			" ORDER BY cat_seq, spec_seq, date_seq DESC, ver_seq DESC"
 		
 		sql_string = "#{sql_string_current}#{sql_string_past}#{sql_string_future}#{sql_string_order}"
-		logger.debug "sql_string -> #{sql_string}"
 		ItemSpec.find_by_sql(sql_string)
 	end
 	
@@ -129,6 +74,55 @@ class ItemSpec < ActiveRecord::Base
 		self.version = self.last_version + 1
 	end
 	
-	
+	def select_string(status, item)
+		case status
+		when "current"
+			op1 = "="
+			op2 = "<="
+			op3 = "="
+		when "history"
+			op1 = "<="
+			op2 = "<="
+			op3 = "<"
+		else
+			op1 = ">"
+			op2 = ">"
+			op3 = ">"
+		end
+		
+		"(
+			SELECT 
+				i.*, 
+				s.code,
+				s.name,
+				s.label,
+				s.display_order,
+				'#{status}' as status, 
+				categories.display_order as cat_seq,
+				categories.name, 
+				categories.code,
+				s.display_order as spec_seq, 
+				i.eff_date as date_seq,
+				i.version as ver_seq  
+			FROM item_specs as i, specs as s, categories 
+			WHERE i.spec_id = s.id
+			AND s.category_id = categories.id
+			AND	i.eff_date #{op1} (       
+				SELECT max(eff_date)
+				FROM item_specs A
+				WHERE A.item_id = i.item_id
+				AND A.spec_id = i.spec_id
+				AND A.eff_date #{op2} current_date
+				)
+			AND i.version #{op3} (
+				SELECT max(version)
+				FROM item_specs B
+				WHERE B.item_id = i.item_id
+				AND B.spec_id = i.spec_id
+				AND B.eff_date #{op2} current_date
+				)
+			AND i.item_id = #{item}
+		)"
+	end
 	
 end

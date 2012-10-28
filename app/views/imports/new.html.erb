@@ -1,0 +1,14 @@
+<h2>Import File</h2>
+<br></br>
+
+  <%= form_for @import, :html=>{:multipart=>true} do |f| %>
+    <p><label for='upload file'>Select File: <%= file_field_tag :file %></p>
+    <br></br>
+    <p>Import into <%= f.select :model, Import::MODELS.sort, :selected => @model %></p>
+    <br></br>
+    <%= submit_tag 'Continue', :name => 'import_file' %>
+    <br></br>
+    <%= submit_tag 'Cancel', :name => 'import_file' %>
+  <% end %>
+  
+  

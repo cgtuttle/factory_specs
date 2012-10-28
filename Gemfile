@@ -8,6 +8,8 @@ gem 'rails', '3.2.0'
 gem 'pg'
 gem 'json'
 gem 'devise'
+gem 'cancan'
+gem 'rolify'
 gem 'ransack'
 gem 'admin_data', '>= 1.1.16'
 
@@ -26,7 +28,6 @@ group :development do
 #	gem 'sqlite3-ruby', :require => 'sqlite3'
 	gem 'rails-erd'
 	gem 'hirb'
-	gem 'mongrel'
 end
 
 group :test do
@@ -35,7 +36,6 @@ group :test do
 	gem 'factory_girl_rails', '1.0'
 	gem 'webrat', '0.7.1'
 	gem 'spork', '0.9.0.rc5'
-	gem 'mongrel'
 end
 
 

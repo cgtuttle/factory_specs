@@ -1,3 +1,12 @@
+$base-font-size: 16;
+
+@function pxem($pxval, $baseval: $base-font-size) {
+	@return ($pxval / $baseval) + 0em;
+	}
+	
+@function empx($emval, $baseval: $base-font-size) {
+	@return ($emval * $baseval) + 0px;
+	}
 
 @mixin respond-to($media) {
   @if $media == handhelds {
@@ -17,42 +26,40 @@
   }
 }
 
-/*
-.profile-pic {
-  float: left;
-  width: 250px;
-  @include respond-to(handhelds) { width: 100% ;}
-  @include respond-to(medium-screens) { width: 125px; }
-  @include respond-to(wide-screens) { float: none; }
-}
-*/
+
+
+$page-padding-l: empx(1);
+$page-padding-r: empx(1);
+$page-padding-t: empx(1);
+$page-easement: $page-padding-l + $page-padding-r;
+$page-ht-easement: $page-padding-t;
 
 @mixin page_body_height {
 	height: 400px;
-	@media all and (min-height: 1100px) and (max-height: 1200px) { height: 1060px;}
-	@media all and (min-height: 1000px) and (max-height: 1099px) { height: 960px;}
-	@media all and (min-height: 900px) and (max-height: 999px) { height: 860px;}
-	@media all and (min-height: 800px) and (max-height: 899px) { height: 760px;}
-	@media all and (min-height: 700px) and (max-height: 799px) { height: 660px;}
-	@media all and (min-height: 600px) and (max-height: 699px) { height: 560px;}
+	@media all and (min-height: 1100px) and (max-height: 1200px) { height: 1060px - $page-ht-easement;}
+	@media all and (min-height: 1000px) and (max-height: 1099px) { height: 960px - $page-ht-easement;}
+	@media all and (min-height: 900px) and (max-height: 999px) { height: 860px - $page-ht-easement;}
+	@media all and (min-height: 800px) and (max-height: 899px) { height: 760px - $page-ht-easement;}
+	@media all and (min-height: 700px) and (max-height: 799px) { height: 660px - $page-ht-easement;}
+	@media all and (min-height: 600px) and (max-height: 699px) { height: 560px - $page-ht-easement;}
 }
 
 @mixin right_width {
 	width: 800px;	
-	@media all and (min-width: 1900px) and (max-width: 2000px) { width: 1600px;}
-	@media all and (min-width: 1800px) and (max-width: 1899px) { width: 1500px;}
-	@media all and (min-width: 1700px) and (max-width: 1799px) { width: 1400px;}
-	@media all and (min-width: 1600px) and (max-width: 1699px) { width: 1300px;}
-	@media all and (min-width: 1500px) and (max-width: 1599px) { width: 1200px;}
+	@media all and (min-width: 1900px) and (max-width: 2000px) { width: 1600px - $page-easement;}
+	@media all and (min-width: 1800px) and (max-width: 1899px) { width: 1500px - $page-easement;}
+	@media all and (min-width: 1700px) and (max-width: 1799px) { width: 1400px - $page-easement;}
+	@media all and (min-width: 1600px) and (max-width: 1699px) { width: 1300px - $page-easement;}
+	@media all and (min-width: 1500px) and (max-width: 1599px) { width: 1200px - $page-easement;}
 	
-	@media all and (min-width: 1400px) and (max-width: 1499px) { width: 1100px;}
-	@media all and (min-width: 1300px) and (max-width: 1399px) { width: 1000px;}
-	@media all and (min-width: 1200px) and (max-width: 1299px) { width: 900px;}
-	@media all and (min-width: 1024x) and (max-width: 1199px) { width: 824px;}	
+	@media all and (min-width: 1400px) and (max-width: 1499px) { width: 1100px - $page-easement;}
+	@media all and (min-width: 1300px) and (max-width: 1399px) { width: 1000px - $page-easement;}
+	@media all and (min-width: 1200px) and (max-width: 1299px) { width: 900px - $page-easement;}
+	@media all and (min-width: 1024x) and (max-width: 1199px) { width: 824px - $page-easement;}	
 }
 
 @mixin left_width {
 	width: 150px;	
-	@media all and (min-width: 1500px) and (max-width: 2099px) { width: 300px;}
+	@media all and (min-width: 1500px) and (max-width: 2099px) { width: 250px;}
 	@media all and (min-width: 1024px) and (max-width: 1499px) { width: 200px;}	
 }

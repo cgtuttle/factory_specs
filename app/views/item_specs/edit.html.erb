@@ -1,41 +1,43 @@
-<h4>Item Specification</h4>
-<p>Item: <%= @new_item_spec.item.code %></p>
-<p>Spec: <%= @new_item_spec.spec.code %></p>
+<div class="form">
+	<h4>Item Specification</h4>
+	<p>Item: <%= @new_item_spec.item.code %></p>
+	<p>Spec: <%= @new_item_spec.spec.code %></p>
 	
 
-		<%= form_for(@new_item_spec) do |f| %>
-			<div class="form">
-				
-				<%= f.hidden_field :item_id %>
-				<%= f.hidden_field :spec_id %>
-				<%= f.hidden_field :version %>
-				<%= f.label "Text", :class => "field_label" %>
-				<%= f.text_field :string_value, :size => 15 %>
-				<%= f.label "Long Text", :class => "field_label" %>
-				<%= f.text_area :text_value, :rows => 1, :cols => 15 %>
-				<%= f.label "Value", :class => "field_label" %>
-				<%= f.text_field :numeric_value, :class => "number_field" %>
-				<%= f.label "USL", :class => "field_label" %>
-				<%= f.text_field :usl, :class => "number_field" %>
-				<%= f.label "LSL", :class => "field_label" %>
-				<%= f.text_field :lsl, :class => "number_field" %>
-				<%= f.label "UOM", :class => "field_label" %>
-				<%= f.text_field :unit_of_measure, :size => 6 %>
-				<%= f.label "Doc Title", :class => "field_label" %>
-				<%= f.text_field :document_title, :size => 15 %>
-				<%= f.label "Doc URL", :class => "field_label" %>
-				<%= f.url_field :document_url, :size => 15 %>
-				<%= f.label "Doc Ver", :class => "field_label" %>
-				<%= f.text_field :document_version, :size => 3 %>
-				<%= f.label "Test", :class => "field_label" %>
-				<%= f.collection_select :test_id, Test.order('code'), :id, :code, :prompt => true, :include_blank => true %>
-				
-			</div>
-			<br></br>
-			<%= f.label "Effective Date of Edit" %>
-			<%= f.text_field :eff_date, :class => "date_field" %>
-			<div class="actions">
-				<%= f.submit "Update Item" %>
-				<%= f.submit "Cancel" %>
-			</div>
-		<% end %>		
+	<%= form_for(@new_item_spec) do |f| %>
+		
+			
+			<%= f.hidden_field :item_id %>
+			<%= f.hidden_field :spec_id %>
+			<%= f.hidden_field :version %>
+			<%= f.label "Text", :class => "field_label" %>
+			<%= f.text_field :string_value, :size => 15 %>
+			<%= f.label "Long Text", :class => "field_label" %>
+			<%= f.text_area :text_value, :rows => 1, :cols => 15 %>
+			<%= f.label "Value", :class => "field_label" %>
+			<%= f.text_field :numeric_value, :class => "number_field" %>
+			<%= f.label "USL", :class => "field_label" %>
+			<%= f.text_field :usl, :class => "number_field" %>
+			<%= f.label "LSL", :class => "field_label" %>
+			<%= f.text_field :lsl, :class => "number_field" %>
+			<%= f.label "UOM", :class => "field_label" %>
+			<%= f.text_field :unit_of_measure, :size => 6 %>
+			<%= f.label "Doc Title", :class => "field_label" %>
+			<%= f.text_field :document_title, :size => 15 %>
+			<%= f.label "Doc URL", :class => "field_label" %>
+			<%= f.url_field :document_url, :size => 15 %>
+			<%= f.label "Doc Ver", :class => "field_label" %>
+			<%= f.text_field :document_version, :size => 3 %>
+			<%= f.label "Test", :class => "field_label" %>
+			<%= f.collection_select :test_id, Test.order('code'), :id, :code, :prompt => true, :include_blank => true %>
+			
+		
+		<br></br>
+		<%= f.label "Effective Date of Edit" %>
+		<%= f.text_field :eff_date, :class => "date_field" %>
+		<div class="actions">
+			<%= f.submit "Update Item" %>
+			<%= f.submit "Cancel" %>
+		</div>
+	<% end %>	
+</div>		

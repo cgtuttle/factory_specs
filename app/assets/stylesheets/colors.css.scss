@@ -8,26 +8,37 @@ Purpose of the stylesheet follows.
 
 
 // $scheme-color: #333300;
-$scheme-color: #666633;
+// $scheme-color: #666633;
 // $scheme-color: #999966;
 // $scheme-color: #996633;
 // $scheme-color: #663300;
+	$scheme-color: #E5E5E5;
+// $scheme-color: #6699FF;
 // $scheme-color: blue;
 // $scheme-color: green;
 // $scheme-color: gray;
+
+	$secondary-scheme-color: #C73F17;
 
 $lf: 1;		//Lightness Factor
 $sf: .5;	//Saturation Factor
 $af: 1;		//Alpha Factor
 
-$text-color: $scheme-color;
+$text-color: change_color($scheme-color, $lightness: $lf * 10%, $alpha: $af * 1);
+$reverse-text-color: #FFFFFF;
 $dark-color: #000000;
+$dark-background-color: #AF4035;
 
 // Displays
-$display-border-color: change_color($scheme-color, $lightness: $lf * 10%, $alpha: $af * 0.3);
+$display-border-color: $secondary-scheme-color;
+$display-box-color: #FFFFFF;
+$display-header-color: $secondary-scheme-color;
+$display-divider-color: scale-color($scheme-color, $lightness: 90%);
+$display-odd-back-color: lighten($scheme_color, 5%);
+$display-footer-color: $secondary-scheme-color;
 
 // Pages
-$background-color: change_color($scheme-color, $lightness: 95% * $lf);
+$background-color: scale-color($scheme-color, $lightness: 50%);
 $body-background-color: $background-color;
 $header-background-color: $background-color;
 $page-background-color: $background-color;
@@ -35,23 +46,23 @@ $page-background-color: $background-color;
 // Tables
 
 $table-color: $scheme-color;
-$border-color: change_color($table-color, $lightness: $lf * 25%, $alpha: $af * 0.1);
-$header-back-color: change_color($table-color, $lightness: 65%, $saturation: 55%, $alpha: 0.6);
+$border-color: darken($table-color, 10%);
+$header-back-color: $secondary-scheme-color;
 $table-bottom-color: $header-back-color;
-$odd-back-color: change_color($table-color, $lightness: $lf * 90%, $saturation: $sf * 75%, $alpha: $af * .5);
-$even-back-color: change_color($odd-back-color, $lightness: 80%);
-$header-text-color: darken($text-color, 5%);
-$table-text-color: lighten(#000000, 30%);
+$odd-back-color: $table-color;
+$even-back-color: darken($odd-back-color,5%);
+$header-text-color: #ffffff;
+$table-text-color: lighten(#000000, 10%);
 $past-data-color: lighten($table-text-color, 30%);
 $future-data-color: change_color(blue, $lightness: 80%);
 
 // Gradients
-$top-color: change_color($scheme-color, $lightness: 25%, $saturation: 95%, $alpha: 0.2);
-$bottom-color: change_color($scheme-color, $lightness: 25%, $saturation: 95%, $alpha: 0.02);
+$top-color: $scheme-color;
+$bottom-color: darken($scheme-color, 10%);
 
 // Lists
-$nav-text-color: darken($text-color, 0%);
-$nav-hover-color: darken($text-color, 30%);
+$nav-text-color: darken($secondary-scheme-color, 10%);
+$nav-hover-color: $secondary-scheme-color;
 
 // Forms
 $label-color: darken($text-color, 20%);

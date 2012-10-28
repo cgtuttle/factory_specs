@@ -1,16 +1,33 @@
-$b: 1px;
-$mt: 10px;
-$mb: 10px;
-$ml: 5px;
-$mr: 5px;
-$pt: 5px;
+$base-font-size: 16;
+
+@function pxem($pxval, $baseval: $base-font-size) {
+	@return ($pxval / $baseval) + 0em;
+	}
+	
+@function empx($emval, $baseval: $base-font-size) {
+	@return ($emval * $baseval) + 0px;
+	}
+
+$border: 1px;
+$border-radius: 10px;
+$header-radius: $border-radius - $border;
+$mt: empx(0);
+$mb: empx(1);
+$ml: empx(0);
+$mr: empx(1);
+$pt: 0px;
 $pb: 0;
-$mt_body: 0px;
-$mb_body: 5px;
-$title: 60px;
-$easement: 2 * $b + $mt + $mb + $pt + $pb;
-$easement_body: $easement + $title + $mt_body + $mb_body;
-$edge_hor: 10px;
+$mt-body: 0px;
+$mb-body: 0px;
+$ml-body: 2px;
+$mr-body: 2px;
+$title: 45px;
+$title-border: 0px;
+$pt-title: 6px;
+
+$easement: 2 * $border + $mt + $mb + $pt + $pb; // 2 * 1 + 3 + 10 + 0 + 0 = 15
+$easement_body: $easement + $title + $pt-title + $title-border + $mt_body + $mb_body + $border-radius; //  15 + 50 + 0 + 0 + 2 + 10 + 3 = 80
+$edge_hor: $ml + $mr;
 
 @mixin display_box_height {
 	height: 398px;
@@ -23,7 +40,7 @@ $edge_hor: 10px;
 }
 
 @mixin display_body_box_height {
-	height: 330px;
+	height: 333px;
 	@media all and (min-height: 1100px) and (max-height: 1200px) { height: 1060px - $easement_body;}
 	@media all and (min-height: 1000px) and (max-height: 1099px) { height: 960px - $easement_body;}
 	@media all and (min-height: 900px) and (max-height: 999px) { height: 860px - $easement_body;}

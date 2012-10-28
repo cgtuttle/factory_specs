@@ -7,16 +7,20 @@
   <%= csrf_meta_tags %>
 </head>
 <body>
-	<div class="page_header">
-		<%= render 'layouts/header' %>
-	</div>
-	
-	<div class="page_body">
+	<% if user_signed_in? %>
 		
-		<%= yield :left %>
-		<%= yield %>
+		<div class="page_header">
+			<%= render 'layouts/header' %>		
+		</div>
+		
+		<div class="page_body">
+			
+			<%= yield :left %>
+			<%= yield %>
 
-	</div>
-
+		</div>
+	<% else %>
+		<%= yield :welcome %>
+	<% end %>
 </body>
 </html>

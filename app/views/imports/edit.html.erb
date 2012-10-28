@@ -1,0 +1,87 @@
+<h4>Import Data</h4>
+
+<p>Row count: <%=@row_count%></p>
+
+<h4>Destination table: <%= @import.model %></h4>
+  
+<%= form_for @import do |f| %>
+  
+  <table>
+    <tr>
+      <% (1..@column_count).each do %>
+        <td class="file_import_table">
+          <%= select_tag "field_choices[]", options_for_select(@field_choices), :prompt => '--Select--' %>
+        </td>
+      <% end %>
+    </tr>
+  </table>
+ 
+  <br></br>
+    
+    <% (1..@column_count).each do %>
+      <div class="box-200-20">
+        <div class="arrow-up"></div>
+      </div>
+    <% end %>
+    
+  <br></br>
+
+  <h4>Source table</h4>
+    <table>
+      
+        <%= f.fields_for :cells do |ff| %>
+          <% if ff.object.row < 4 %>
+            <% if ff.object.column == 1 %>
+              <tr>
+            <% end %>
+                <td class="file_import_table">
+                  <%= ff.object.cell_value %>
+                </td>
+            <% if ff.object.column == @column_count %>
+              </tr>
+            <% end %>
+          <% end %>
+        <% end %>
+      
+    </table>
+    
+  <% if @row_count > 3 %>
+  
+    <br></br>  
+
+        <% (1..@column_count).each do %>
+          <div class="box-200-20">
+            <div class="circle-10"></div>
+						<p>More than 3 rows</p>
+          </div>  
+        <% end %>
+
+    <br></br>           
+
+        <% (1..@column_count).each do %>
+          <div class="box-200-20">
+            <div class="circle-8"></div>
+          </div>  
+        <% end %>
+
+    <br></br>     
+
+        <% (1..@column_count).each do %>
+          <div class="box-200-20">
+            <div class="circle-6"></div>
+          </div>  
+        <% end %>
+    
+  <% end %>
+  
+  <br></br>
+	
+	 <%= hidden_field_tag :row_count, @row_count  %>
+  
+  <p>Start at row <%= text_field_tag :first_row, 1, :class => 'f-50' %></p>
+  <br></br>
+  <%= submit_tag 'Import', :name => 'import_file' %>
+  <br></br>
+  <%= submit_tag 'Cancel', :name => 'import_file' %>
+
+<% end %>

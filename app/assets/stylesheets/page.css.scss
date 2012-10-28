@@ -31,6 +31,9 @@ section {
 	clear: both;
 	background-color: $page-background-color;
 	overflow: hidden;
+	padding-left: $page-padding-l;
+	padding-right: $page-padding-r;
+	padding-top: $page-padding-t;
 }
 
 .left_box {
@@ -48,8 +51,7 @@ section {
 	margin-right: 0;
 	margin-bottom: 0;
   margin-left: 0;
-	overflow: scroll;
-//	overflow: hidden;
+	overflow: hidden;
 }
 
 .inline-controls {
@@ -78,7 +80,11 @@ h5 {
 textarea {
 	padding: 2px;
 	margin: 4px 4px 4px 10px;
-	font-family: $font_family;
+	font-family: $font_family;	
+}
+
+.header_text {
+	font-size: 80%;
 }
 
 
@@ -108,14 +114,9 @@ a {
 
 // Navigation
 
-nav {
-	background-color: white;
-  padding: 0 0.7em;
-  white-space: nowrap;
-
+@mixin list-base {
 	ul {
 		margin: 0;
-		float: right;
 		padding: 5px;
 		font-family: arial;
 
@@ -140,7 +141,28 @@ nav {
 
 			a:visited {
 				color: $nav-text-color;
-				}
 			}
 		}
 	}
+}
+
+nav {
+	background-color: white;
+  padding: 0 0.7em;
+  white-space: nowrap;
+	
+	.user_nav {
+		float: left;
+		@include list-base;
+	}
+	
+	.right_nav {
+		float: right;	
+		@include list-base;
+	}
+}
+
+
+
+	
+

@@ -10,7 +10,7 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20120408142527) do
+ActiveRecord::Schema.define(:version => 20121020213750) do
 
   create_table "categories", :force => true do |t|
     t.string   "code",          :limit => 64,  :null => false
@@ -21,10 +21,28 @@ ActiveRecord::Schema.define(:version => 20120408142527) do
     t.integer  "account_id"
   end
 
+  create_table "cells", :force => true do |t|
+    t.integer  "import_id"
+    t.integer  "row"
+    t.integer  "column"
+    t.string   "cell_value"
+    t.string   "field_name"
+    t.datetime "created_at", :null => false
+    t.datetime "updated_at", :null => false
+  end
+
+  create_table "imports", :force => true do |t|
+    t.integer "account_id"
+    t.integer "user_id"
+    t.string  "model"
+    t.integer "first_row"
+    t.integer "row_count"
+  end
+
   create_table "item_specs", :force => true do |t|
     t.integer  "item_id"
     t.integer  "spec_id"
-    t.integer  "version",          :limit => 32
+    t.integer  "version"
     t.date     "eff_date"
     t.string   "tag"
     t.integer  "test_id"

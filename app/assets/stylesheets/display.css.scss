@@ -2,41 +2,70 @@
 @import "colors";
 @import "display_media"; //Sizing for all boxes
 $base-font-size: 125%;
-$tab: 5px;
+$tab: 3em;
+$column-1: 25em;
+$column-2: 15em;
+$column-3: 10em;
+$column-4: 10em;
+
 
 .display-box {
 	@include display_box_height;
 	@include display_box_width;
 	float: left;
 	border-style: solid;
-	border-width: $b;
+	border-width: $border;
 	border-color: $display-border-color;
-	border-radius: 10px;
+	border-radius: $border-radius;
+	margin-top: $mt;
 	margin-left: $ml;
 	margin-right: $mr;
 	padding-top: $pt;
 	padding-bottom: $pb;
+	background-color: $display-box-color;
 }
 
 .display-title-box {
 	float: left;
-	width: auto;
-	height: 60px;
+	width: 100%;
+	height: $title;
+	border-bottom-style: solid;
+	border-bottom-width: $title-border;
+	border-bottom-color: blue; //$border-color;
+	background-color: $display-header-color;
+	border-top-left-radius: $header-radius;
+	border-top-right-radius: $header-radius;
+	padding-top: $pt-title;
+}
+
+.display-footer-box {
+	float: left;
+	width: 100%;
+	height: $border-radius;
+	border-bottom-style: solid;
+	border-bottom-width: $border;
+	border-bottom-color: $border-color;
+	background-color: $display-header-color;
+	border-bottom-left-radius: $header-radius;
+	border-bottom-right-radius: $header-radius;
 }
 
 .display-title-label {
 	margin-left: 5px;
 	margin-right: 10px;
+	color: $reverse-text-color;
 }
 
 .display-body-box {
 	@include display_body_box_height;
 	float: left;
 	width: 100%;
-	overflow: scroll;
+	overflow: auto;
 	overflow-x: hidden;
-	margin-top: $mt_body;
-	margin-bottom: $mb_body;
+	margin-top: $mt-body;
+	margin-bottom: $mb-body;
+	background-color: #FFFFFF;
+	//border-bottom: 1px solid $display-header-color;
 }
 
 .display-item-select {
@@ -45,45 +74,116 @@ $tab: 5px;
 	background-color:$background-color;
 }
 
-.display-category {
+.display-section-box {
+	width: 100%;
 	float: left;
-	height: 50px;
+	padding-bottom: 0em;
+}
+
+.display-category-box {
+	width: 100%;
+	float: left;
+	height: 2em;
+	background-color: $display-divider-color;
+	padding-top: .25em;
+	border-top: 1px solid $dark-background-color;
+}
+
+.display-category {
+	position: relative;
+	float: left;
 	font-size: $base-font-size;
 	color: $text-color;
 	font-weight: bold;
-	margin-left: 2 * $tab;
-	margin-right: 1em;
-	margin-top: 20px;
-	width: 100%;
+	margin: 0;
+	margin-left: 1em;;
+	width: auto;
+	height: 100%;
 }
 
 .display-body-box-0 {
 	width: 100%;
 	float: left;
 	height: 40px;
-	background-color: $odd-back-color;
+	background-color: $display-odd-back-color;
 }
 
 .display-body-box-1 {
 	width: 100%;
 	float: left;
 	height: 40px;
-	background-color: $even-back-color;
+	background-color: $display-box-color;
 }
+
+@mixin col-width($width) {
+	width: $width;
+	}
+
+.display-column {
+	float: left;
+	height: 100%;
+	margin-left: 1em;
+	border-right: 1px solid $display-divider-color;
+}
+
+.display-column-1 {
+	@extend .display-column;
+	@include col-width($column-1);
+	}
+
+.display-column-2 {
+	@extend .display-column;
+	@include col-width($column-2);
+	}
+
+.display-column-3 {
+	@extend .display-column;
+	@include col-width($column-3);
+	}
+
+.display-column-4 {
+	@extend .display-column;
+	@include col-width($column-4);
+	}
 
 .display-body-label {
 	float: left;
-	width: 30%;
 	font-size: $base-font-size;
 	color: $text-color;
-	margin-left: 5 * $tab;
-	margin-right: 1em;
-	margin-top: 7px;
+	margin-left: $tab;
+	margin-right: 0;
+	margin-top: .33em;
+	width: $column-1 - $tab;
 }
-
+	
 .display-body-value {
 	float: left;
+	width: $column-2;
 	font-size: $base-font-size;
 	color: $dark-color;
-	margin-top: 7px;
+	margin-top: .33em;
+}
+	
+.display-body-string {
+	float: left;
+	width: $column-2;
+	font-size: $base-font-size;
+	color: $dark-color;
+	margin-top: .33em;
+}
+
+.display-body-uom {
+	float: left;
+	width: $column-3;
+	font-size: $base-font-size;
+	color: $dark-color;
+	margin-top: .33em;
+}
+
+.display-body-sl {
+	float: left;
+	width: $column-3;
+	font-size: $base-font-size;
+	color: $dark-color;
+	margin-top: .33em;
 }

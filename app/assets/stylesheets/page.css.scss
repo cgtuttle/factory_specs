@@ -2,10 +2,16 @@
 @import "colors";
 @import "media";
 
-$font_family: Arial, Helvetica, sans-serif;
+$font_family: Arial, Helvetica, Tahoma, sans-serif;
 $left_column_width: 200px;
 
 // Page layout
+
+* {
+	-webkit-box-sizing: border-box; /* Safari/Chrome, other WebKit */
+	-moz-box-sizing: border-box;    /* Firefox, other Gecko */
+	box-sizing: border-box;         /* Opera/IE 8+ */
+}
 
 body {
 	height: 100%;
@@ -38,6 +44,7 @@ section {
 
 .left_box {
 	@include left_width;
+	font-family: $font_family;
 	float: left;
   width: $left_column_width;
 	height: 100%;
@@ -45,7 +52,8 @@ section {
 }
 
 .right_box {
-	@include right_width;
+	@include right_width; 
+	font-family: $font_family;
 	height: 100%;
 	margin-top: 0; 
 	margin-right: 0;

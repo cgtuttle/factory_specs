@@ -1,0 +1,7 @@
+<header id="welcome_header">
+	<nav>
+		<% flash.each do |key, msg| %>
+			<%= content_tag(:div, msg, :id => "flash_#{key}") %>
+		<% end %>	
+	</nav>
+</header>

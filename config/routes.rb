@@ -16,7 +16,7 @@ Factory::Application.routes.draw do
 	match 'test/:id/instructions' => 'tests#instructions'
 	#match '/display' => 'items#display', :via => :get
 	
-	root :to => "main#contents"
+	root :to => 'main#welcome'
 
   
   # Sample of regular route:

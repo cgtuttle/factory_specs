@@ -1,26 +1,26 @@
 <!DOCTYPE html>
 <html>
-<head>
-  <title><%= @title %></title>
-  <%= stylesheet_link_tag    "application" %>
-  <%= javascript_include_tag "application" %>
-  <%= csrf_meta_tags %>
-</head>
-<body>
-	<% if user_signed_in? %>
-		
-		<div class="page_header">
-			<%= render 'layouts/header' %>		
-		</div>
-		
-		<div class="page_body">
+	<head>
+	  <title><%= @title %></title>
+	  <%= stylesheet_link_tag    "application" %>
+	  <%= javascript_include_tag "application" %>
+	  <%= csrf_meta_tags %>
+	</head>
+	<body>
+		<% if user_signed_in? %>
 			
-			<%= yield :left %>
-			<%= yield %>
+			<div class="page_header">
+				<%= render 'layouts/header' %>		
+			</div>
+			
+			<div class="page_body">
+				
+				<%= yield :left %>
+				<%= yield %>
 
-		</div>
-	<% else %>
-		<%= yield :welcome %>
-	<% end %>
-</body>
+			</div>
+		<% else %>
+			<%= yield :welcome %>
+		<% end %>
+	</body>
 </html>

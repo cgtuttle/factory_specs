@@ -1,11 +1,11 @@
 
 @import "colors";
-@import "display_media"; //Sizing for all boxes
+@import "media_display"; //Sizing for all boxes
 $base-font-size: 125%;
 $tab: 3em;
 $column-1: 25em;
-$column-2: 15em;
-$column-3: 10em;
+$column-2: 10em;
+$column-3: 15em;
 $column-4: 10em;
 
 
@@ -146,7 +146,7 @@ $column-4: 10em;
 	@include col-width($column-4);
 	}
 
-.display-body-label {
+#display-body-spec-name {
 	float: left;
 	font-size: $base-font-size;
 	color: $text-color;
@@ -154,6 +154,16 @@ $column-4: 10em;
 	margin-right: 0;
 	margin-top: .33em;
 	width: $column-1 - $tab;
+}
+
+#display-body-label {
+	float: left;
+	font-size: $base-font-size * .75;
+	color: $display-label-color;
+	margin-left: 0;
+	margin-right: 0;
+	margin-top: .33em;
+	width: 50%;
 }
 	
 .display-body-value {
@@ -180,9 +190,9 @@ $column-4: 10em;
 	margin-top: .33em;
 }
 
-.display-body-sl {
+#display-body-sl {
 	float: left;
-	width: $column-3;
+	width: 50%;
 	font-size: $base-font-size;
 	color: $dark-color;
 	margin-top: .33em;

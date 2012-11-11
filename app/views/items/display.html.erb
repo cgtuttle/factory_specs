@@ -18,9 +18,15 @@
 					<% if s.date_status == "current" %>
 						<div class="display-body-box-<%= i %>">
 							<div class="display-column-1">
-								<div class="display-body-label"><%= s.spec.name %></div>
+								<div id="display-body-spec-name"><%= s.spec.name %></div>
 							</div>
 							<div class="display-column-2">
+								<% if s.lsl %>
+									<p id="display-body-label">LSL: </p>
+									<p id="display-body-sl"><%= s.lsl %></p>								
+								<% end %>								
+							</div>
+							<div class="display-column-3">
 								<% if s.numeric_value %>								
 										<span class="display-body-value"><%= "#{s.numeric_value} #{s.unit_of_measure}" %></span>								
 								<% end %>
@@ -28,14 +34,9 @@
 										<span class="display-body-string"><%= s.string_value %></span>								
 								<% end %>
 							</div>
-							<div class="display-column-3">
-								<% if s.lsl %>								
-										<span class="display-body-sl">LSL: <%= s.lsl %></span>								
-								<% end %>
-							</div>
 							<div class="display-column-4">
 								<% if s.usl %>								
-										<span class="display-body-sl">USL: <%= s.usl %></span>								
+										<span id="display-body-sl">USL: <%= s.usl %></span>								
 								<% end %>
 							</div>
 						</div>

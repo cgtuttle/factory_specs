@@ -1,0 +1,38 @@
+<% content_for :welcome do %>
+	<body>
+		<div class="page">
+			
+			<div class="welcome_top">
+				<%= render 'layouts/welcome_header' %>
+				<%= image_tag "icons/factory.svg", :alt=>"Factory", :size=>"70x70" %>
+			</div>
+
+			<div class="welcome_left">	
+				<div class="welcome_text">
+					<p>Welcome to Factory:Specs</p>
+				</div>
+			</div>
+
+			<div class="welcome_right">
+
+				<%= form_for(resource, :as => resource_name, :url => user_session_path) do |f| %>
+
+					
+					<%= f.label :email, :class => "field_label" %>
+					<%= f.text_field :email, :class => "text_field" %>
+					<%= f.label :password, :class => "field_label"  %>
+					<%= f.password_field :password, :class => "text_field"  %>				
+					<div class="check_box_line">
+						<div class="float_label"><%= f.label :remember_me %></div>
+						<div class="check_box"><%= f.check_box :remember_me %></div>
+					</div>
+					<div class="submit_button"><%= f.submit 'Sign in' %></div>
+					<%= link_to "Forgot your password?", new_password_path('user') %>
+					
+				<% end %>	
+
+			</div>
+
+		</div>
+	</body>
+<% end %>

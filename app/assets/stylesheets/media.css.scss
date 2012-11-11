@@ -1,12 +1,6 @@
 $base-font-size: 16;
 
-@function pxem($pxval, $baseval: $base-font-size) {
-	@return ($pxval / $baseval) + 0em;
-	}
-	
-@function empx($emval, $baseval: $base-font-size) {
-	@return ($emval * $baseval) + 0px;
-	}
+@import "media_functions";
 
 @mixin respond-to($media) {
   @if $media == handhelds {

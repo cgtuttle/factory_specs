@@ -13,18 +13,18 @@ Purpose    :
 }
 
 .field_label {
-	display: block;
 	color: $label-color;
-	font-family:"arial",Verdana,Sans-serif;
+	font-family: Arial, Arial, Helvetica, sans-serif;
 	font-size: 1em;
-	padding-top: 1em;
-	padding-bottom: .2em;
+	margin-top: .5em;
+	margin-bottom: .2em;
 }
 
 .text_field {
 	color: $text-color;
 	width: 10em;
 	margin: 4px;
+	display: block;
 }
 
 .number_field_short {
@@ -39,13 +39,30 @@ Purpose    :
 	width: 6em;	
 }
 
-.check_box {
-	padding: 2px;
-	font-size: .8em;
+.check_box_line {
+	height: 2em;
+	width: 100%;
+	padding-top: .5em;
 }
+
+.float_label {
+	float: left;
+	width:20%
+}
+
+.check_box {
+	vertical-align: middle;
+	float: left;
+	width: auto;
+	padding: 0;
+	padding-right: 10px;
+}
+
+
 
 .search_field {
 	padding: 2px;
+	padding-right: 20px;
 	font-size: .8em;
 	float: left;
 }

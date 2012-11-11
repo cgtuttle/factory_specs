@@ -1,13 +1,21 @@
 
 <section class="right_box">
-	<%= form_tag('item_specs', :method => :get) do %>
-		<div class="search_field">Specifications for </div> 
-		<%= collection_select :item_spec, :item_id, @items, :id, :code, {:selected => @item.id}, {:onchange => "this.form.submit();", :class => "search-field"} %>
-		<div class="check_box inline-controls"><%= check_box_tag "include_future", "future", @future %> Include future </div>
-		<div class="check_box inline-controls"><%= check_box_tag "include_history", "history", @history %> Include history </div>
-		<%= submit_tag "Apply" %>
-	<% end %>
-
+	<div id="right_controls">
+		<%= form_tag('item_specs', :method => :get) do %>
+			<div class="search_field">Specifications for  
+			<%= collection_select :item_spec, :item_id, @items, :id, :code, {:selected => @item.id}, {:onchange => "this.form.submit();", :class => "search-field"} %></div>
+			
+			<div class="check_box_line">
+				<div class="check_box">
+					<%= check_box_tag "include_future", "future", @future %> Include future
+				</div>
+				<div class="check_box">
+					<%= check_box_tag "include_history", "history", @history %> Include history
+				</div>
+			</div>
+			<%= submit_tag "Apply" %>
+		<% end %>
+	</div>
 	<%= render 'relationship' %>
 
 	<div class="paginate"><%= will_paginate @item_specs %></div>

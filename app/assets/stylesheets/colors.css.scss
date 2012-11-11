@@ -19,6 +19,7 @@ Purpose of the stylesheet follows.
 // $scheme-color: gray;
 
 	$secondary-scheme-color: #C73F17;
+	$welcome-scheme-color: #79a0dd;
 
 $lf: 1;		//Lightness Factor
 $sf: .5;	//Saturation Factor
@@ -36,12 +37,14 @@ $display-header-color: $secondary-scheme-color;
 $display-divider-color: scale-color($scheme-color, $lightness: 90%);
 $display-odd-back-color: lighten($scheme_color, 5%);
 $display-footer-color: $secondary-scheme-color;
+$display-label-color: scale-color($text-color, $lightness: 50%);
 
 // Pages
 $background-color: scale-color($scheme-color, $lightness: 50%);
 $body-background-color: $background-color;
 $header-background-color: $background-color;
 $page-background-color: $background-color;
+$welcome-background-color: $welcome-scheme-color;
 
 // Tables
 

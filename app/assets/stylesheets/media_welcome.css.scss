@@ -1,0 +1,23 @@
+@import "media_functions";
+
+$page-padding-l: empx(1);
+$page-padding-r: empx(1);
+$page-padding-t: empx(1);
+$page-easement: $page-padding-l + $page-padding-r;
+$page-ht-easement: $page-padding-t;
+
+
+@mixin page_body_height {
+	height: 400px;
+	@media all and (min-height: 1100px) and (max-height: 1200px) { height: 1060px - $page-ht-easement;}
+	@media all and (min-height: 1000px) and (max-height: 1099px) { height: 960px - $page-ht-easement;}
+	@media all and (min-height: 900px) and (max-height: 999px) { height: 860px - $page-ht-easement;}
+	@media all and (min-height: 800px) and (max-height: 899px) { height: 760px - $page-ht-easement;}
+	@media all and (min-height: 700px) and (max-height: 799px) { height: 660px - $page-ht-easement;}
+	@media all and (min-height: 600px) and (max-height: 699px) { height: 560px - $page-ht-easement;}
+}
+
+@mixin width {
+	width: 900px;	
+	@media all and (min-width: 1250px) { width: 1200px - $page-easement;}
+}

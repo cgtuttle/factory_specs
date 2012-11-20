@@ -1,20 +1,21 @@
-
-<table class="data">
-	<thead>
-		<th>Item Code</th>
-		<th>Name</th>
-		<th></th>
-	</thead>
-	<tbody>
-		<%= render 'new' %>
-		<% @items.each do |i| %>
-		<tr>
-			<td><%= i.code %></td>
-			<td><%= i.name %></td>
-			<td><%= link_to "Edit", edit_item_path(i), :class => 'link' %>
-					<%= link_to "Delete", item_path(i), :method => :delete, :confirm => "Are you sure?", :class => 'link' %></td>
-		</tr>
-		<% end %>
-	</tbody>
-</table>
+<div class="item-index span4">
+	<table class="table table-striped table-bordered table-condensed">
+		<thead>
+			<th>Item Code</th>
+			<th>Name</th>
+			<th></th>
+		</thead>
+		<tbody>
+			<%= render 'new' %>
+			<% @items.each do |i| %>
+			<tr>
+				<td><%= i.code %></td>
+				<td><%= i.name %></td>
+				<td><%= link_to "Edit", edit_item_path(i), :class => 'link' %>
+						<%= link_to "Delete", item_path(i), :method => :delete, :confirm => "Are you sure?", :class => 'link' %></td>
+			</tr>
+			<% end %>
+		</tbody>
+	</table>
+</div>
 

@@ -1,0 +1,24 @@
+<div class="navbar navbar-fixed-top">
+	<nav class="navbar-inner">	
+		
+		<div class="nav pull-left">		
+			<%= form_tag('display', :method => :get) do %>
+				<div class="form-inline">	
+					Specifications for 
+					<%= collection_select :item, :id, @items, :id, :code, {:selected => @item.id}, {:onchange => "this.form.submit();"} %>
+				</div>
+			<% end %>
+		</div>
+						
+		<ul class="nav pull-right">
+			<li><%= link_to "Floor Display", display_items_path(:item_id => @item.id ) %></li>		
+			<li><%= link_to "Items", items_path %></li>
+			<li><%= link_to "Spec Definitions", specs_path %></li>
+			<li><%= link_to "Item Specifications", item_specs_path %></li>
+			<li><%= link_to "Categories", categories_path %></li>
+			<li><%= link_to "Tests", tests_path %></li>
+			<li><%= link_to "Import Data", new_import_path %></li>			
+		</ul>						
+	</nav>
+</div>		
+	

@@ -69,6 +69,7 @@ class ItemsController < ApplicationController
 		@title = @item.code
 		@item_specs = @item.item_specs
 		@categories = @item_specs.group_by{|is| is.spec.category}
+		@no_header = true
 	end
 	
 	def _update

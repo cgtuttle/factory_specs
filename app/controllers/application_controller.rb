@@ -9,4 +9,9 @@ class ApplicationController < ActionController::Base
 			@item = Item.first
 		end
 	end
+
+	def after_sign_in_path_for(resource)
+		display_items_path(:item_id => @item.id )
+	end
+
 end

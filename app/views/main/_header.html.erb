@@ -1,0 +1,30 @@
+<div class="navbar navbar-fixed-top navbar-inverse">
+  <nav class="navbar-inner">
+
+			<div class="flash">
+				<% flash.each do |key, value| %>
+					<div class="<%= key %>"> <%= value %></div>
+				<% end %>
+			</div>
+
+
+
+			<nav>	
+				<ul class="nav pull-left">
+					<li><%= image_tag "icons/factory_white.svg", :alt=>"Factory", :size=>"34x34", :id=>"factory" %></li>
+					<li><%= link_to current_user.email %></li>
+					<li><%= link_to "Sign Out", destroy_user_session_path, :method => :delete %></li>
+				</ul>
+				<ul class="nav pull-right">
+					<li><%= link_to "Floor Display", display_items_path(:item_id => @item.id ) %></li>		
+					<li><%= link_to "Items", items_path %></li>
+					<li><%= link_to "Spec Definitions", specs_path %></li>
+					<li><%= link_to "Item Specifications", item_specs_path %></li>
+					<li><%= link_to "Categories", categories_path %></li>
+					<li><%= link_to "Tests", tests_path %></li>
+					<li><%= link_to "Import Data", new_import_path %></li>			
+				</ul>	
+			</nav>
+		
+	</nav>
+</div>

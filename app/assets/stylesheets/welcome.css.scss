@@ -1,49 +1,9 @@
-@import "colors";
-@import "media_welcome";
-
-$font_family: Arial, Arial, Helvetica, sans-serif;
-
-// Page layout
-
-*, *:after, *:before {
-  -webkit-box-sizing: border-box;
-  -moz-box-sizing: border-box;
-  box-sizing: border-box;
+.container {
+	padding: 1em;
 }
 
-body {
-//	background-color: #ffffff;
-}
-
-.page {
-	@include page_body_height;
-	@include width;
-	background-color: $welcome-background-color;
-	font-family: $font_family;
-	margin-left: auto;
-	margin-right: auto;
-}
-
-.welcome_top {
-	height: 100px;
-	width: 100%;
-}
-
-.welcome_left {
-	float: left;
-	height: 100%;
-	width: 50%;
-//	background-color: pink;	
-}
-
-.welcome_text {
-	padding: 10px;
-}
-
-.welcome_right {
-	float: right;
-	height: 100%;
-//	background-color: yellow;
-	width: 50%;
+.flash-welcome {
+	float: none;
+	padding-bottom: 1em;
 }
 

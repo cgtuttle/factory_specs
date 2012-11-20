@@ -1,6 +1,6 @@
 Factory::Application.routes.draw do
 	
-  devise_for :users
+	devise_for :users
 
 	resources :imports
   resources :item_specs
@@ -15,10 +15,9 @@ Factory::Application.routes.draw do
 	
 	match 'test/:id/instructions' => 'tests#instructions'
 	#match '/display' => 'items#display', :via => :get
-	
-	root :to => 'main#welcome'
 
-  
+	root :to => 'main#welcome'
+	
   # Sample of regular route:
   #   match 'products/:id' => 'catalog#view'
   # Keep in mind you can assign values other than :controller and :action

@@ -1,52 +1,57 @@
+<%= render "header" %>
 
-	<div class="display-box">
-		<%= form_tag('display', :method => :get) do %>		
-			<div class="display-title-box">
-				<span class="display-title-label">Specifications for</span>
-				<%= collection_select :item, :id, @items, :id, :code, {:selected => @item.id}, {:onchange => "this.form.submit();", :class => "display-item-select"} %>
-			</div>
-		<% end %>
-		<div class="display-body-box">
+<div class="display-box">
+	
+	<table class="table table-bordered table-striped">
 		<% @categories.each do |category, item_specs| %>
-			<div class="display-section-box">
-				<div class="display-category-box">
-					<div class="display-category"><%= category.name %></div>
-				</div>
-				<br />
-				<% i = 0 %>
-				<% for s in item_specs %>
+			<thead>
+				<tr>
+					<th>
+						<%= category.name %>
+					</th>
+					<th></th>
+					<th></th>
+					<th></th>
+					<th></th>
+				</tr>
+			</thead>
+			<tbody>					
+				<% i = 0 %>	
+				<% for s in item_specs %>	
 					<% if s.date_status == "current" %>
-						<div class="display-body-box-<%= i %>">
-							<div class="display-column-1">
-								<div id="display-body-spec-name"><%= s.spec.name %></div>
-							</div>
-							<div class="display-column-2">
+						<tr>
+							<td class="spec-name"><%= s.spec.name %></td>
+
+							<td class="spec-limit">
 								<% if s.lsl %>
-									<p id="display-body-label">LSL: </p>
-									<p id="display-body-sl"><%= s.lsl %></p>								
-								<% end %>								
-							</div>
-							<div class="display-column-3">
+									<div>LSL: <%= s.lsl %></div>								
+								<% end %>
+							</td>
+
+							<td class="spec-value">
 								<% if s.numeric_value %>								
-										<span class="display-body-value"><%= "#{s.numeric_value} #{s.unit_of_measure}" %></span>								
+									<%= "#{s.numeric_value} #{s.unit_of_measure}" %>
 								<% end %>
+															
 								<% if !s.string_value.blank? %>								
-										<span class="display-body-string"><%= s.string_value %></span>								
+									<%= s.string_value %>								
 								<% end %>
-							</div>
-							<div class="display-column-4">
+							</td>
+
+							<td class="spec-limit">
 								<% if s.usl %>								
-										<span id="display-body-sl">USL: <%= s.usl %></span>								
+									<div>USL: <%= s.usl %></div>								
 								<% end %>
-							</div>
-						</div>
-						<% i==0 ? i=1 : i=0 %>	
-						<br />	
-					<% end %>			
+							</td>
+
+							<td class="right-margin"></td>
+
+							<% i==0 ? i=1 : i=0 %>		
+						</tr>										
+					<% end %>	
 				<% end %>
-			</div>
+			</tbody>
 		<% end %>
-		</div>
-		<div class="display-footer-box">
-		</div>
-	</div>
+	</div> <!--! end of table -->
+	
+</div>

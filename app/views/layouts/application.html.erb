@@ -8,11 +8,10 @@
 	  <%= csrf_meta_tags %>
 	</head>
 
-	<body>
-		<div class="content">
+	<% if user_signed_in? %>
+		<body>
+			<div class="content">
 
-			<% if user_signed_in? %>
-				
 				<% if !@no_header %>					
 			    <%= render 'main/header' %>
 		    <% end %>
@@ -24,13 +23,16 @@
 	          	<%= yield %>
 	          </div>
 	        </div> <!--! end of .container --> 	       
-	    	</div> <!--! end of #main -->
+	    	</div> <!--! end of #main -->		
+			</div> <!--! end of content -->
+		</body>
 
-			<% else %>			
-				<%= yield %>			
-			<% end %>
-		
-		</div> <!--! end of content -->
-	</body>
+	<% else %>
+		<body id="welcome">
+			<div class="content">							
+				<%= yield %>
+			</div>	
+		</body>			
+	<% end %>
 
 </html>

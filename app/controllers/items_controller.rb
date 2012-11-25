@@ -6,8 +6,9 @@ class ItemsController < ApplicationController
   def index
 		@title = "Items"
 		@new_item = Item.new	
-	#	@item = Item.last
 		@specs = Spec.all
+		@is_index_table = true
+		@span = 5
   end
 
   def edit
@@ -62,11 +63,11 @@ class ItemsController < ApplicationController
 		if params.has_key?(:item)
 			@item = Item.find(params[:item][:id])
 		elsif params.has_key?(:item_id)
-			@item = Item.find(params[:item_id])		
+			@item = Item.by_existence(params[:item_id])		
 		else
 			@item = Item.find(get_item_id)
 		end
-		cookies[:item_id] = @item.id
+		cookies[:item_id] = @item_id
 		@title = @item.code
 		@item_specs = @item.item_specs
 		@categories = @item_specs.group_by{|is| is.spec.category}
@@ -78,7 +79,8 @@ class ItemsController < ApplicationController
 	end
 	
 	def find_items
-		@items = Item.find(:all, :order => 'code').paginate(:page => params[:page], :per_page => 15)
+		@items = Item.find(:all, :order => 'code').paginate(:page => params[:page], :per_page => 20)
+		@index = @items
 	end
 
 end

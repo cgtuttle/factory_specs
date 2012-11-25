@@ -1,31 +1,27 @@
-<table class="data">
-	<thead>
-		<th>Category</th>
-		<th>Definition Code</th>
-		<th>Definition Name</th>
-		<th>USL</th>
-		<th>LSL</th>
-		<th>Label</th>
-		<th>Default<br />Order</th>
-		<th></th>
-	</thead>
-	<tbody>
-		<tr>
-			<%= render 'new' %>
-		</tr>
-		<% @specs.each do |s| %>
+<% content_for :thead do %>
+	<th>Category</th>
+	<th>Definition Code</th>
+	<th>Definition Name</th>
+	<th>Label</th>
+	<th>Default Order</th>
+	<th></th>
+<% end %>
+		
+<% content_for :table do %>
+	<tr>
+		<%= render 'new' %>
+	</tr>
+
+	<% @specs.each do |s| %>
 		<tr>
 			<td><%= s.category_id ? s.category.name : nil %></td>
 			<td><%= s.code %></td>
-			<td><%= s.name %></td>			
-			<td><%= s.lsl == 1 ? image_tag("pixim_icon_set/dark/accept.gif", :class => 'checkbox') : nil %></td>			
-			<td><%= s.usl == 1 ? image_tag("pixim_icon_set/dark/accept.gif", :class => 'checkbox') : nil %></td>
+			<td><%= s.name %></td>
 			<td><%= s.label %></td>
 			<td><%= s.display_order %></td>
-			<td><%= link_to "Edit", edit_spec_path(s), :class => 'link' %>
-					<%= link_to "Delete", spec_path(s), :method => :delete, :confirm => "Are you sure?", :class => 'link' %>
+			<td><%= link_to "Edit", edit_spec_path(s) %>
+					<%= link_to "Delete", spec_path(s), :method => :delete, :confirm => "Are you sure?", :style => "padding-right:0;" %>
 			</td>
 		</tr>
-		<% end %>
-	</tbody>
-</table>
+	<% end %>
+<% end %>

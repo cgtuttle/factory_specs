@@ -1,14 +1,27 @@
-<h2>Import File</h2>
-<br></br>
+<div class="span3 offset1">
+	
+	<h2>Import File</h2>
+	
 
   <%= form_for @import, :html=>{:multipart=>true} do |f| %>
-    <p><label for='upload file'>Select File: <%= file_field_tag :file %></p>
-    <br></br>
-    <p>Import into <%= f.select :model, Import::MODELS.sort, :selected => @model %></p>
-    <br></br>
-    <%= submit_tag 'Continue', :name => 'import_file' %>
-    <br></br>
-    <%= submit_tag 'Cancel', :name => 'import_file' %>
+
+  <div class="row-fluid" style="padding:20px 0 0 0;">  	
+    <%= f.label 'upload file' do %>
+    	Select File: <%= file_field_tag :file %>
+    <% end %>
+  </div>
+ 	
+ 	<div class="row-fluid" style="padding:20px 0 0 0;">  	    
+    <%= f.label 'import into' do %>
+    	Import into <%= f.select :model, Import::MODELS.sort, :selected => @model, :include_blank => '--- Select Table ---' %>
+    <% end %>
+  </div>
+
+  <div class="row-fluid" style="padding:20px 0 0 0;">  	
+    <%= submit_tag 'Continue', :name => 'import_file', :class => "btn" %>	    
+    <%= submit_tag 'Cancel', :name => 'import_file', :class => "btn", :style => "margin-left:2em;" %>
+  </div>
+
   <% end %>
-  
+</div>
   

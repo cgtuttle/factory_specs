@@ -1,5 +1,6 @@
 ---
-!binary "aWNvbnMvZmFjdG9yeS5zdmc=": icons/factory-81ca0f417cebdb12b9a785ff4f5114ed.svg
+!binary "aWNvbnMvZmFjdG9yeS5zdmc=": icons/factory-4e516ae0840ca59de00eabcc1e164736.svg
+!binary "aWNvbnMvZmFjdG9yeV93aGl0ZS5zdmc=": icons/factory_white-83bee47e582105eec2bdf00128a878bb.svg
 !binary "cGl4aW1faWNvbl9zZXQvZGFyay9hY2NlcHQuZ2lm": pixim_icon_set/dark/accept-2150eddd52fe7e761b74e2f0630a59c1.gif
 !binary "cGl4aW1faWNvbl9zZXQvZGFyay9hZGQuZ2lm": pixim_icon_set/dark/add-937c3895dfe57e88bfb4ee8f5f6cbf0b.gif
 !binary "cGl4aW1faWNvbl9zZXQvZGFyay9hbmNob3IuZ2lm": pixim_icon_set/dark/anchor-2569acad04b4c7860ea14ac4d58dd705.gif
@@ -82,8 +83,8 @@
 !binary "cGl4aW1faWNvbl9zZXQvZGFyay96b29taW4uZ2lm": pixim_icon_set/dark/zoomin-c4e191f9010b3751aa9811240af1cf22.gif
 !binary "cGl4aW1faWNvbl9zZXQvZGFyay96b29tb3V0LmdpZg==": pixim_icon_set/dark/zoomout-9540d9f06a381e92141af462aa1d6188.gif
 !binary "cmFpbHMucG5n": rails-782b548cc1ba7f898cdad2d9eb8420d2.png
-!binary "YXBwbGljYXRpb24uanM=": application-017d51dff6d8d1ce3ca2f6273600910e.js
-!binary "YXBwbGljYXRpb24uY3Nz": application-0b676266856b3d7b639eeb2f6730651e.css
+!binary "YXBwbGljYXRpb24uanM=": application-ba810e54cbdde49fb5f0a4c6e4a4d519.js
+!binary "YXBwbGljYXRpb24uY3Nz": application-845873a44144116c4e196c83ee46427f.css
 ? !binary |-
   aW1hZ2VzL3VpLWJnX2RpYWdvbmFsLW1hemVfMjBfNmU0ZjFjXzEweDEwLnBu
   Zw==
@@ -105,6 +106,8 @@
 !binary "aW1hZ2VzL3VpLWljb25zX2I4MzQwMF8yNTZ4MjQwLnBuZw==": images/ui-icons_b83400_256x240-8616e271fdb330b0fc655a11c743f19b.png
 !binary "aW1hZ2VzL3VpLWljb25zX2ZiZGI5M18yNTZ4MjQwLnBuZw==": images/ui-icons_fbdb93_256x240-60192e26e64d2a61f7b9aea42f799c14.png
 !binary "aW1hZ2VzL3VpLWljb25zX2ZmZmZmZl8yNTZ4MjQwLnBuZw==": images/ui-icons_ffffff_256x240-7a417a6627492c6d98adfb77102fb5be.png
+!binary "Z2x5cGhpY29ucy1oYWxmbGluZ3Mtd2hpdGUucG5n": glyphicons-halflings-white-eafec53836bbbbced863a9440fbe4eb7.png
+!binary "Z2x5cGhpY29ucy1oYWxmbGluZ3MucG5n": glyphicons-halflings-452ced9baa5aa213d4450fe3507b6a06.png
 !binary "YWRkLnBuZw==": add-196bd383f0457d66ba16bc653cd64143.png
 !binary "bm8ucG5n": no-f28a7bfa39a38ae8387edffa474921ed.png
 !binary "c2l0ZS5wbmc=": site-2970d3f4b06818a54b565ad590bfb80d.png

@@ -4,7 +4,7 @@ module ImportsHelper
 	def import_file
 		if params[:file]
 			@column_count = 0
-			@parsed_file=CSV::Reader.parse(params[:file])
+			@parsed_file=CSV.parse(params[:file].read)
 			@row_count = 0
 			@parsed_file.each_with_index do |row, i|
 				row.each_with_index do |cell, j|

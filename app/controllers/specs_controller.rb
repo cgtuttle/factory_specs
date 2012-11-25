@@ -4,6 +4,8 @@ class SpecsController < ApplicationController
   def index
 		@title = "Specification Definitions"
 		@spec = Spec.new()
+		@is_index_table = true
+		@span = 8
 	end
 	
 	def new
@@ -48,7 +50,8 @@ class SpecsController < ApplicationController
 	end
 	
 	def find_specs
-		@specs = Spec.find(:all, :order => "display_order")
+		@specs = Spec.find(:all, :order => "display_order").paginate(:page => params[:page], :per_page => 20)
+		@index = @specs
 	end
 
 end

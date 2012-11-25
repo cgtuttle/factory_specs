@@ -10,7 +10,7 @@ module ApplicationHelper
   end
 	
 	def get_item_id
-		cookies[:item_id] ? cookies[:item_id] : Item.find(:first).id
+		Item.id_by_existence(cookies[:item_id])
 	end
 	
 	def flatten_hash(hash = params, ancestor_names = [])
@@ -62,5 +62,21 @@ module ApplicationHelper
   def devise_mapping
     @devise_mapping ||= Devise.mappings[:user]
   end
+
+  def twitterized_type(type)
+    case type
+      when :alert
+        "alert-block"
+      when :error
+        "alert-error"
+      when :notice
+        "alert-info"
+      when :success
+        "alert-success"
+      else
+        type.to_s
+    end
+  end
+
 
 end

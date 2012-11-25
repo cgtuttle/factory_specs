@@ -1,48 +1,49 @@
 
-	<section class="span10">
-		<div id="right_controls">
-			<%= form_tag('item_specs', :method => :get) do %>
-				<div class="search_field">Specifications for  
-				<%= collection_select :item_spec, :item_id, @items, :id, :code, {:selected => @item.id}, {:onchange => "this.form.submit();", :class => "search-field"} %></div>
-				
-				<div class="check_box_line">
-					<div class="check_box">
-						<%= check_box_tag "include_future", "future", @future %> Include future
-					</div>
-					<div class="check_box">
-						<%= check_box_tag "include_history", "history", @history %> Include history
-					</div>
-				</div>
-				<%= submit_tag "Apply" %>
+<% content_for :controls do %>	
+
+		<%= form_tag('item_specs', :method => :get, :style => "line-height:65px;") do %>
+			 
+			<%= collection_select :item_spec, :item_id, @items, :id, :code, {:selected => @item_id}, {:onchange => "this.form.submit();", :class => "search-field"} %>
+
+			<%= label_tag 'include_future' do %>
+				<%= check_box_tag "include_future", "future", @future %>
+				Include future
 			<% end %>
-		</div>
-		<%= render 'relationship' %>
 
-		<div class="pagination"><%= will_paginate @item_specs %></div>
+			<%= label_tag 'include_history' do %>				
+				<%= check_box_tag "include_history", "history", @history %>
+				Include history
+			<% end %>
+				
+			<%= submit_tag "Apply" %>
+		<% end %>
+	
+<% end %>
 
-		<table class="table table-striped table-bordered table-condensed">
-			<thead>
-				<th>Category</th>
-				<th>Spec</th>
-				<th>Text</th>
-				<th>Multi-Line Text</th>
-				<th>Value</th>
-				<th>USL</th>
-				<th>LSL</th>
-				<th>UOM</th>
-				<th>Document</th>
-				<th>URL</th>
-				<th>Doc Ver</th>
-				<th>Test</th>
-				<th>Eff Dt</th>
-				<th>Ver</th>
-				<th>Status</th>
-				<th>Edited By</th>
-				<th></th>
-			</thead>
-			<tbody>
-				<%= render :partial => 'item_spec', :collection => @item_specs %>
-			</tbody>
-		</table>
-	</section>
+<% content_for :thead do %>			
+	<th>Category</th>
+	<th>Spec</th>
+	<th>Text</th>
+	<th>Multi-Line Text</th>
+	<th>Value</th>
+	<th>USL</th>
+	<th>LSL</th>
+	<th>UOM</th>
+	<th>Document</th>
+	<th>URL</th>
+	<th>Doc Ver</th>
+	<th>Test</th>
+	<th>Eff Dt</th>
+	<th>Ver</th>
+	<th>Status</th>
+	<th>Edited By</th>
+	<th></th>
+<% end %>
 		
+<% content_for :table do %>
+	<%= render :partial => 'item_spec', :collection => @item_specs %>
+<% end %>
+
+<% content_for :left do %>
+	<%= render :partial => 'relationship' %>
+<% end %>

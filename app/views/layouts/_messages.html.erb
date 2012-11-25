@@ -1,0 +1,8 @@
+<% flash.each do |type, msg| %>
+  <% if msg.is_a?(String) %>
+    <div class="alert <%= twitterized_type(type)%>">
+      <a class="close" data-dismiss="alert">&#215;</a>
+      <%= content_tag :div, msg, :id => "flash_#{twitterized_type(type)}" %>
+    </div>
+  <% end %>
+<% end %>

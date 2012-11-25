@@ -1,7 +1,8 @@
 
-<% content_for :left do %>
-	<section class="span2">	
-		<h5>Included Specs</h5>
+
+<section class="span2">	
+	<h5>Included Specs</h5>
+	<% unless @item.blank? %>
 		<%= form_for @item do %>		
 			<% @specs.each do |spec| %>
 
@@ -13,5 +14,5 @@
 			<%= hidden_field_tag "future", @future %>
 			<%= submit_tag "Update Item" %>
 		<% end %>
-	</section>
-<% end %>
+	<% end %>
+</section>

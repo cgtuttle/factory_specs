@@ -1,8 +1,12 @@
 class CategoriesController < ApplicationController
   
 	def index
-		@categories = Category.order('display_order')
+		@title = 'Categories'
+		@categories = Category.order('display_order').paginate(:page => params[:page], :per_page => 30)
+		@index = @categories
 		@category = Category.new
+		@span = 5
+		@is_index_table = true
 	end
 	
 	def create

@@ -1,23 +1,24 @@
-	<table>
-		<thead>
-			<tr>
-				<th>Code</th>
-				<th>Name</th>
-				<th>Display Order</th>
-				<th></th>
-			</tr>
-		</thead>
-		<tbody>
-			<tr>
-				<%=  render 'new' %>
-			</tr>			
-				<% @categories.each do |c| %>
-					<tr>
-						<td><%= c.code %></td>
-						<td><%= c.name %></td>
-						<td><%= c.display_order %></td>
-						<td><%= link_to "Edit", edit_category_path(c) %></td>
-					</tr>
-				<% end %>							
-		</tbody>
-	</table>
+<% content_for :thead do %>
+	<th>Code</th>
+	<th>Name</th>
+	<th>Display Order</th>
+	<th></th>
+<% end %>
+
+
+<% content_for :table do %>
+
+	<tr>
+		<%=  render 'new' %>
+	</tr>	
+
+	<% @categories.each do |c| %>
+		<tr>
+			<td><%= c.code %></td>
+			<td><%= c.name %></td>
+			<td><%= c.display_order %></td>
+			<td><%= link_to "Edit", edit_category_path(c) %></td>
+		</tr>
+	<% end %>	
+		
+<% end %>					

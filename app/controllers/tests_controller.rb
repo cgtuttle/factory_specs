@@ -1,8 +1,12 @@
 class TestsController < ApplicationController
 
   def index
-		@tests = Test.find(:all)
+  	@title = 'Tests'
+		@tests = Test.find(:all).paginate(:page => params[:page], :per_page => 30)
+		@index = @tests
 		@test = Test.new
+		@span = 4
+		@is_index_table = true
 	end
 	
 	def create

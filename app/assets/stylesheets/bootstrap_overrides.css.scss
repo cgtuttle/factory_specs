@@ -1,0 +1,86 @@
+body {
+	height: 100%;
+	background-color: #E8E8E8;
+}
+
+form {
+	margin: 0;
+}
+
+select, textarea, input[type="text"], input[type="password"], input[type="datetime"], 
+	input[type="datetime-local"], input[type="date"], input[type="month"], input[type="time"], 
+	input[type="week"], input[type="number"], input[type="email"], input[type="url"], 
+	input[type="search"], input[type="tel"], input[type="color"], .uneditable-input {
+	height: 29px;       /* To compensate for the use of border-box box sizing */
+	margin: 6px 0;      /* To compensate for the use of border-box box sizing */
+	margin-right: 1em;
+}
+
+input[type="file"] {
+	line-height: 0;
+	height: 1.7em;
+	margin: 0;
+	padding: 0;
+	margin-left: 1em;
+}
+
+thead {
+	background-color: #B2B2B2;
+}
+
+a {
+	padding-right: 20px;
+}
+
+label {
+	display: inline;
+	margin: 0 1em 0 0;
+	padding: 0;
+}
+
+.table {
+	margin-bottom: 0;
+}
+
+.pagination {
+	height: auto;
+	margin: 15px 0 10px 0;
+	float: right;
+}
+
+.title {
+	height: 70px;
+	font-size: 1.5em;
+	font-weight: bold;
+	float: left;
+	margin: 0;
+	margin-right: 2em;
+	padding: 25px 0;
+}
+
+.controls {
+	line-height: 40px;
+	margin: 2.5em 0 0 0;
+	display: inline;
+}
+
+.alert {
+	margin: 3px .5em;
+	padding-top: 6px;
+	padding-bottom: 6px;
+}
+
+table .column-label {
+	text-align: center;
+	font-style: italic;
+	font-weight: bold;
+	font-size: .8em;
+}
+
+#main {
+	padding-top: 50px;
+}
+
+#factory { /* For factory icon in header */
+	padding: 3px;
+}

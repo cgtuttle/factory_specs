@@ -1,40 +1,56 @@
 <h4>Import Data</h4>
 
-<p>Row count: <%=@row_count%></p>
-
-<h4>Destination table: <%= @import.model %></h4>
+<h5>Row count: <%=@row_count%></h5>
   
 <%= form_for @import do |f| %>
   
-  <table>
+  <table class="table" style="width:auto;">
     <tr>
-      <% (1..@column_count).each do %>
-        <td class="file_import_table">
-          <%= select_tag "field_choices[]", options_for_select(@field_choices), :prompt => '--Select--' %>
-        </td>
+      <td><h4>Destination table: <%= @import.model %></h4></td>
+    </tr>
+    
+    <tr>
+    <td></td>
+      <% (1..@column_count).each do |col| %>    
+        <td class="column-label">Column <%= col %></td>
       <% end %>
     </tr>
-  </table>
- 
-  <br></br>
-    
-    <% (1..@column_count).each do %>
-      <div class="box-200-20">
-        <div class="arrow-up"></div>
-      </div>
-    <% end %>
-    
-  <br></br>
 
-  <h4>Source table</h4>
-    <table>
+    <tr>
+    <td></td>  
+      <% (1..@column_count).each do %>                
+        <td class="file_import_table">
+          <%= select_tag "field_choices[]", options_for_select(@field_choices), :prompt => '--Select--',
+            :style => "width:100%;" %>
+        </td>        
+      <% end %>
+    </tr>
+  
+    <tr>
+    <td></td>
+      <% (1..@column_count).each do %>      
+        <td style="text-align: center;"><%= image_tag "Black_Up_Arrow.png", :alt=>"^", :id=>"arrow-up", :size=>"15x25" %></td>      
+      <% end %>
+    </tr>
+    
+    <tr>
+      <td colspan="2"><h4>Source table</h4></td>
+    </tr>
+
+    <tr>
+    <td class="column-label">Row</td>
+      <% (1..@column_count).each do |col| %>    
+        <td class="column-label">Column <%= col %></td>
+      <% end %>
+    </tr>
       
         <%= f.fields_for :cells do |ff| %>
           <% if ff.object.row < 4 %>
             <% if ff.object.column == 1 %>
               <tr>
+              <td style="text-align:center;"><%= ff.object.row %></td>
             <% end %>
-                <td class="file_import_table">
+                <td style="text-align:center;color:blue;">
                   <%= ff.object.cell_value %>
                 </td>
             <% if ff.object.column == @column_count %>
@@ -42,46 +58,27 @@
             <% end %>
           <% end %>
         <% end %>
+
+      <% if @row_count > 3 %>
+        <tr>
+          <td>More than 3 rows...</td>
+        </tr>
+      <% end %>
+
       
     </table>
-    
-  <% if @row_count > 3 %>
+
   
-    <br></br>  
-
-        <% (1..@column_count).each do %>
-          <div class="box-200-20">
-            <div class="circle-10"></div>
-						<p>More than 3 rows</p>
-          </div>  
-        <% end %>
-
-    <br></br>           
-
-        <% (1..@column_count).each do %>
-          <div class="box-200-20">
-            <div class="circle-8"></div>
-          </div>  
-        <% end %>
-
-    <br></br>     
-
-        <% (1..@column_count).each do %>
-          <div class="box-200-20">
-            <div class="circle-6"></div>
-          </div>  
-        <% end %>
-    
-  <% end %>
-  
-  <br></br>
 	
 	 <%= hidden_field_tag :row_count, @row_count  %>
   
-  <p>Start at row <%= text_field_tag :first_row, 1, :class => 'f-50' %></p>
-  <br></br>
+  <%= label_tag "Start at row", :style => "line-height:8em;" do%>
+    Start at row
+    <%= text_field_tag :first_row, 1 %>
+  <% end %>
+
   <%= submit_tag 'Import', :name => 'import_file' %>
-  <br></br>
+
   <%= submit_tag 'Cancel', :name => 'import_file' %>
 
 <% end %>

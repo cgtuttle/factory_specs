@@ -7,10 +7,12 @@ require 'will_paginate/array'
 		@history = params[:history]
 		@future = params[:future]
 		set_scope
-		@title = "Specifications for #{@item.code}"
-		@item_specs = ItemSpec.by_status(@item.id, @history, @future).paginate(:page => params[:page], :per_page => 30)
+		@title = "Specifications for Item"
+		@item_specs = ItemSpec.by_status(@item_id, @history, @future)
 		@specs = Spec.order(:display_order)
 		@items = Item.order(:code)
+		@span = 10
+		@is_index_table = true
   end
 	
 	def edit
@@ -27,14 +29,19 @@ require 'will_paginate/array'
 	
 	def set_scope
 		if params[:item] && !params[:item].blank?
-			@item = Item.find(params[:item])
+			@item_id = params[:item]
+			logger.debug "params has key :item - #{params[:item]}"			
 		elsif params.has_key?(:item_spec)
-			@item = Item.find(params[:item_spec][:item_id])
+			logger.debug "params has key :item_spec - #{params[:item_spec]}"
+			@item_id = params[:item_spec][:item_id]
 		else
-			@item = Item.find(get_item_id)
+			@item_id = get_item_id
+			logger.debug "No params - @item_id = #{@item_id}"
 		end
-		
-		cookies[:item_id] = @item.id		
+
+		@item = Item.exists?(@item_id) ? Item.find(@item_id) : nil
+
+		cookies[:item_id] = @item_id		
 		@history = (params[:include_history] && !params[:include_history].blank?) || (@history && !@history.blank?)
 		@future = (params[:include_future] && !params[:include_future].blank?) || (@future && !@future.blank?)
 	end

@@ -13,13 +13,20 @@
 			<div class="content">
 
 				<% if !@no_header %>					
-			    <%= render 'main/header' %>
+			    <%= render 'layouts/header' %>
 		    <% end %>
+
 
 				<div id="main" role="main">
 					<div class="container-fluid">
 	        	<div class="row-fluid">
-							<%= yield :left %>	        	
+
+	        		<%= yield :left %>	 
+
+					    <% if @is_index_table %>
+					    	<%= render :partial => 'layouts/index', :object => @index %>
+					    <% end %>
+       	
 	          	<%= yield %>
 	          </div>
 	        </div> <!--! end of .container --> 	       

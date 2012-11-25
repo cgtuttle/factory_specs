@@ -1,0 +1,26 @@
+
+<div class="span<%= @span %>">
+	<div class="row-fluid">	
+		<h4 class="title"><%= @title %></h4>
+		<div class="controls">
+			<%= yield :controls %>
+		</div>
+		
+		<% unless index.blank? %>
+			<%= will_paginate index, :renderer => BootstrapPagination::Rails %>
+		<% end %>
+
+		<table class="table table-striped table-bordered table-condensed">
+			<thead>
+				<%= yield :thead %>
+			</thead>
+			<tbody>
+				<%= yield :table %>
+			</tbody>
+		</table>
+		<% unless index.blank? %>
+			<%= will_paginate index, :renderer => BootstrapPagination::Rails %>
+		<% end %>
+	</div>
+</div>
+

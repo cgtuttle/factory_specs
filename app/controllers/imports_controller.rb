@@ -12,11 +12,11 @@ class ImportsController < ApplicationController
 	
 	def create
 		if params[:file]
-			if params[:import_file]=='Continue'
+			if params[:import_file]=='Continue' # Continue button clicked
 				@import = Import.new(params[:import])
 				@import.account_id = 0 #current_account.id
 				@import.user_id = 0 #current_user.id
-				@model = @import.model
+				@model = @import.model #selected model
 				@import.save
 				import_file
 					logger.debug "import_file complete"

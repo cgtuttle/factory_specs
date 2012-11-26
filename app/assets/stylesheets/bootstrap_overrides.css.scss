@@ -49,7 +49,6 @@ label {
 }
 
 .title {
-	height: 70px;
 	font-size: 1.5em;
 	font-weight: bold;
 	float: left;
@@ -77,10 +76,29 @@ table .column-label {
 	font-size: .8em;
 }
 
+.table th, .table td {
+	vertical-align: middle;
+}
+
 #main {
 	padding-top: 50px;
 }
 
+/* Should be in Application.css.scss */
+
 #factory { /* For factory icon in header */
 	padding: 3px;
+}
+
+* { 
+  -moz-box-sizing: border-box; 
+  -webkit-box-sizing: border-box; 
+  box-sizing: border-box; 
+}
+
+html {
+	height: 100%;
+}
+
+.content {  
 }

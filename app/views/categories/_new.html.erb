@@ -2,9 +2,9 @@
 <%= form_for @category do |f| %>
 	<div class="form">
 		<div>
-			<td><%= f.text_field :code, :class => 'text_field' %></td>
-			<td><%= f.text_field :name, :class => 'text_field' %></td>
-			<td><%= f.number_field :display_order, :class => 'number_field_short' %></td>
+			<td><%= f.text_field :code %></td>
+			<td><%= f.text_field :name %></td>
+			<td><%= f.number_field :display_order %></td>
 			<td><%= f.submit "Add Category" %></td>
 		</div>
 	</div>

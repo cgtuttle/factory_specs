@@ -1,11 +1,11 @@
 
 	<tr>
 		<%= form_for(@new_item) do |f| %>		
-			<div class="field">
+			<div>
 				<td><%= f.text_field :code %></td>
 				<td><%= f.text_field :name %></td>
 			</div>
-			<div class="actions">
+			<div>
 				<td><%= f.submit "Submit New Item" %></td>
 			</div>
 		<% end %>		

@@ -1,11 +1,14 @@
-<h4>Edit Category</h4>
-<%= form_for @category do |f| %>
-	<p><%= f.label :code, :class => 'field_label' %></p>
-	<p><%= f.text_field :code, :class => 'text_field' %></p>
-	<p><%= f.label :name, :class => 'field_label' %></p>
-	<p><%= f.text_field :name, :class => 'text_field' %></p>
-	<p><%= f.label :display_order, :class => 'field_label' %></p>
-	<p><%= f.text_field :display_order, :class => 'text_field' %></p>
-	<p><%= f.submit :class => 'submit_button' %></p>
-	<p><%= f.submit "Cancel", :class => 'submit_button' %></p>
+<% content_for :edit_form do %>
+	<%= form_for @category do |f| %>
+		<%= f.label :code %>
+		<%= f.text_field :code %>
+		<%= f.label :name %>
+		<%= f.text_field :name %>
+		<%= f.label :display_order %>
+		<%= f.text_field :display_order %>
+		<div>
+			<%= f.submit %>
+			<%= f.submit "Cancel" %>
+		</div>
+	<% end %>
 <% end %>

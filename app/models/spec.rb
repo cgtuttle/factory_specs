@@ -31,5 +31,5 @@ class Spec < ActiveRecord::Base
 			end
 		end
 	end
-	
+
 end

@@ -3,7 +3,7 @@
 		
 		<div class="nav pull-left">		
 			<%= form_tag('display', :method => :get) do %>
-				<%= label_tag 'specifications_for', :style=>"margin-left:1em;" do %>
+				<%= label_tag 'specifications_for', :style=>"margin-left:1em;margin-top:0;" do %>
 					Specifications for 
 					<%= collection_select :item, :id, @items, :id, :code, {:selected => @item.id}, {:onchange => "this.form.submit();"} %>
 				<% end %>

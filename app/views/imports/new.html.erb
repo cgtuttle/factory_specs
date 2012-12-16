@@ -1,7 +1,5 @@
-<div class="span3 offset1">
-	
-	<h2>Import File</h2>
-	
+<% content_for :edit_form do %>
+
 
   <%= form_for @import, :html=>{:multipart=>true} do |f| %>
 
@@ -23,5 +21,6 @@
   </div>
 
   <% end %>
-</div>
+<% end %> 
+
   

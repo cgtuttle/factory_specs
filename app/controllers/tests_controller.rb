@@ -22,6 +22,8 @@ class TestsController < ApplicationController
 
   def edit
 		@test = Test.find(params[:id])
+		@title = "Edit Test: #{@test.name}"
+		@is_edit_form = true		
 	end
 	
 	def update

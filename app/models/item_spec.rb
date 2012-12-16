@@ -12,45 +12,16 @@ class ItemSpec < ActiveRecord::Base
 	
 	def self.by_status(item, past, future)
 		sql_string_current = self.new.select_string("current", item)
+
+		sql_string_past = past ? " UNION ALL #{self.new.select_string("history", item)}" : ""
 		
-		if past
-			sql_string_past = " UNION ALL #{self.new.select_string("history", item)}"
-		else
-			sql_string_past = ""
-		end
-			
-		if future
-			sql_string_future = " UNION ALL #{self.new.select_string("future", item)}"
-		else
-			sql_string_future = ""
-		end
-				
-			sql_string_order =	
-			" ORDER BY cat_seq, spec_seq, date_seq DESC, ver_seq DESC"
+		sql_string_future = future ? " UNION ALL #{self.new.select_string("future", item)}" : ""
+
+		sql_string_order =	" ORDER BY cat_seq, spec_seq, date_seq DESC, ver_seq DESC"
 		
 		sql_string = "#{sql_string_current}#{sql_string_past}#{sql_string_future}#{sql_string_order}"
+
 		ItemSpec.find_by_sql(sql_string)
-	end
-	
-	def self.current(item)
-		ItemSpec.order('eff_date DESC, version DESC').group('spec_id').where("item_id = ? and eff_date <= ?", item, Date.today).select("*, 'current' as status")
-	end
-	
-	def self.past(item)
-		current = ItemSpec.current(item)
-		ItemSpec.where("id NOT IN (?) and item_id = ? and eff_date <= ?", current, item, Date.today).select("*, 'history' as status")
-	end
-	
-	def self.future(item)
-		ItemSpec.where("item_id = ? and eff_date > ?", item, Date.today).select("*, 'future' as status")
-	end
-	
-	def last_version
-		if self.version
-			ItemSpec.where(:item_id => self.item_id, :spec_id => self.spec_id).order('version DESC').first.version
-		else
-			0
-		end
 	end
 	
 	def date_status
@@ -59,19 +30,29 @@ class ItemSpec < ActiveRecord::Base
 		current_version = current_item_spec.version	
 		if self.eff_date > current_date
 			"future"
+		elsif self.deleted
+			"deleted"
 		elsif (self.eff_date == current_date and self.version < current_version) or self.eff_date < current_date
 			"past"
 		else
 			"current"
 		end
 	end
-	
-	def set_eff_date
-		self.eff_date = Date.today
+
+	def set_version
+		self.version = ((self.last_version.nil? && 0) || self.last_version) + 1
 	end
 	
-	def set_version
-		self.version = self.last_version + 1
+	def last_version
+		unless ItemSpec.where(:item_id => self.item_id, :spec_id => self.spec_id).empty?
+			ItemSpec.where(:item_id => self.item_id, :spec_id => self.spec_id).order('version DESC').first.version
+		end
+	end
+	
+	def set_eff_date
+		if !self.eff_date
+			self.eff_date = Date.today
+		end
 	end
 	
 	def select_string(status, item)
@@ -107,22 +88,25 @@ class ItemSpec < ActiveRecord::Base
 			FROM item_specs as i, specs as s, categories 
 			WHERE i.spec_id = s.id
 			AND s.category_id = categories.id
-			AND	i.eff_date #{op1} (       
-				SELECT max(eff_date)
-				FROM item_specs A
-				WHERE A.item_id = i.item_id
-				AND A.spec_id = i.spec_id
-				AND A.eff_date #{op2} current_date
-				)
-			AND i.version #{op3} (
-				SELECT max(version)
-				FROM item_specs B
-				WHERE B.item_id = i.item_id
-				AND B.spec_id = i.spec_id
-				AND B.eff_date #{op2} current_date
+			AND 
+				i.eff_date #{op1} (       
+						SELECT max(eff_date)
+						FROM item_specs A
+						WHERE A.item_id = i.item_id
+						AND A.spec_id = i.spec_id
+						AND A.eff_date #{op2} current_date
+					)
+				AND (i.version #{op3} 
+					(
+						SELECT max(version)
+						FROM item_specs B
+						WHERE B.item_id = i.item_id
+						AND B.spec_id = i.spec_id
+						AND B.eff_date #{op2} current_date
+					)					
 				)
 			AND i.item_id = #{item}
 		)"
 	end
-	
+
 end

@@ -24,6 +24,10 @@ input[type="file"] {
 	margin-left: 1em;
 }
 
+input[type="submit"] {
+	margin: .5em .5em .5em 0;
+}
+
 thead {
 	background-color: #B2B2B2;
 }
@@ -33,13 +37,23 @@ a {
 }
 
 label {
-	display: inline;
-	margin: 0 1em 0 0;
+/*	display: inline; */
+	margin: 1em 1em 0 0;
 	padding: 0;
+}
+
+.inline {
+	display: inline;
 }
 
 .table {
 	margin-bottom: 0;
+}
+
+.form {
+	background-color: white;
+	padding: .5em;
+	border-radius: 6px;
 }
 
 .pagination {
@@ -76,9 +90,18 @@ table .column-label {
 	font-size: .8em;
 }
 
+table .checked {
+	text-align: center;
+}
+
+td .tight {
+	
+}
+
 .table th, .table td {
 	vertical-align: middle;
 }
+
 
 #main {
 	padding-top: 50px;

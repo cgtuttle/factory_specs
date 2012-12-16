@@ -14,17 +14,26 @@
 
 				<% if !@no_header %>					
 			    <%= render 'layouts/header' %>
+			    
 		    <% end %>
 
 
 				<div id="main" role="main">
+					
 					<div class="container-fluid">
+						
 	        	<div class="row-fluid">
+	        		
+	        		<% if !true %>
+	        			<%= yield :left %>
+	        		<% end %>	 
 
-	        		<%= yield :left %>	 
-
-					    <% if @is_index_table %>
+					    <% if @is_index_table == true %>
 					    	<%= render :partial => 'layouts/index', :object => @index %>
+					    <% end %>
+
+					    <% if @is_edit_form == true %>
+					    	<%= render :partial => 'layouts/edit' %>
 					    <% end %>
        	
 	          	<%= yield %>

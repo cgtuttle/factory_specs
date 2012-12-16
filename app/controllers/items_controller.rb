@@ -14,6 +14,7 @@ class ItemsController < ApplicationController
   def edit
 		@item = Item.find(params[:id])
 		@title = "Edit Item #{@item.code}"
+		@is_edit_form = true
   end
 
   def update
@@ -21,20 +22,20 @@ class ItemsController < ApplicationController
 		@item = Item.find(params[:id])
 		@history = params[:history]
 		@future = params[:future]
-		case params[:commit]
-		when 'Update'
+#		case params[:commit]
+#		when 'Update'
 			if _update
 				flash[:success] = "Item updated"
 				redirect_to items_path
 			end
-		when 'Update Item'
-			if _update
-				flash[:success] = "Item specs updated"
-				redirect_to item_specs_path :item => @item, :history => @history, :future => @future
-			end			
-		else
-			redirect_to items_path
-		end
+#		when 'Update Item'
+#			if _update
+#				flash[:success] = "Item specs updated"
+#				redirect_to item_specs_path :item => @item, :history => @history, :future => @future
+#			end			
+#		else
+#			redirect_to items_path
+#		end
   end
 
   def new
@@ -67,7 +68,7 @@ class ItemsController < ApplicationController
 		else
 			@item = Item.find(get_item_id)
 		end
-		cookies[:item_id] = @item_id
+		cookies[:item_id] = @item.id
 		@title = @item.code
 		@item_specs = @item.item_specs
 		@categories = @item_specs.group_by{|is| is.spec.category}

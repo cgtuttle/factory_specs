@@ -1,3 +1,4 @@
+# encoding: UTF-8
 # This file is auto-generated from the current state of the database. Instead
 # of editing this file, please use the migrations feature of Active Record to
 # incrementally modify your database, and then regenerate this schema definition.
@@ -10,7 +11,7 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20121020213750) do
+ActiveRecord::Schema.define(:version => 20121202170954) do
 
   create_table "categories", :force => true do |t|
     t.string   "code",          :limit => 64,  :null => false
@@ -58,6 +59,7 @@ ActiveRecord::Schema.define(:version => 20121020213750) do
     t.string   "unit_of_measure",  :limit => 64
     t.datetime "created_at"
     t.datetime "updated_at"
+    t.boolean  "deleted",                        :default => false
   end
 
   create_table "items", :force => true do |t|
@@ -67,6 +69,17 @@ ActiveRecord::Schema.define(:version => 20121020213750) do
     t.datetime "created_at"
     t.datetime "updated_at"
   end
+
+  create_table "roles", :force => true do |t|
+    t.string   "name"
+    t.integer  "resource_id"
+    t.string   "resource_type"
+    t.datetime "created_at",    :null => false
+    t.datetime "updated_at",    :null => false
+  end
+
+  add_index "roles", ["name", "resource_type", "resource_id"], :name => "index_roles_on_name_and_resource_type_and_resource_id"
+  add_index "roles", ["name"], :name => "index_roles_on_name"
 
   create_table "specs", :force => true do |t|
     t.string   "code",          :limit => 64,  :null => false
@@ -109,5 +122,12 @@ ActiveRecord::Schema.define(:version => 20121020213750) do
 
   add_index "users", ["email"], :name => "index_users_on_email", :unique => true
   add_index "users", ["reset_password_token"], :name => "index_users_on_reset_password_token", :unique => true
+
+  create_table "users_roles", :id => false, :force => true do |t|
+    t.integer "user_id"
+    t.integer "role_id"
+  end
+
+  add_index "users_roles", ["user_id", "role_id"], :name => "index_users_roles_on_user_id_and_role_id"
 
 end

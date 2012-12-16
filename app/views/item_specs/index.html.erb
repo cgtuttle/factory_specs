@@ -5,12 +5,12 @@
 			 
 			<%= collection_select :item_spec, :item_id, @items, :id, :code, {:selected => @item_id}, {:onchange => "this.form.submit();", :class => "search-field"} %>
 
-			<%= label_tag 'include_future' do %>
+			<%= label_tag 'include_future', :class => 'inline' do %>
 				<%= check_box_tag "include_future", "future", @future %>
 				Include future
 			<% end %>
 
-			<%= label_tag 'include_history' do %>				
+			<%= label_tag 'include_history', :class => 'inline' do %>				
 				<%= check_box_tag "include_history", "history", @history %>
 				Include history
 			<% end %>
@@ -29,9 +29,7 @@
 	<th>USL</th>
 	<th>LSL</th>
 	<th>UOM</th>
-	<th>Document</th>
-	<th>URL</th>
-	<th>Doc Ver</th>
+	
 	<th>Test</th>
 	<th>Eff Dt</th>
 	<th>Ver</th>
@@ -41,9 +39,6 @@
 <% end %>
 		
 <% content_for :table do %>
+	<%= render 'new' %>
 	<%= render :partial => 'item_spec', :collection => @item_specs %>
-<% end %>
-
-<% content_for :left do %>
-	<%= render :partial => 'relationship' %>
 <% end %>

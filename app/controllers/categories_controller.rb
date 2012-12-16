@@ -24,6 +24,8 @@ class CategoriesController < ApplicationController
 
   def edit
 		@category = Category.find(params[:id])
+		@title = "Edit Category: #{@category.name}"
+		@is_edit_form = true
 	end
 	
 	def update

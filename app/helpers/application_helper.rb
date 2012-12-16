@@ -10,6 +10,7 @@ module ApplicationHelper
   end
 	
 	def get_item_id
+    logger.debug "cookies  = #{cookies[:item_id]}"
 		Item.id_by_existence(cookies[:item_id])
 	end
 	

@@ -15,10 +15,8 @@ class Item < ActiveRecord::Base
 			Item.find(:first)			
 		else
 			if Item.exists?(id)
-				logger.debug "Found item #{@item_id}"
 				Item.find(id)
 			else
-				logger.debug "No Item - revert to first"
 				Item.find(:first)				
 			end	
 		end	
@@ -30,6 +28,39 @@ class Item < ActiveRecord::Base
 		else
 			Item.by_existence(id).id
 		end
+	end
+
+	def available_specs
+		sql_string_used_specs = "
+			SELECT a.*
+			FROM
+				((
+				SELECT spec_id, MAX(version) as ver
+				FROM item_specs
+				WHERE item_id = #{self.id}					
+				GROUP BY spec_id) AS y
+			INNER JOIN
+				(
+				SELECT *
+				FROM item_specs
+				WHERE item_id = #{self.id}
+				AND deleted = false) AS z
+			ON y.spec_id = z.spec_id
+			AND y.ver = z.version)
+			INNER JOIN
+				(
+				SELECT *
+				FROM specs) AS a
+			ON a.id = z.spec_id
+			"
+
+		@used_specs = Spec.find_by_sql(sql_string_used_specs)
+		if @used_specs.empty?
+			Spec.all
+		else
+			Spec.where('id NOT IN (?)', @used_specs)
+		end
+
 	end
 
 end

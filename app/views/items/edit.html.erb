@@ -1,21 +1,18 @@
-<h4>Edit Item <%= @item.code %></h4>
+<% content_for :edit_form do %>
 
-<%= form_for @item do |f| %>
-	<div class="form">
-		<div class="field">
-			<%= f.label :name, "Code", :class => "field_label" %>
-			<%= f.text_field :code, :class => "text_field" %>
-		</div>
+	<%= form_for @item do |f| %>
+		
+		<%= f.label :name, "Code", :class => "field_label" %>
+		<%= f.text_field :code, :class => "text_field" %>
+		
+		<%= f.label :name, "Name", :class => "field_label" %>
+		<%= f.text_field :name, :class => "text_field" %>
+	
+		<div>
+			<%= f.submit "Update" %>
+			<%= f.submit "Cancel" %>
+		</div>	
 
-		<div class="field">
-			<%= f.label :name, "Name", :class => "field_label" %>
-			<%= f.text_field :name, :class => "text_field" %>
-		</div>
-		<br></br>
-
-		<div class="actions">
-			<%= f.submit "Update" %><%= f.submit "Cancel" %>
-		</div>
-	</div>
-
+	<% end %>
+		
 <% end %>

@@ -1,13 +1,14 @@
 class ImportsController < ApplicationController
 	include ApplicationHelper
 	include ImportsHelper
-#	before_filter { |c| c.set_zone "Application" }
 	
 	def new
 		@import = Import.new
 		if params[:model]
 			@model = params[:model]
 		end
+		@title = "Import Data"
+		@is_edit_form = true
 	end
 	
 	def create

@@ -1,19 +1,27 @@
-<tr class="<%= item_spec.date_status %>">
-	<td><%= item_spec.spec.category.code %></td>
-	<td><%= item_spec.spec.code %></td>			
-	<td><%= item_spec.string_value %></td>
-	<td><%= item_spec.text_value %>
-	<td><%= item_spec.numeric_value %></td>
-	<td><%= item_spec.usl %></td>
-	<td><%= item_spec.lsl %></td>
-	<td><%= item_spec.unit_of_measure %></td>
-	<td><%= item_spec.document_title %></td>
-	<td><%= item_spec.document_url %></td>
-	<td><%= item_spec.document_version %></td>
-	<td><%= item_spec.test.code if item_spec.test %></td>
-	<td><%= item_spec.eff_date %></td>
-	<td><%= item_spec.version %></td>
-	<td><%= item_spec.date_status %></td>
-	<td><%= item_spec.changed_by %></td>
-	<td><%= link_to "Edit", edit_item_spec_path(item_spec), :class => 'link' %></td>
-</tr>
+
+<% if !item_spec.deleted || @history %>
+	<tr class="<%= item_spec.date_status %>">
+		<td><%= item_spec.spec.category.code %></td>
+		<td><%= item_spec.spec.code %></td>			
+		<td><%= item_spec.string_value %></td>
+		<td><%= item_spec.text_value %>
+		<td><%= item_spec.numeric_value %></td>
+		<td><%= item_spec.usl %></td>
+		<td><%= item_spec.lsl %></td>
+		<td><%= item_spec.unit_of_measure %></td>
+		
+		<td><%= item_spec.test.code if item_spec.test %></td>
+		<td><%= item_spec.eff_date %></td>
+		<td><%= item_spec.version %></td>
+		<td><%= item_spec.date_status %></td>
+		<td><%= item_spec.changed_by %></td>
+		<td>
+			<% if item_spec.date_status == 'current' %>
+				<%= link_to "Edit", edit_item_spec_path(item_spec) %>
+				<%= link_to "Delete",  item_spec, :method => :delete, :confirm => "Are you sure?" %>
+				<%= link_to "Copy" %>
+			<% end %>
+		</td>	
+
+	</tr>
+<% end %>

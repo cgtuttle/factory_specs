@@ -31,6 +31,8 @@ class SpecsController < ApplicationController
 
   def edit
 		@spec = Spec.find(params[:id])
+		@is_edit_form = true
+		@title = "Specification: #{@spec.name}"
   end
 	
 	def update

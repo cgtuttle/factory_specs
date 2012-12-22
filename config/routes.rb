@@ -13,6 +13,7 @@ Factory::Application.routes.draw do
 	resources :categories
 	resources :tests
 	
+	match 'item_specs/:id/cancel' => 'item_specs#cancel', :as => :cancel_item_spec
 	match 'test/:id/instructions' => 'tests#instructions'
 	#match '/display' => 'items#display', :via => :get
 

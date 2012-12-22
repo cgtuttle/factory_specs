@@ -7,12 +7,12 @@
 
 			<%= label_tag 'include_future', :class => 'inline' do %>
 				<%= check_box_tag "include_future", "future", @future %>
-				Include future
+				Hide future
 			<% end %>
 
 			<%= label_tag 'include_history', :class => 'inline' do %>				
 				<%= check_box_tag "include_history", "history", @history %>
-				Include history
+				Show history
 			<% end %>
 				
 			<%= submit_tag "Apply" %>
@@ -32,7 +32,7 @@
 	
 	<th>Test</th>
 	<th>Eff Dt</th>
-	<th>Ver</th>
+	
 	<th>Status</th>
 	<th>Edited By</th>
 	<th></th>

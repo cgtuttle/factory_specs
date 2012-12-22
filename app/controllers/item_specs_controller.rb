@@ -9,7 +9,7 @@ require 'will_paginate/array'
 		@future = params[:future]
 		set_scope
 		@title = "Specifications for Item"
-		@item_specs = ItemSpec.by_status(@item_id, @history, @future)
+		@item_specs = ItemSpec.by_status(@item_id)
 		@specs = Spec.order(:display_order)
 		@items = Item.order(:code)
 		@available_specs = @item.available_specs
@@ -28,6 +28,8 @@ require 'will_paginate/array'
 		if params[:commit] != 'Cancel'
 			@new_item_spec = ItemSpec.new(params[:item_spec])
 			@new_item_spec.item = @item
+			@new_item_spec.set_eff_date
+			@new_item_spec.set_version
 			if @new_item_spec.save
 				flash[:success] = "Item Spec added/changed"
 				redirect_to item_specs_path :item_id => params[:item_spec][:item_id]
@@ -40,12 +42,24 @@ require 'will_paginate/array'
 	end
 
 	def destroy
-logger.debug "destroy params: #{params.inspect}"
 		@item_spec = ItemSpec.find(params[:id])
 		@delete_item_spec = @item_spec.dup
 		@delete_item_spec.deleted = true
 		@delete_item_spec.save
 		redirect_to item_specs_path :item_id => @item_spec.item_id
+	end
+
+	def cancel
+		@item_spec = ItemSpec.find(params[:id])
+		@item_spec.canceled = true
+		@item_spec.set_eff_date
+		@item_spec.set_version
+		if @item_spec.save
+			flash[:success] = "Item Spec added/changed"
+			redirect_to item_specs_path :item_id => @item_spec.item_id
+		else
+			redirect_to item_specs_path :item_id => @item_spec.item_id
+		end
 	end
 	
 	def set_scope

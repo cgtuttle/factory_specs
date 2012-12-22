@@ -11,7 +11,7 @@
 		<td><%= f.collection_select :test_id, Test.all, :id, :code, {:prompt => :true}, {:style => "width:150px;"} %></td>
 		<td><%= f.text_field :eff_date, :style => "width:90px;" %></td>
 		<td></td>
-		<td></td>
+		
 		<td></td>
 		<td><%= f.submit "Add Definition", :style => "width:175px;" %></td>
 	<% end %>

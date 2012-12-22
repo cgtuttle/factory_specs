@@ -15,7 +15,7 @@ var m = date.getMonth(), d = date.getDate(), y = date.getFullYear();
 
  $(function (){
 	 $('#item_spec_eff_date').datepicker({
-    dateFormat: "mm/dd/yy",
+    dateFormat: 'D, dd M yy',
 		minDate: new Date(y, m, d)
   });
  });

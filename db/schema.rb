@@ -11,7 +11,7 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20121202170954) do
+ActiveRecord::Schema.define(:version => 20121217174326) do
 
   create_table "categories", :force => true do |t|
     t.string   "code",          :limit => 64,  :null => false
@@ -60,6 +60,7 @@ ActiveRecord::Schema.define(:version => 20121202170954) do
     t.datetime "created_at"
     t.datetime "updated_at"
     t.boolean  "deleted",                        :default => false
+    t.boolean  "canceled"
   end
 
   create_table "items", :force => true do |t|

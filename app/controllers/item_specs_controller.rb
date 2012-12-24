@@ -12,7 +12,7 @@ require 'will_paginate/array'
 	  	@new_item_spec = ItemSpec.new
 			@title = "Specifications for Item"
 			@item_specs = ItemSpec.by_status(@item_id)
-			@items = Item.order(:code) # Delete=======================================
+			@items = Item.order(:code)
 			@available_specs = @item.available_specs
 			@span = 12
 			@is_index_table = true
@@ -50,8 +50,12 @@ require 'will_paginate/array'
 		@item_spec = ItemSpec.find(params[:id])
 		@delete_item_spec = @item_spec.dup
 		@delete_item_spec.deleted = true
-		@delete_item_spec.save
-		redirect_to item_specs_path :item_id => @item_spec.item_id
+		if @delete_item_spec.save
+			flash[:success] = "Item Spec deleted"
+			redirect_to item_specs_path :item_id => @item_spec.item_id
+		else
+			redirect_to item_specs_path :item_id => @item_spec.item_id
+		end
 	end
 
 	def cancel
@@ -60,7 +64,7 @@ require 'will_paginate/array'
 		@item_spec.set_eff_date
 		@item_spec.set_version
 		if @item_spec.save
-			flash[:success] = "Item Spec added/changed"
+			flash[:success] = "Future Item Spec canceled"
 			redirect_to item_specs_path :item_id => @item_spec.item_id
 		else
 			redirect_to item_specs_path :item_id => @item_spec.item_id

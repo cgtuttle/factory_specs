@@ -18,24 +18,13 @@ class ItemsController < ApplicationController
   end
 
   def update
-		logger.debug "Running items_controller.update"
 		@item = Item.find(params[:id])
 		@history = params[:history]
 		@future = params[:future]
-#		case params[:commit]
-#		when 'Update'
-			if _update
-				flash[:success] = "Item updated"
-				redirect_to items_path
-			end
-#		when 'Update Item'
-#			if _update
-#				flash[:success] = "Item specs updated"
-#				redirect_to item_specs_path :item => @item, :history => @history, :future => @future
-#			end			
-#		else
-#			redirect_to items_path
-#		end
+		if _update
+			flash[:success] = "Item updated"
+			redirect_to items_path
+		end
   end
 
   def new

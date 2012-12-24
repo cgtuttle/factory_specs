@@ -4,14 +4,20 @@
 		<div class="nav pull-left">		
 			<%= form_tag('display', :method => :get) do %>
 				<%= label_tag 'specifications_for', :style=>"margin-left:1em;margin-top:0;" do %>
-					Specifications for 
-					<%= collection_select :item, :id, @items, :id, :code, {:selected => @item.id}, {:onchange => "this.form.submit();"} %>
+					Specifications for
+					<% if @item %>
+						<%= collection_select :item, :id, @items, :id, :code, {:selected => @item.id}, {:onchange => "this.form.submit();"} %>
+					<% else %>
+						<p>(No items available yet)</p>
+					<% end %>
 				<% end %>
 			<% end %>
 		</div>
 						
 		<ul class="nav pull-right">
-			<li><%= link_to "Floor Display", display_items_path(:item_id => @item.id ) %></li>		
+			<% if @item %>
+				<li><%= link_to "Floor Display", display_items_path(:item_id => @item.id ) %></li>
+			<% end %>		
 			<li><%= link_to "Items", items_path %></li>
 			<li><%= link_to "Spec Definitions", specs_path %></li>
 			<li><%= link_to "Item Specifications", item_specs_path %></li>

@@ -68,10 +68,14 @@ class ItemsController < ApplicationController
 		else
 			@item = Item.find(get_item_id)
 		end
-		cookies[:item_id] = @item.id
-		@title = @item.code
-		@item_specs = @item.item_specs
-		@categories = @item_specs.group_by{|is| is.spec.category}
+
+		if @item
+			cookies[:item_id] = @item.id
+			@title = @item.code
+			@item_specs = @item.item_specs
+			@categories = @item_specs.group_by{|is| is.spec.category}
+		end
+
 		@no_header = true
 	end
 	

@@ -4,17 +4,22 @@ include ApplicationHelper
 require 'will_paginate/array' 
 	
   def index
-  	@new_item_spec = ItemSpec.new
 		@history = params[:history]
 		@future = params[:future]
-		set_scope
-		@title = "Specifications for Item"
-		@item_specs = ItemSpec.by_status(@item_id)
 		@specs = Spec.order(:display_order)
-		@items = Item.order(:code)
-		@available_specs = @item.available_specs
-		@span = 12
-		@is_index_table = true
+		set_scope
+  	if @item
+	  	@new_item_spec = ItemSpec.new
+			@title = "Specifications for Item"
+			@item_specs = ItemSpec.by_status(@item_id)
+			@items = Item.order(:code) # Delete=======================================
+			@available_specs = @item.available_specs
+			@span = 12
+			@is_index_table = true
+		else
+			flash[:alert] = "There are no items yet - please add at least one"
+			redirect_to items_path
+		end
   end
 	
 	def edit

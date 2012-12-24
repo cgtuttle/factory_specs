@@ -1,34 +1,33 @@
+<div class="row-fluid">
 
-	<div class="row-fluid">
-
-		<div class="span4">
-		</div>
-
-		<div class="span4">
-							
-				<div class="form-signin">
-					
-					<div><%= render 'layouts/messages' %></div>
-										
-					<%= image_tag "icons/factory.svg", :alt=>"Factory", :size=>"70x70", :style => "margin-top:2em;" %>
-
-					<h2 class="form-signin-heading">Welcome to Factory:Specs</h2>
-						<div id="user_nav">
-						  <% if user_signed_in? %>
-						    Signed in as <%= current_user.email %>. Not you?
-						    <%= link_to "Sign out", destroy_user_session_path, :method => :delete %>
-						  <% else %>
-						    <%= link_to "Sign up", new_user_registration_path %>
-						    or
-						    <%= link_to "Sign in", new_user_session_path %>
-						  <% end %>
-						</div>
-					
-					</div>	
-							
-		</div>
-
-		<div class="span4">
-		</div>
-
+	<div class="span4">
 	</div>
+
+	<div class="span4">
+						
+			<div class="form-signin">
+				
+				<div><%= render 'layouts/messages' %></div>
+									
+				<%= image_tag "icons/factory.svg", :alt=>"Factory", :size=>"70x70", :style => "margin-top:2em;" %>
+
+				<h2 class="form-signin-heading">Welcome to Factory:Specs</h2>
+					<div id="user_nav">
+					  <% if user_signed_in? %>
+					    Signed in as <%= current_user.email %>. Not you?
+					    <%= link_to "Sign out", destroy_user_session_path, :method => :delete %>
+					  <% else %>
+					    <%= link_to "Sign up", new_user_registration_path %>
+					    or
+					    <%= link_to "Sign in", new_user_session_path %>
+					  <% end %>
+					</div>
+				
+				</div>	
+						
+	</div>
+
+	<div class="span4">
+	</div>
+
+</div>

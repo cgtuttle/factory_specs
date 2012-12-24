@@ -1,0 +1,18 @@
+
+
+<section class="span2">	
+	<h5>Included Specs</h5>
+	<% unless @item.blank? %>
+		<%= form_for @item do %>		
+			<% @specs.each do |spec| %>
+
+				<p><%= check_box_tag :spec_ids, spec.id, @item.specs.include?(spec), :name => "item[spec_ids][]" %>
+				<%= spec.code %></p>
+				
+			<% end %>
+			<%= hidden_field_tag "history", @history %>
+			<%= hidden_field_tag "future", @future %>
+			<%= submit_tag "Update Item" %>
+		<% end %>
+	<% end %>
+</section>

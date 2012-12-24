@@ -12,6 +12,7 @@
 			<h2>Sign in</h2>
 
 			<%= form_for(resource, :as => resource_name, :url => session_path(resource_name)) do |f| %>
+				<%= devise_error_messages! %>
 			  
 			  <div><%= f.email_field :email, :placeholder => "Email" %></div>
 
@@ -28,6 +29,8 @@
 
 			  <div><%= f.submit "Sign in", :class => "btn btn-primary" %></div>
 			<% end %>
+
+			<%= render "links" %>			
 
 		</div>
 

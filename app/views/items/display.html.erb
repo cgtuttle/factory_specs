@@ -3,55 +3,57 @@
 <div id="display-box">
 	
 	<table class="table table-bordered table-striped">
-		<% @categories.each do |category, item_specs| %>
-			<thead>
-				<tr>
-					<th>
-						<%= category.name %>
-					</th>
-					<th></th>
-					<th></th>
-					<th></th>
-					<th></th>
-				</tr>
-			</thead>
-			<tbody>					
-				<% i = 0 %>	
-				<% for s in item_specs %>	
-					<% if s.date_status == "current" %>
-						<tr>
-							<td class="spec-name"><%= s.spec.name %></td>
+		<% if @categories %>
+			<% @categories.each do |category, item_specs| %>
+				<thead>
+					<tr>
+						<th>
+							<%= category.name if category %>
+						</th>
+						<th></th>
+						<th></th>
+						<th></th>
+						<th></th>
+					</tr>
+				</thead>
+				<tbody>					
+					<% i = 0 %>	
+					<% for s in item_specs %>	
+						<% if s.date_status == "current" %>
+							<tr>
+								<td class="spec-name"><%= s.spec.name %></td>
 
-							<td class="spec-limit">
-								<% if s.lsl %>
-									<div>LSL: <%= s.lsl %></div>								
-								<% end %>
-							</td>
+								<td class="spec-limit">
+									<% if s.lsl %>
+										<div>LSL: <%= s.lsl %></div>								
+									<% end %>
+								</td>
 
-							<td class="spec-value">
-								<% if s.numeric_value %>								
-									<%= "#{s.numeric_value} #{s.unit_of_measure}" %>
-								<% end %>
-															
-								<% if !s.string_value.blank? %>								
-									<%= s.string_value %>								
-								<% end %>
-							</td>
+								<td class="spec-value">
+									<% if s.numeric_value %>								
+										<%= "#{s.numeric_value} #{s.unit_of_measure}" %>
+									<% end %>
+																
+									<% if !s.string_value.blank? %>								
+										<%= s.string_value %>								
+									<% end %>
+								</td>
 
-							<td class="spec-limit">
-								<% if s.usl %>								
-									<div>USL: <%= s.usl %></div>								
-								<% end %>
-							</td>
+								<td class="spec-limit">
+									<% if s.usl %>								
+										<div>USL: <%= s.usl %></div>								
+									<% end %>
+								</td>
 
-							<td class="right-margin"></td>
+								<td class="right-margin"></td>
 
-							<% i==0 ? i=1 : i=0 %>		
-						</tr>										
-					<% end %>	
-				<% end %>
-			</tbody>
+								<% i==0 ? i=1 : i=0 %>		
+							</tr>										
+						<% end %>	
+					<% end %>
+				</tbody>
+			<% end %>
 		<% end %>
-	</div> <!--! end of table -->
+	</table> <!--! end of table -->
 	
 </div>

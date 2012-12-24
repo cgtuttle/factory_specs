@@ -11,7 +11,7 @@ class ItemSpec < ActiveRecord::Base
 #	end
 	
 	def self.by_status(item)
-		ItemSpec.joins(:spec => :category).where(:item_id => item).order("categories.display_order, specs.display_order, eff_date DESC, version DESC")
+		ItemSpec.includes(:spec => :category).where(:item_id => item).order("categories.display_order, specs.display_order, eff_date DESC, version DESC")
 	end
 	
 	def date_status

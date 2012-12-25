@@ -1,27 +1,44 @@
 
+.table th {
+	color: #4C4C4C;
+}
+
 .form-inline {
 	padding: .5em;
 }
 
 #display-box {
-	font-size: 1.5em;
-	padding-top: 20px;
+	font-size: 1.2em;
+	padding-top: 10px;
 }
 
-.spec-name {
+#display-table .spec-name {
+	padding-left: 2em;
 	width: 20%;
 }
 
-.spec-limit {
+#display-table .spec-limit {
 	width: 10%;
+	padding-left: 2em;
+	padding-right: 2em;
 }
 
-.spec-value {
+#display-table .spec-value {
 	width: 20%;
 	color: blue;
 }
 
-.right-margin {
+#display-table .right-margin {
 	width: auto;
 }
+
+#display-table .category-header {
+	background-color: #E5E5E5;
+}
+
+#display-header .spec-header {
+	padding-left: 2em;
+	padding-right: 2em;
+}
+
 

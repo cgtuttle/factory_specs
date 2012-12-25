@@ -61,7 +61,7 @@ class ItemsController < ApplicationController
 		if @item
 			cookies[:item_id] = @item.id
 			@title = @item.code
-			@item_specs = @item.item_specs
+			@item_specs = ItemSpec.joins(:spec => :category).where(:item_id => @item).order("categories.display_order")
 			@categories = @item_specs.group_by{|is| is.spec.category}
 		end
 

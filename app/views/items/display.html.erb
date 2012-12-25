@@ -2,21 +2,26 @@
 
 <div id="display-box">
 	
-	<table class="table table-bordered table-striped">
+	<table class="table table-bordered" id="display-table">
+		<thead id="display-header">
+			<tr>
+				<th>Category</th>
+				<th class="spec-header">Lower Limit</th>
+				<th style="text-align:center;">Target</th>
+				<th class="spec-header" style="text-align:right;">Upper Limit</th>
+				<th style="text-align:center;">Notes</th>
+			</tr>
+		</thead>
 		<% if @categories %>
 			<% @categories.each do |category, item_specs| %>
-				<thead>
+				<tbody>
 					<tr>
-						<th>
+						<th colspan="5" class="category-header">
 							<%= category.name if category %>
 						</th>
-						<th></th>
-						<th></th>
-						<th></th>
-						<th></th>
 					</tr>
-				</thead>
-				<tbody>					
+				</tbody>
+				<tbody>			
 					<% i = 0 %>	
 					<% for s in item_specs %>	
 						<% if s.date_status == "current" %>
@@ -25,11 +30,11 @@
 
 								<td class="spec-limit">
 									<% if s.lsl %>
-										<div>LSL: <%= s.lsl %></div>								
+										<%= s.lsl %>								
 									<% end %>
 								</td>
 
-								<td class="spec-value">
+								<td class="spec-value" style="text-align:center;">
 									<% if s.numeric_value %>								
 										<%= "#{s.numeric_value} #{s.unit_of_measure}" %>
 									<% end %>
@@ -39,9 +44,9 @@
 									<% end %>
 								</td>
 
-								<td class="spec-limit">
+								<td class="spec-limit" style="text-align:right;">
 									<% if s.usl %>								
-										<div>USL: <%= s.usl %></div>								
+										<%= s.usl %>								
 									<% end %>
 								</td>
 

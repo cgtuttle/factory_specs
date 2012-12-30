@@ -73,7 +73,7 @@ class ItemsController < ApplicationController
 	end
 	
 	def find_items
-		@items = Item.find(:all, :order => 'code').paginate(:page => params[:page], :per_page => 10)
+		@items = Item.find(:all, :order => 'code').paginate(:page => params[:page], :per_page => 20)
 		@index = @items
 	end
 

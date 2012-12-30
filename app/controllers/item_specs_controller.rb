@@ -11,7 +11,8 @@ require 'will_paginate/array'
   	if @item
 	  	@new_item_spec = ItemSpec.new
 			@title = "Specifications for Item"
-			@item_specs = ItemSpec.by_status(@item_id)
+			@item_specs = ItemSpec.by_status(@item_id).paginate(:page => params[:page], :per_page => 2)
+			@index = @item_specs
 			@items = Item.order(:code)
 			@available_specs = @item.available_specs
 			@span = 12

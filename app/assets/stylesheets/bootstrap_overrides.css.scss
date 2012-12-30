@@ -1,6 +1,5 @@
 body {
 	height: 100%;
-//	background-color: #E8E8E8;
 }
 
 form {
@@ -42,6 +41,11 @@ label {
 	padding: 0;
 }
 
+.pagination {
+	float: right;
+	margin: 1em 1em 1em 0;
+}
+
 .inline {
 	display: inline;
 }
@@ -56,12 +60,6 @@ label {
 	border-radius: 6px;
 }
 
-.pagination {
-	height: auto;
-	margin: 15px 0 10px 0;
-	float: right;
-}
-
 .title {
 	font-size: 1.5em;
 	font-weight: bold;
@@ -72,9 +70,10 @@ label {
 }
 
 .controls {
-	line-height: 40px;
-	margin: 2.5em 0 0 0;
+/*	line-height: 40px; */
+	padding: 0;
 	display: inline;
+	float: left;
 }
 
 .alert {

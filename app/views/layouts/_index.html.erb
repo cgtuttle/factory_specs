@@ -18,9 +18,11 @@
 				<%= yield :table %>
 			</tbody>
 		</table>
+
 		<% unless index.blank? %>
 			<%= will_paginate index, :renderer => BootstrapPagination::Rails %>
 		<% end %>
+
 	</div>
 </div>
 

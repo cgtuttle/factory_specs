@@ -7,6 +7,7 @@ class CategoriesController < ApplicationController
 		@category = Category.new
 		@span = 5
 		@is_index_table = true
+logger.debug "@index = #{@index.inspect}"
 	end
 	
 	def create

@@ -13,8 +13,7 @@
 			<div class="content">
 
 				<% if !@no_header %>					
-			    <%= render 'layouts/header' %>
-			    
+			    <%= render 'layouts/header' %>			    
 		    <% end %>
 
 
@@ -24,11 +23,7 @@
 						
 	        	<div class="row-fluid">
 	        		
-	        		<% if !true %>
-	        			<%= yield :left %>
-	        		<% end %>	 
-
-					    <% if @is_index_table == true %>
+	        		<% if @is_index_table == true %>
 					    	<%= render :partial => 'layouts/index', :object => @index %>
 					    <% end %>
 

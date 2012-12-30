@@ -9,7 +9,6 @@ class ApplicationController < ActionController::Base
 			@item_id = 0
 			logger.debug "Item blank, id = 0"
 		end
-		logger.debug "@item_id: #{@item_id}"
 	end
 
 	def after_sign_in_path_for(resource)

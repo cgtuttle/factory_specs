@@ -5,7 +5,7 @@ require 'will_paginate/array'
 	
   def index
 		@history = params[:history]
-		@future = params[:future]
+		@pending = params[:pending]
 		@specs = Spec.order(:display_order)
 		set_scope
   	if @item
@@ -36,6 +36,7 @@ require 'will_paginate/array'
 			@new_item_spec.item = @item
 			@new_item_spec.set_eff_date
 			@new_item_spec.set_version
+			@new_item_spec.set_editor(current_user.email)
 			if @new_item_spec.save
 				flash[:success] = "Item Spec added/changed"
 				redirect_to item_specs_path :item_id => params[:item_spec][:item_id]
@@ -85,6 +86,6 @@ require 'will_paginate/array'
 
 		cookies[:item_id] = @item_id		
 		@history = (params[:include_history] && !params[:include_history].blank?) || (@history && !@history.blank?)
-		@future = (params[:include_future] && !params[:include_future].blank?) || (@future && !@future.blank?)
+		@pending = (params[:include_pending] && !params[:include_pending].blank?) || (@pending && !@pending.blank?)
 	end
 end

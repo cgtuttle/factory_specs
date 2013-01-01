@@ -24,7 +24,7 @@ class ItemSpec < ActiveRecord::Base
 			if self.canceled
 				"canceled"
 			elsif (self.eff_date > Date.today)
-				"future"
+				"pending"
 			elsif self.deleted
 				"deleted"
 			elsif (self.eff_date == current_date and self.version < current_version) or self.eff_date < current_date
@@ -55,6 +55,11 @@ class ItemSpec < ActiveRecord::Base
 		if !self.eff_date
 			self.eff_date = Date.today
 		end
+	end
+
+	def set_editor(user)
+logger.debug "current_user = #{user}"
+		self.changed_by = user
 	end
 
 end

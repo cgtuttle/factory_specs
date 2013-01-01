@@ -5,9 +5,9 @@
 			 
 			<%= collection_select :item_spec, :item_id, @items, :id, :code, {:selected => @item_id}, {:onchange => "this.form.submit();", :class => "search-field"} %>
 
-			<%= label_tag 'include_future', :class => 'inline' do %>
-				<%= check_box_tag "include_future", "future", @future %>
-				Hide future
+			<%= label_tag 'include_pending', :class => 'inline' do %>
+				<%= check_box_tag "include_pending", "pending", @pending %>
+				Hide pending
 			<% end %>
 
 			<%= label_tag 'include_history', :class => 'inline' do %>				
@@ -40,5 +40,5 @@
 		
 <% content_for :table do %>
 	<%= render 'new' %>
-	<%= render :partial => 'item_spec', :collection => @item_specs %>
+	<%= render :partial => 'index', :collection => @item_specs, :as => :item_spec %>
 <% end %>

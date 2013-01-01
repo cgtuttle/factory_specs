@@ -13,24 +13,17 @@
 			<div class="content">
 
 				<% if !@no_header %>					
-			    <%= render 'layouts/header' %>			    
+			    <%= render 'layouts/header_layout' %>			    
 		    <% end %>
 
-
-				<div id="main" role="main">
-					
+				<div id="main" role="main">					
 					<div class="container-fluid">
-						
 	        	<div class="row-fluid">
-	        		
-	        		<% if @is_index_table == true %>
-					    	<%= render :partial => 'layouts/index', :object => @index %>
-					    <% end %>
-
-					    <% if @is_edit_form == true %>
-					    	<%= render :partial => 'layouts/edit' %>
-					    <% end %>
-       	
+	        			        		
+					   	<%= render :partial => 'layouts/index_layout', :object => @index, :as => :index if @is_index_table %>
+					    					    
+					    <%= render :partial => 'layouts/edit_layout' if @is_edit_form %>
+					           	
 	          	<%= yield %>
 	          </div>
 	        </div> <!--! end of .container --> 	       

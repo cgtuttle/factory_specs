@@ -1,15 +1,16 @@
 
-.table th {
-	color: #4C4C4C;
-}
-
-.form-inline {
-	padding: .5em;
-}
+//.form-inline {
+//	padding: .5em;
+//}
 
 #display-box {
 	font-size: 1.2em;
 	padding-top: 10px;
+}
+
+#display-table th {
+	background-color: #949494;
+	color: #4C4C4C;
 }
 
 #display-table .spec-name {

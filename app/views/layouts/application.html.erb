@@ -3,14 +3,14 @@
 	<head>
 		<meta name="viewport" content="width=device-width, initial-scale=1.0">
 	  <title><%= @title %></title>
-	  <%= stylesheet_link_tag    "application" %>
+	  <%= stylesheet_link_tag "application" %>
 	  <%= javascript_include_tag "application" %>
 	  <%= csrf_meta_tags %>
 	</head>
 
 	<% if user_signed_in? %>
 		<body>
-			<div class="content">
+			<div class="content" id="<%= @content_id %>">
 
 				<% if !@no_header %>					
 			    <%= render 'layouts/header_layout' %>			    

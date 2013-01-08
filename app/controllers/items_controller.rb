@@ -50,6 +50,7 @@ class ItemsController < ApplicationController
   end
 	
 	def display
+		@content_id = "display"
 		if params.has_key?(:item)
 			@item = Item.find(params[:item][:id])
 		elsif params.has_key?(:item_id)
@@ -64,8 +65,7 @@ class ItemsController < ApplicationController
 			@item_specs = ItemSpec.joins(:spec => :category).where(:item_id => @item).order("categories.display_order")
 			@categories = @item_specs.group_by{|is| is.spec.category}
 		end
-
-		@no_header = true
+		render :layout => 'display_layout'
 	end
 	
 	def _update

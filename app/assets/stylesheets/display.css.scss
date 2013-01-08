@@ -1,7 +1,21 @@
+/*
+ *= require_self
+*/
 
-//.form-inline {
-//	padding: .5em;
-//}
+$bodyBackground: darken(green, 23%);
+$tableBackgroundAccent: lighten($bodyBackground, 3%);
+$inputBackground: darken(gray, 10%);
+$textColor: lighten($bodyBackground, 30%);
+$tableBorder: lighten($bodyBackground, 20%);
+
+@import "bootstrap";
+@import "bootstrap-responsive";
+@import "all/bootstrap_overrides";
+
+
+#display {
+	height: 100%;
+}
 
 #display-box {
 	font-size: 1.2em;
@@ -9,13 +23,23 @@
 }
 
 #display-table th {
-	background-color: #949494;
-	color: #4C4C4C;
+	background-color: darken($bodyBackground, 10%);
+	font-weight: normal;
+}
+
+#display-table td {
+}
+
+#display-table .category-name {	
+	width: 10%;
+	td {
+		font-weight: bold;
+	}
 }
 
 #display-table .spec-name {
-	padding-left: 2em;
-	width: 20%;
+	width: 15%;
+	color: lighten($textColor, 30%);
 }
 
 #display-table .spec-limit {
@@ -26,7 +50,8 @@
 
 #display-table .spec-value {
 	width: 20%;
-	color: blue;
+	font-weight: bold;
+	color: lighten($textColor, 30%);
 }
 
 #display-table .right-margin {
@@ -40,6 +65,10 @@
 #display-header .spec-header {
 	padding-left: 2em;
 	padding-right: 2em;
+}
+
+#item_id {
+	color: lighten(gray, 20%);
 }
 
 

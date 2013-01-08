@@ -1,3 +1,13 @@
+* { 
+  -moz-box-sizing: border-box; 
+  -webkit-box-sizing: border-box; 
+  box-sizing: border-box; 
+}
+
+html {
+	height: 100%;
+}
+
 body {
 	height: 100%;
 }
@@ -29,7 +39,6 @@ input[type="submit"] {
 
 thead {
 	background-color: #D11616;
-	color: #660000;
 }
 
 a {
@@ -108,22 +117,6 @@ td .tight {
 	padding-top: 50px;
 }
 
-
-/* Should be in Application.css.scss */
-
 #factory { /* For factory icon in header */
 	padding: 3px;
-}
-
-* { 
-  -moz-box-sizing: border-box; 
-  -webkit-box-sizing: border-box; 
-  box-sizing: border-box; 
-}
-
-html {
-	height: 100%;
-}
-
-.content {  
 }

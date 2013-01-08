@@ -1,0 +1,29 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta name="viewport" content="width=device-width, initial-scale=1.0">
+	  <title><%= @title %></title>
+	  <%= stylesheet_link_tag "display" %>
+	  <%= javascript_include_tag "application" %>
+	  <%= csrf_meta_tags %>
+	</head>
+
+	
+	<body>
+		<div class="content" id="<%= @content_id %>">
+			<div id="main" role="main">					
+				<div class="container-fluid">
+        	<div class="row-fluid">
+        			        		
+				   	<%= render :partial => 'layouts/index_layout', :object => @index, :as => :index if @is_index_table %>
+				   
+          	<%= yield %>
+          </div>
+        </div> <!--! end of .container --> 	       
+    	</div> <!--! end of #main -->		
+		</div> <!--! end of content -->
+	</body>
+
+	
+
+</html>

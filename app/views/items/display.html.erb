@@ -1,11 +1,13 @@
+
 <%= render "header" %>
 
 <div id="display-box">
 	
-	<table class="table table-bordered" id="display-table">
+	<table class="table table-bordered table-striped" id="display-table">
 		<thead id="display-header">
 			<tr>
-				<th>Category</th>
+				<th class="category-name">Category</th>
+				<th>Specification</th>
 				<th class="spec-header">Lower Limit</th>
 				<th style="text-align:center;">Target</th>
 				<th class="spec-header" style="text-align:right;">Upper Limit</th>
@@ -14,18 +16,24 @@
 		</thead>
 		<% if @categories %>
 			<% @categories.each do |category, item_specs| %>
+
+				<% r = 0 %>
+				<% for s in item_specs %>	
+					<% r = r + 1 %>
+				<% end %>
+				
 				<tbody>
-					<tr>
-						<th colspan="5" class="category-header">
-							<%= category.name if category %>
-						</th>
-					</tr>
-				</tbody>
-				<tbody>			
-					<% i = 0 %>	
+					<% first_row = true %>										
 					<% for s in item_specs %>	
 						<% if s.date_status == "current" %>
 							<tr>
+								<% if first_row %>
+									<% first_row = false %>
+									<td rowspan="<%= r %>" class="category-name">
+										<%= category.name if category %>
+									</td>
+								<% end %>
+
 								<td class="spec-name"><%= s.spec.name %></td>
 
 								<td class="spec-limit">
@@ -35,13 +43,21 @@
 								</td>
 
 								<td class="spec-value" style="text-align:center;">
+									
 									<% if s.numeric_value %>								
 										<%= "#{s.numeric_value} #{s.unit_of_measure}" %>
 									<% end %>
-																
-									<% if !s.string_value.blank? %>								
-										<%= s.string_value %>								
+
+									<% if !s.string_value.empty? %>
+
+										<%= s.string_value %>
 									<% end %>
+
+									<% if !s.text_value.empty? %>
+										<%= s.text_value %>								
+									<% end %>
+
+
 								</td>
 
 								<td class="spec-limit" style="text-align:right;">
@@ -52,7 +68,7 @@
 
 								<td class="right-margin"></td>
 
-								<% i==0 ? i=1 : i=0 %>		
+								
 							</tr>										
 						<% end %>	
 					<% end %>

@@ -60,6 +60,10 @@ require 'will_paginate/array'
 		end
 	end
 
+	def copy
+		@item_spec = ItemSpec.find(params[:id])
+	end
+
 	def cancel
 		@item_spec = ItemSpec.find(params[:id])
 		@item_spec.canceled = true

@@ -2,11 +2,14 @@
  *= require_self
 */
 
-$bodyBackground: darken(green, 23%);
+$baseColor: green;
+
+$bodyBackground: darken($baseColor, 23%);
 $tableBackgroundAccent: lighten($bodyBackground, 3%);
 $inputBackground: darken(gray, 10%);
 $textColor: lighten($bodyBackground, 30%);
 $tableBorder: lighten($bodyBackground, 20%);
+$tableBackgroundHover: lighten($bodyBackground, 5%);
 
 @import "bootstrap";
 @import "bootstrap-responsive";

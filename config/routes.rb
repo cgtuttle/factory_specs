@@ -14,8 +14,8 @@ Factory::Application.routes.draw do
 	resources :tests
 	
 	match 'item_specs/:id/cancel' => 'item_specs#cancel', :as => :cancel_item_spec
+	match 'item_specs/:id/copy' => 'item_specs#copy', :as => :copy_item_spec
 	match 'test/:id/instructions' => 'tests#instructions'
-	#match '/display' => 'items#display', :via => :get
 
 	root :to => 'main#welcome'
 	

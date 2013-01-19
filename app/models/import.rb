@@ -7,7 +7,7 @@ class Import < ActiveRecord::Base
 	require 'csv'
 	
 	
-	NO_IMPORT = %w[id created_at updated_at]
+	NO_IMPORT = %w[id created_at updated_at deleted deleted_at]
 	MODELS = %w{Category Item ItemSpec Spec Test}
-	
+
 end

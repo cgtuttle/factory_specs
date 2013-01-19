@@ -25,7 +25,7 @@ module ImportsHelper
 			@import_file = false
 		end
 	end
-	
+
 	def field_choices
 		@obj = @model.constantize
 		@field_choices = Array.new

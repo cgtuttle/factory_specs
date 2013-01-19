@@ -17,7 +17,7 @@
 			<td><%= c.code %></td>
 			<td><%= c.name %></td>
 			<td><%= c.display_order %></td>
-			<td><%= link_to "Edit", edit_category_path(c) %></td>
+			<td><%= link_to "Edit", edit_category_path(c) %><%= link_to "Delete",  c, :method => :delete, :confirm => "Are you sure?" %></td>
 		</tr>
 	<% end %>	
 		

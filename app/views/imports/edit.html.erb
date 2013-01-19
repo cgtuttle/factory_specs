@@ -1,8 +1,9 @@
 <div class="form span12">
   <h4><%= @title %></h4> 
-  <h5>Row count: <%=@row_count%></h5>    
+  <h5>Row count: <%=@row_count%></h5> 
+     
   <%= form_for @import do |f| %>
-    
+
     <table class="table" style="width:auto;">
       <tr>
         <td colspan="12"><h4>Destination table: <%= @import.model %></h4></td>

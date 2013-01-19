@@ -2,7 +2,7 @@ class CategoriesController < ApplicationController
   
 	def index
 		@title = 'Categories'
-		@categories = Category.order('display_order').paginate(:page => params[:page], :per_page => 30)
+		@categories = Category.where('deleted is null').order('display_order').paginate(:page => params[:page], :per_page => 30)
 		@index = @categories
 		@category = Category.new
 		@span = 5
@@ -40,4 +40,14 @@ logger.debug "@index = #{@index.inspect}"
 		end
 		redirect_to categories_path
 	end
+
+	def destroy
+		@category = Category.find(params[:id])
+		now = Time.now
+		if @category.update_attributes(:deleted => 'true', :deleted_at => now )
+			flash[:success] = 'Category deleted'
+		end
+		redirect_to categories_path
+	end
+
 end

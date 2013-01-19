@@ -11,7 +11,7 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20121217174326) do
+ActiveRecord::Schema.define(:version => 20130118232230) do
 
   create_table "categories", :force => true do |t|
     t.string   "code",          :limit => 64,  :null => false
@@ -20,6 +20,9 @@ ActiveRecord::Schema.define(:version => 20121217174326) do
     t.datetime "created_at"
     t.datetime "updated_at"
     t.integer  "account_id"
+    t.boolean  "deleted"
+    t.datetime "deleted_at"
+    t.integer  "import_id"
   end
 
   create_table "cells", :force => true do |t|
@@ -60,7 +63,7 @@ ActiveRecord::Schema.define(:version => 20121217174326) do
     t.datetime "created_at"
     t.datetime "updated_at"
     t.boolean  "deleted",                        :default => false
-    t.boolean  "canceled"
+    t.boolean  "canceled",                       :default => false
   end
 
   create_table "items", :force => true do |t|
@@ -69,6 +72,9 @@ ActiveRecord::Schema.define(:version => 20121217174326) do
     t.integer  "account_id",                :null => false
     t.datetime "created_at"
     t.datetime "updated_at"
+    t.boolean  "deleted"
+    t.datetime "deleted_at"
+    t.integer  "import_id"
   end
 
   create_table "roles", :force => true do |t|
@@ -95,6 +101,9 @@ ActiveRecord::Schema.define(:version => 20121217174326) do
     t.datetime "created_at"
     t.datetime "updated_at"
     t.integer  "category_id"
+    t.boolean  "deleted"
+    t.datetime "deleted_at"
+    t.integer  "import_id"
   end
 
   create_table "tests", :force => true do |t|
@@ -104,6 +113,9 @@ ActiveRecord::Schema.define(:version => 20121217174326) do
     t.integer  "account_id",                  :null => false
     t.datetime "created_at"
     t.datetime "updated_at"
+    t.boolean  "deleted"
+    t.datetime "deleted_at"
+    t.integer  "import_id"
   end
 
   create_table "users", :force => true do |t|

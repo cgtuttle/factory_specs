@@ -20,9 +20,8 @@ class ImportsController < ApplicationController
 				@model = @import.model #selected model
 				@import.save
 				import_file
-					logger.debug "import_file complete"
+				
 				field_choices
-					logger.debug "field_choices complete"
 				render 'edit'
 			else
 				redirect_to new_import_path
@@ -41,7 +40,6 @@ class ImportsController < ApplicationController
 			@import = Import.find(params[:id])
 			@first_row = params[:first_row]
 			@row_count = params[:row_count]
-					logger.debug "@row_count = #{@row_count}"
 			@field_choices = params[:field_choices]
 			@import.first_row = @first_row
 			@import.row_count = @row_count
@@ -60,6 +58,8 @@ class ImportsController < ApplicationController
 			redirect_to new_import_path
 		end
 	end
+
+#TODO Create surrogate key functionality to allow imports using code as key
 	
 	
 end

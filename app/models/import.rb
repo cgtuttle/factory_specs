@@ -6,8 +6,10 @@ class Import < ActiveRecord::Base
 	
 	require 'csv'
 	
+	NO_IMPORT = %w[id created_at updated_at deleted deleted_at canceled account_id]
+	MODELS = %w[Category Item ItemSpec Spec Test]
+	MODELS_WITH_FK = ["ItemSpec"]
+
 	
-	NO_IMPORT = %w[id created_at updated_at deleted deleted_at]
-	MODELS = %w{Category Item ItemSpec Spec Test}
 
 end

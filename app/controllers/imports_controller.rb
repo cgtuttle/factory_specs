@@ -2,6 +2,10 @@ class ImportsController < ApplicationController
 	include ApplicationHelper
 	include ImportsHelper
 	
+	def index
+		@import = params[:id]
+	end
+
 	def new
 		@import = Import.new
 		if params[:model]
@@ -20,7 +24,6 @@ class ImportsController < ApplicationController
 				@model = @import.model #selected model
 				@import.save
 				import_file
-				
 				field_choices
 				render 'edit'
 			else
@@ -45,21 +48,20 @@ class ImportsController < ApplicationController
 			@import.row_count = @row_count
 			@import.cells.each do |cell|
 				if cell.column <= @field_choices.length && cell.row >= params[:import][:first_row].to_i
-					cell.field_name = @field_choices[cell.column-1]
+					if @field_choices[cell.column-1] != 'Do not import'
+						cell.field_name = @field_choices[cell.column-1]
+					end
 				end		
 			end
 			if @import.update_attributes(params[:import])
-				save_import
-				flash[:success] = "Import completed successfully."
+				if save_import
+					flash[:success] = "Import completed successfully."
+				else
+					flash[:error] = "Import not completed"
+				end
 			end
-			@controller = @import.model.pluralize.downcase
-			redirect_to :action => :index, :controller => @controller
-		else
-			redirect_to new_import_path
 		end
+		redirect_to new_import_path
 	end
-
-#TODO Create surrogate key functionality to allow imports using code as key
-	
 	
 end

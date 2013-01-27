@@ -15,6 +15,9 @@ class TestsController < ApplicationController
 			@test.account_id = 1
 			if @test.save
 				flash[:success] = "test added"
+			else
+				flash[:error] = "Test could not be added"
+#TODO Add more descriptive error messages
 			end
 		end
 		redirect_to tests_path

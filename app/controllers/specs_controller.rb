@@ -22,6 +22,8 @@ class SpecsController < ApplicationController
 				flash[:success] = "Definition added"
 				redirect_to specs_path
 			else
+				flash[:error] = "Definition could not be added"
+#TODO Add more descriptive error messages
 				redirect_to specs_path
 			end
 		else

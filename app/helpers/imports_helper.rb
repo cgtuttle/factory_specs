@@ -30,15 +30,8 @@ module ImportsHelper
 		@obj = @model.constantize
 		@field_choices = Array.new
 		@obj.columns.each do |c|
-			@import_field = true
-			Import::NO_IMPORT.each do |n|
-				if c.name == n
-					@import_field = false
-					break
-				end
-			end
-			if @import_field
-				@field_choices << [c.name, c.name]
+			unless Import::NO_IMPORT.include?(c.name)
+				@field_choices << [c.name.humanize, c.name]
 			end
 		end
 	end
@@ -49,13 +42,43 @@ module ImportsHelper
 			@source = @import.cells.find_all_by_row(i)
 			@import_row = Hash.new
 			@source.each do |f|
-				if f.field_name != ""
-					@import_row[f.field_name] = f.cell_value
+				if f.field_name != "" && f.cell_value
+					if f.field_name.last(3) == "_id"
+						frgn_obj_name = f.field_name.slice(0..(f.field_name.size-4)).classify
+						frgn_obj = frgn_obj_name.constantize
+						if frgn_obj.exists?(:code => f.cell_value)
+							frgn_obj_id = frgn_obj.find_by_code(f.cell_value).id
+							@import_row[f.field_name] = frgn_obj_id
+						end
+					else	
+						@import_row[f.field_name] = f.cell_value
+					end			
 				end
 			end
-			@row = @obj.new(@import_row)
-			@row.account_id = 0
-			@row.save			
+			@save_row = @obj.new(@import_row)
+
+			if @save_row.has_attribute?(:account_id)
+				@save_row.account_id = 1
+			end
+
+			if @save_row.has_attribute?(:changed_by)
+				@save_row.changed_by = current_user.email
+			end
+
+			if @save_row.save
+				@source.each do |c|
+					c.saved_at = Time.now
+					c.save
+				end	
+			else
+				@source.each do |c|
+					c.had_save_error = true
+					unless @save_row.errors[c.field_name].empty?
+						c.save_error_text = "#{c.field_name.humanize} #{@save_row.errors[c.field_name]}"
+					end
+					c.save
+				end
+			end		
 		end		
 	end
 	

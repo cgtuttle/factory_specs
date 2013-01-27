@@ -39,6 +39,8 @@ class ItemsController < ApplicationController
 			cookies[:item_id] = @item.id
 			redirect_to items_path
 		else
+			flash[:error] = "Item could not be added"
+#TODO Add more descriptive error messages
 			redirect_to items_path
 		end
 	end

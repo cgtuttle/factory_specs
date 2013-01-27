@@ -1,0 +1,14 @@
+<% content_for :thead do %>
+	<th>Cell</th>
+	<th>Error</th>
+<% end %>
+
+<% content_for :table do %>
+	
+	<% @import_errors.each do |i| %>
+		<tr>
+			<td><%= i.cell %></td>
+			<td><%= i.error %></td>
+		</tr>
+	<% end %>
+<% end %>

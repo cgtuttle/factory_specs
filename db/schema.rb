@@ -11,7 +11,7 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20130118232230) do
+ActiveRecord::Schema.define(:version => 20130127154326) do
 
   create_table "categories", :force => true do |t|
     t.string   "code",          :limit => 64,  :null => false
@@ -22,8 +22,9 @@ ActiveRecord::Schema.define(:version => 20130118232230) do
     t.integer  "account_id"
     t.boolean  "deleted"
     t.datetime "deleted_at"
-    t.integer  "import_id"
   end
+
+  add_index "categories", ["account_id", "code"], :name => "category_by_code", :unique => true
 
   create_table "cells", :force => true do |t|
     t.integer  "import_id"
@@ -31,8 +32,11 @@ ActiveRecord::Schema.define(:version => 20130118232230) do
     t.integer  "column"
     t.string   "cell_value"
     t.string   "field_name"
-    t.datetime "created_at", :null => false
-    t.datetime "updated_at", :null => false
+    t.datetime "created_at",      :null => false
+    t.datetime "updated_at",      :null => false
+    t.datetime "saved_at"
+    t.boolean  "had_save_error"
+    t.string   "save_error_text"
   end
 
   create_table "imports", :force => true do |t|
@@ -46,7 +50,7 @@ ActiveRecord::Schema.define(:version => 20130118232230) do
   create_table "item_specs", :force => true do |t|
     t.integer  "item_id"
     t.integer  "spec_id"
-    t.integer  "version"
+    t.integer  "version",                        :default => 1
     t.date     "eff_date"
     t.string   "tag"
     t.integer  "test_id"
@@ -74,8 +78,9 @@ ActiveRecord::Schema.define(:version => 20130118232230) do
     t.datetime "updated_at"
     t.boolean  "deleted"
     t.datetime "deleted_at"
-    t.integer  "import_id"
   end
+
+  add_index "items", ["account_id", "code"], :name => "item_by_code", :unique => true
 
   create_table "roles", :force => true do |t|
     t.string   "name"
@@ -103,8 +108,9 @@ ActiveRecord::Schema.define(:version => 20130118232230) do
     t.integer  "category_id"
     t.boolean  "deleted"
     t.datetime "deleted_at"
-    t.integer  "import_id"
   end
+
+  add_index "specs", ["account_id", "code"], :name => "spec_by_code", :unique => true
 
   create_table "tests", :force => true do |t|
     t.string   "code",         :limit => 64,  :null => false
@@ -115,8 +121,9 @@ ActiveRecord::Schema.define(:version => 20130118232230) do
     t.datetime "updated_at"
     t.boolean  "deleted"
     t.datetime "deleted_at"
-    t.integer  "import_id"
   end
+
+  add_index "tests", ["account_id", "code"], :name => "test_by_code", :unique => true
 
   create_table "users", :force => true do |t|
     t.string   "email",                  :default => "", :null => false

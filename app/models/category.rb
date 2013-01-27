@@ -1,4 +1,5 @@
 class Category < ActiveRecord::Base
+	validates :code, :presence => true, :uniqueness => {:scope => :account_id}
 	has_many :specs
 	
 	def reorder(new)

@@ -18,6 +18,9 @@ logger.debug "@index = #{@index.inspect}"
 			@category.reorder(order)
 			if @category.save
 				flash[:success] = "Category added"
+			else
+				flash[:error] = "Category could not be added"
+#TODO Add more descriptive error messages
 			end
 		end
 		redirect_to categories_path

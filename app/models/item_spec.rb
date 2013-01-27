@@ -2,13 +2,11 @@ class ItemSpec < ActiveRecord::Base
 	belongs_to :item
 	belongs_to :spec
 	belongs_to :test
-	
-#	before_create :set_eff_date
-#	before_create :set_version
-	
-#	def self.by_item(item_id)
-#		@item_specs = ItemSpec.joins(:spec => :category).where(:item_id => item_id).order('categories.display_order, s.display_order, i.eff_date DESC, i.version DESC')
-#	end
+
+	validates :item_id, :spec_id, :presence => true
+
+
+	before_save :default_values
 	
 	def self.by_status(item)
 		ItemSpec.includes(:spec => :category).where(:item_id => item).order("categories.display_order, specs.display_order, eff_date DESC, version DESC")
@@ -58,8 +56,13 @@ class ItemSpec < ActiveRecord::Base
 	end
 
 	def set_editor(user)
-logger.debug "current_user = #{user}"
 		self.changed_by = user
+	end
+
+	def default_values
+		self.eff_date ||= Time.now
+		self.string_value ||= ""
+		self.text_value ||= ""
 	end
 
 end

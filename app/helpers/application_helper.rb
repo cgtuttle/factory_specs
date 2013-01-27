@@ -52,7 +52,7 @@ module ApplicationHelper
     hidden_fields.join("\n")
   end
 
-   def resource_name
+  def resource_name
     :user
   end
  

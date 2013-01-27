@@ -1,4 +1,5 @@
 class Spec < ActiveRecord::Base
+	validates :code, :presence => true, :uniqueness => {:scope => :account_id}
 	has_many :item_specs
 	has_many :items, :through => :item_specs
 	belongs_to :category

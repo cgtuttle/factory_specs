@@ -84,42 +84,34 @@
 			}
 		},
 		{
-			"file": "app/models/import.rb",
+			"file": "app/controllers/application_controller.rb",
 			"settings":
 			{
-				"buffer_size": 300,
+				"buffer_size": 647,
+				"line_ending": "Windows"
+			}
+		},
+		{
+			"file": "app/models/tenant.rb",
+			"settings":
+			{
+				"buffer_size": 349,
 				"line_ending": "Unix"
 			}
 		},
 		{
-			"file": "app/controllers/imports_controller.rb",
+			"file": "app/models/tenant_scoped_model.rb",
 			"settings":
 			{
-				"buffer_size": 1544,
-				"line_ending": "Windows"
+				"buffer_size": 999,
+				"line_ending": "Unix"
 			}
 		},
 		{
-			"file": "app/helpers/imports_helper.rb",
+			"file": "app/helpers/application_helper.rb",
 			"settings":
 			{
-				"buffer_size": 2001,
-				"line_ending": "Windows"
-			}
-		},
-		{
-			"file": "app/views/imports/index.html.erb",
-			"settings":
-			{
-				"buffer_size": 222,
-				"line_ending": "Windows"
-			}
-		},
-		{
-			"file": "app/views/items/index.html.erb",
-			"settings":
-			{
-				"buffer_size": 410,
+				"buffer_size": 1546,
 				"line_ending": "Windows"
 			}
 		}
@@ -156,9 +148,29 @@
 	},
 	"file_history":
 	[
+		"/C/Dropbox/Sites/factory/db/migrate/20130130003629_create_tenants.rb",
+		"/C/Dropbox/Sites/factory/db/migrate/20130127230155_create_tenants_users_table.rb",
+		"/C/Dropbox/Sites/factory/app/controllers/application_controller.rb",
+		"/C/Dropbox/Sites/factory/app/models/user.rb",
+		"/C/Dropbox/Sites/factory/app/models/tenant.rb",
+		"/C/Dropbox/Sites/factory/app/models/category.rb",
+		"/C/Dropbox/Sites/factory/app/models/cell.rb",
+		"/C/Dropbox/Sites/factory/app/models/import.rb",
+		"/C/Dropbox/Sites/factory/app/models/item.rb",
+		"/C/Dropbox/Sites/factory/app/models/item_spec.rb",
+		"/C/Dropbox/Sites/factory/app/models/role.rb",
+		"/C/Dropbox/Sites/factory/app/models/spec.rb",
+		"/C/Dropbox/Sites/factory/app/models/test.rb",
+		"/C/Dropbox/Sites/factory/app/controllers/main_controller.rb",
+		"/C/Dropbox/Sites/factory/db/migrate/20130127223604_add_tenant_to_models.rb",
+		"/C/Dropbox/Sites/factory/db/migrate/20130120155228_drop_import_id_from_tables.rb",
+		"/C/Dropbox/Sites/factory/app/controllers/imports_controller.rb",
+		"/C/Dropbox/Sites/factory/app/helpers/imports_helper.rb",
+		"/C/Dropbox/Sites/factory/app/views/imports/index.html.erb",
+		"/C/Dropbox/Sites/factory/app/views/items/index.html.erb",
+		"/C/Dropbox/Sites/factory/db/migrate/20130127223134_create_tenants.rb",
 		"/C/Dropbox/Sites/factory/app/views/imports/edit.html.erb",
 		"/C/Dropbox/Sites/factory/db/migrate/20130127154326_add_error_to_cells.rb",
-		"/C/Dropbox/Sites/factory/app/models/item_spec.rb",
 		"/C/Dropbox/Sites/factory/app/views/items/display.html.erb",
 		"/C/Dropbox/Sites/factory/app/helpers/application_helper.rb",
 		"/C/Dropbox/Sites/factory/db/migrate/20130126185459_rollback_last_migration.rb",
@@ -169,15 +181,7 @@
 		"/C/Dropbox/Sites/factory/app/controllers/specs_controller.rb",
 		"/C/Dropbox/Sites/factory/app/controllers/items_controller.rb",
 		"/C/Dropbox/Sites/factory/app/controllers/categories_controller.rb",
-		"/C/Dropbox/Sites/factory/app/models/category.rb",
-		"/C/Dropbox/Sites/factory/app/models/item.rb",
-		"/C/Dropbox/Sites/factory/app/models/spec.rb",
-		"/C/Dropbox/Sites/factory/app/models/test.rb",
-		"/C/Dropbox/Sites/factory/app/models/import.rb",
-		"/C/Dropbox/Sites/factory/app/controllers/imports_controller.rb",
-		"/C/Dropbox/Sites/factory/app/helpers/imports_helper.rb",
 		"/C/Dropbox/Sites/factory/app/views/imports/new.html.erb",
-		"/C/Dropbox/Sites/factory/db/migrate/20130120155228_drop_import_id_from_tables.rb",
 		"/C/Dropbox/Sites/factory/db/migrate/20130120165413_add_code_index_to_tables.rb",
 		"/C/Dropbox/Sites/factory/app/views/item_specs/index.html.erb",
 		"/C/Dropbox/Sites/factory/app/views/item_specs/edit.html.erb",
@@ -186,12 +190,10 @@
 		"/C/Dropbox/Sites/factory/db/migrate/20130116234829_add_deleted_to_categories.rb",
 		"/C/Dropbox/Sites/factory/db/migrate/20130116234924_add_deleted_to_items.rb",
 		"/C/Dropbox/Sites/factory/app/controllers/cells_controller.rb",
-		"/C/Dropbox/Sites/factory/app/models/cell.rb",
 		"/C/Dropbox/Sites/factory/app/views/layouts/display_layout.html.erb",
 		"/C/Dropbox/Sites/factory/app/views/layouts/_index_layout.html.erb",
 		"/C/Dropbox/Sites/factory/config/application.rb",
 		"/C/Dropbox/Sites/factory/app/views/item_specs/_new.html.erb",
-		"/C/Dropbox/Sites/factory/app/views/items/index.html.erb",
 		"/C/Dropbox/Sites/factory/app/views/layouts/application.html.erb",
 		"/C/Dropbox/Sites/factory/app/views/layouts/_header_layout.html.erb",
 		"/C/Dropbox/Sites/factory/app/views/items/_header.html.erb",
@@ -206,7 +208,6 @@
 		"/C/Dropbox/Sites/factory/app/assets/stylesheets/all/bootstrap_loader.css.scss",
 		"/C/Dropbox/Sites/factory/app/assets/stylesheets/bootstrap_overrides.css.scss",
 		"/C/Dropbox/Sites/factory/app/assets/stylesheets/bootstrap_loader.css.scss",
-		"/C/Dropbox/Sites/factory/app/controllers/application_controller.rb",
 		"/C/Dropbox/Sites/factory/app/assets/stylesheets/main.css.scss",
 		"/C/Dropbox/Sites/factory/app/assets/stylesheets/color_overrides.css.scss",
 		"/C/Dropbox/Sites/factory/app/views/main/welcome.html.erb",
@@ -219,7 +220,6 @@
 		"/C/RailsInstaller/Ruby1.9.3/lib/ruby/gems/1.9.1/gems/bootstrap-sass-2.1.1.0/vendor/assets/stylesheets/bootstrap/_variables.scss",
 		"/C/Dropbox/Sites/factory/public/assets/application.css",
 		"/C/Dropbox/Sites/factory/Gemfile",
-		"/C/Dropbox/Sites/factory/app/controllers/main_controller.rb",
 		"/C/Dropbox/Sites/factory/app/assets/stylesheets/gradient.css.scss",
 		"/C/Dropbox/Sites/factory/app/assets/stylesheets/devise.css.scss",
 		"/C/Dropbox/Sites/factory/app/assets/stylesheets/categories.css.scss",
@@ -275,15 +275,7 @@
 		"/C/Users/ctuttle/AppData/Roaming/Sublime Text 2/Packages/User/Default (Windows).sublime-keymap",
 		"/C/Users/ctuttle/AppData/Roaming/Sublime Text 2/Packages/User/Plain text.sublime-settings",
 		"/C/Users/ctuttle/AppData/Roaming/Sublime Text 2/Packages/User/Preferences.sublime-settings",
-		"/C/Dropbox/Sites/factory/.gitignore",
-		"/c/Sites/factory/factory.sublime-project",
-		"/c/Sites/factory/app/views/layouts/_header.html.erb",
-		"/c/Sites/factory/app/views/devise/sessions/new.html.erb",
-		"/c/Sites/factory/app/helpers/application_helper.rb",
-		"/c/Sites/factory/app/views/item_specs/_relationship.html.erb",
-		"/c/Sites/factory/app/views/main/welcome.html.erb",
-		"/C/Sites/factory/app/views/layouts/_welcome_header.html.erb",
-		"/C/Sites/factory/app/views/devise/sessions/_new.html.erb"
+		"/C/Dropbox/Sites/factory/.gitignore"
 	],
 	"find":
 	{
@@ -379,7 +371,7 @@
 	"groups":
 	[
 		{
-			"selected": 3,
+			"selected": 5,
 			"sheets":
 			[
 				{
@@ -394,8 +386,8 @@
 						"selection":
 						[
 							[
-								50,
-								50
+								278,
+								278
 							]
 						],
 						"settings":
@@ -420,8 +412,8 @@
 						"selection":
 						[
 							[
-								381,
-								381
+								0,
+								0
 							]
 						],
 						"settings":
@@ -436,18 +428,18 @@
 				},
 				{
 					"buffer": 2,
-					"file": "app/models/import.rb",
+					"file": "app/controllers/application_controller.rb",
 					"settings":
 					{
-						"buffer_size": 300,
+						"buffer_size": 647,
 						"regions":
 						{
 						},
 						"selection":
 						[
 							[
-								212,
-								212
+								641,
+								641
 							]
 						],
 						"settings":
@@ -463,24 +455,25 @@
 				},
 				{
 					"buffer": 3,
-					"file": "app/controllers/imports_controller.rb",
+					"file": "app/models/tenant.rb",
 					"settings":
 					{
-						"buffer_size": 1544,
+						"buffer_size": 349,
 						"regions":
 						{
 						},
 						"selection":
 						[
 							[
-								134,
-								134
+								344,
+								344
 							]
 						],
 						"settings":
 						{
 							"syntax": "Packages/Ruby/Ruby.tmLanguage",
-							"translate_tabs_to_spaces": false
+							"tab_size": 2,
+							"translate_tabs_to_spaces": true
 						},
 						"translation.x": 0.0,
 						"translation.y": 0.0,
@@ -490,81 +483,56 @@
 				},
 				{
 					"buffer": 4,
-					"file": "app/helpers/imports_helper.rb",
+					"file": "app/models/tenant_scoped_model.rb",
 					"settings":
 					{
-						"buffer_size": 2001,
+						"buffer_size": 999,
 						"regions":
 						{
 						},
 						"selection":
 						[
 							[
-								1944,
-								1944
+								44,
+								44
 							]
 						],
 						"settings":
 						{
 							"syntax": "Packages/Ruby/Ruby.tmLanguage",
-							"translate_tabs_to_spaces": false
+							"tab_size": 2,
+							"translate_tabs_to_spaces": true
 						},
 						"translation.x": 0.0,
-						"translation.y": 90.0,
+						"translation.y": 0.0,
 						"zoom_level": 1.0
 					},
 					"type": "text"
 				},
 				{
 					"buffer": 5,
-					"file": "app/views/imports/index.html.erb",
+					"file": "app/helpers/application_helper.rb",
 					"settings":
 					{
-						"buffer_size": 222,
+						"buffer_size": 1546,
 						"regions":
 						{
 						},
 						"selection":
 						[
 							[
-								58,
-								58
+								1289,
+								1289
 							]
 						],
 						"settings":
 						{
-							"syntax": "Packages/Rails/HTML (Rails).tmLanguage",
-							"translate_tabs_to_spaces": false
+							"syntax": "Packages/Ruby/Ruby.tmLanguage",
+							"tab_size": 2,
+							"translate_tabs_to_spaces": true
 						},
 						"translation.x": 0.0,
-						"translation.y": 0.0,
-						"zoom_level": 1.0
-					},
-					"type": "text"
-				},
-				{
-					"buffer": 6,
-					"file": "app/views/items/index.html.erb",
-					"settings":
-					{
-						"buffer_size": 410,
-						"regions":
-						{
-						},
-						"selection":
-						[
-							[
-								166,
-								166
-							]
-						],
-						"settings":
-						{
-							"syntax": "Packages/Rails/HTML (Rails).tmLanguage",
-							"translate_tabs_to_spaces": false
-						},
-						"translation.x": 0.0,
-						"translation.y": 0.0,
+						"translation.y": 585.0,
 						"zoom_level": 1.0
 					},
 					"type": "text"
@@ -636,6 +604,6 @@
 	"show_open_files": false,
 	"show_tabs": true,
 	"side_bar_visible": true,
-	"side_bar_width": 242.0,
+	"side_bar_width": 351.0,
 	"status_bar_visible": true
 }

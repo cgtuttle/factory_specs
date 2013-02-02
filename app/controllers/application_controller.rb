@@ -1,5 +1,6 @@
 class ApplicationController < ActionController::Base
   protect_from_forgery
+  before_filter :authenticate_user!
 	before_filter :set_dflt_item
 	before_filter :set_dflt_content_id
 	

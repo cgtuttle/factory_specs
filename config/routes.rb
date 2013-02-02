@@ -2,6 +2,7 @@ Factory::Application.routes.draw do
 	
 	devise_for :users
 
+	resources :accounts, :only => [:index, :new, :create, :destroy]
 	resources :imports
   resources :item_specs
 	resources :items do

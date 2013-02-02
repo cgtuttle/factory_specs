@@ -11,7 +11,13 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20130127154326) do
+ActiveRecord::Schema.define(:version => 20130202160912) do
+
+  create_table "accounts", :force => true do |t|
+    t.string   "name"
+    t.datetime "created_at", :null => false
+    t.datetime "updated_at", :null => false
+  end
 
   create_table "categories", :force => true do |t|
     t.string   "code",          :limit => 64,  :null => false
@@ -112,6 +118,15 @@ ActiveRecord::Schema.define(:version => 20130127154326) do
 
   add_index "specs", ["account_id", "code"], :name => "spec_by_code", :unique => true
 
+  create_table "tenants", :force => true do |t|
+    t.string   "name"
+    t.string   "host"
+    t.datetime "created_at", :null => false
+    t.datetime "updated_at", :null => false
+  end
+
+  add_index "tenants", ["host"], :name => "index_tenants_on_host"
+
   create_table "tests", :force => true do |t|
     t.string   "code",         :limit => 64,  :null => false
     t.string   "name",         :limit => 128
@@ -138,6 +153,7 @@ ActiveRecord::Schema.define(:version => 20130127154326) do
     t.string   "last_sign_in_ip"
     t.datetime "created_at"
     t.datetime "updated_at"
+    t.integer  "account_id"
   end
 
   add_index "users", ["email"], :name => "index_users_on_email", :unique => true

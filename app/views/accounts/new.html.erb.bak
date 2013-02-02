@@ -1,0 +1,41 @@
+
+
+
+
+<div class="container">
+
+  <div class="row-fluid">
+
+    <div class="span4">
+    </div>
+
+    <div class="span4">
+                  
+      <%= image_tag "icons/factory.svg", :alt=>"Factory", :size=>"70x70" %>
+
+      <h2>Sign up</h2>
+
+      <%= form_for(@account) do |f| %>
+
+        <div><%= f.text_field :name, :placeholder => 'Account name' %></div>
+
+        <%= f.fields_for :users do |user_form| %>
+
+          <div><%= user_form.email_field :email, :placeholder => 'Email' %></div>
+          <div><%= user_form.password_field :password, :placeholder => 'Password' %></div>
+          <div><%= user_form.password_field :password_confirmation, :placeholder => 'Confirm password' %></div>
+
+        <% end %>
+
+        <div class="actions">
+          <%= f.submit "Create account" %>
+        </div>
+      <% end %>
+              
+    </div>
+
+    <div class="span4">
+    </div>
+
+  </div>
+</div>

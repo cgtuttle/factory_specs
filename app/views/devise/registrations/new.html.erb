@@ -11,14 +11,21 @@
 
 			<h2>Sign up</h2>
 
+			<% resource.build_account %>
 			<%= form_for(resource, :as => resource_name, :url => registration_path(resource_name)) do |f| %>
 			  <%= devise_error_messages! %>
-			  
-			  <div><%= f.email_field :email, :placeholder => "Email" %></div>
-			  
-			  <div><%= f.password_field :password, :placeholder => "Password" %></div>
-			  
-			  <div><%= f.password_field :password_confirmation, :placeholder => "Confirm password" %></div>
+
+			  	<%= f.fields_for :account do |ff| %>
+
+			  		<div><%= ff.text_field :name, :placeholder => 'Account name' %></div>
+
+			  	<% end %>
+
+				  <div><%= f.email_field :email, :placeholder => "Email" %></div>
+				  
+				  <div><%= f.password_field :password, :placeholder => "Password" %></div>
+				  
+				  <div><%= f.password_field :password_confirmation, :placeholder => "Confirm password" %></div>
 
 			  <div><%= f.submit "Sign up" %></div>
 			<% end %>

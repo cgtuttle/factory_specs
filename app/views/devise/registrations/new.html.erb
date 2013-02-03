@@ -2,10 +2,9 @@
 
 	<div class="row-fluid">
 
-		<div class="span4">
-		</div>
+		
 
-		<div class="span4">
+		<div class="span6">
 									
 			<%= image_tag "icons/factory.svg", :alt=>"Factory", :size=>"70x70" %>
 
@@ -17,9 +16,19 @@
 
 			  	<%= f.fields_for :account do |ff| %>
 
+			  		<p>All users need to be members of an account (usually the company you work for).
+			  			If your company already has an account, ask your administrator to send you
+			  			an invitation to join.</p>
+
+			  		<p>If you are the first person in your company to join, you will be the default
+			  			administrator for the account. Later, if you want, you can always assign this role to someone
+			  			else...</p>
+
 			  		<div><%= ff.text_field :name, :placeholder => 'Account name' %></div>
 
 			  	<% end %>
+
+			  	<p style="padding-top:20px">...and this is where you set yourself up as a user...</p>
 
 				  <div><%= f.email_field :email, :placeholder => "Email" %></div>
 				  

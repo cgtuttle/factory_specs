@@ -11,7 +11,7 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20130202160912) do
+ActiveRecord::Schema.define(:version => 20130203151216) do
 
   create_table "accounts", :force => true do |t|
     t.string   "name"
@@ -31,6 +31,7 @@ ActiveRecord::Schema.define(:version => 20130202160912) do
   end
 
   add_index "categories", ["account_id", "code"], :name => "category_by_code", :unique => true
+  add_index "categories", ["account_id"], :name => "category_account"
 
   create_table "cells", :force => true do |t|
     t.integer  "import_id"
@@ -52,6 +53,8 @@ ActiveRecord::Schema.define(:version => 20130202160912) do
     t.integer "first_row"
     t.integer "row_count"
   end
+
+  add_index "imports", ["account_id"], :name => "import_account"
 
   create_table "item_specs", :force => true do |t|
     t.integer  "item_id"
@@ -87,6 +90,7 @@ ActiveRecord::Schema.define(:version => 20130202160912) do
   end
 
   add_index "items", ["account_id", "code"], :name => "item_by_code", :unique => true
+  add_index "items", ["account_id"], :name => "item_account"
 
   create_table "roles", :force => true do |t|
     t.string   "name"
@@ -117,15 +121,7 @@ ActiveRecord::Schema.define(:version => 20130202160912) do
   end
 
   add_index "specs", ["account_id", "code"], :name => "spec_by_code", :unique => true
-
-  create_table "tenants", :force => true do |t|
-    t.string   "name"
-    t.string   "host"
-    t.datetime "created_at", :null => false
-    t.datetime "updated_at", :null => false
-  end
-
-  add_index "tenants", ["host"], :name => "index_tenants_on_host"
+  add_index "specs", ["account_id"], :name => "spec_account"
 
   create_table "tests", :force => true do |t|
     t.string   "code",         :limit => 64,  :null => false
@@ -139,6 +135,7 @@ ActiveRecord::Schema.define(:version => 20130202160912) do
   end
 
   add_index "tests", ["account_id", "code"], :name => "test_by_code", :unique => true
+  add_index "tests", ["account_id"], :name => "test_account"
 
   create_table "users", :force => true do |t|
     t.string   "email",                  :default => "", :null => false

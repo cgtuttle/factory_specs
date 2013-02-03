@@ -4,8 +4,6 @@ class User < ActiveRecord::Base
 	validates :account, :presence => true
   rolify
 
-
-
   # Include default devise modules. Others available are:
   # :token_authenticatable, :encryptable, :confirmable, :lockable, :timeoutable and :omniauthable
   devise :database_authenticatable, :registerable, 

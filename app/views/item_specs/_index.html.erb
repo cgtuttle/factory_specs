@@ -25,17 +25,16 @@
 		
 		<td><%= item_spec.date_status %></td>
 		<td><%= item_spec.changed_by %></td>
-		<td>
-			<% if item_spec.date_status == 'current' %>
+		<td class="centered">
 				<%= link_to "Edit", edit_item_spec_path(item_spec) %>
+			<% if item_spec.date_status == 'current' %>
 				<%= link_to "Delete",  item_spec, :method => :delete, :confirm => "Are you sure?" %>
 				
 			<% elsif item_spec.date_status == 'pending' %>
-				<%= link_to "Edit", edit_item_spec_path(item_spec) %>
-				<%= link_to "Cancel", cancel_item_spec_path(item_spec), :confirm => "Are you sure?" %>
-				
+				<%= link_to "Cancel", cancel_item_spec_path(item_spec), :confirm => "Are you sure?" %>				
 			<% end %>
+			
+			<%= link_to "Notes", notes_path(item_spec) %>
 		</td>
-		<td style="text-align:center;"><%= check_box_tag "Copy" %></td>
 	</tr>	
 <% end %>

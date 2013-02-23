@@ -2,18 +2,16 @@ class CategoriesController < ApplicationController
   
 	def index
 		@title = 'Categories'
-		@categories = Category.where('deleted is null').order('display_order').paginate(:page => params[:page], :per_page => 30)
+		@categories = Category.where(:deleted => false).order('display_order').paginate(:page => params[:page], :per_page => 30)
 		@index = @categories
 		@category = Category.new
-		@span = 5
+		@span = 6
 		@is_index_table = true
-logger.debug "@index = #{@index.inspect}"
 	end
 	
 	def create
 		if params[:commit] != 'Cancel'
 			@category = Category.new(params[:category])
-			@category.account_id = 1
 			order = (params[:category][:display_order]).to_i
 			@category.reorder(order)
 			if @category.save
@@ -40,6 +38,8 @@ logger.debug "@index = #{@index.inspect}"
 			if @category.update_attributes(params[:category])
 				flash[:success] = 'Category updated'
 			end
+		else
+			flash[:success] = 'Update canceled'
 		end
 		redirect_to categories_path
 	end

@@ -5,14 +5,13 @@ class TestsController < ApplicationController
 		@tests = Test.find(:all).paginate(:page => params[:page], :per_page => 30)
 		@index = @tests
 		@test = Test.new
-		@span = 4
+		@span = 5
 		@is_index_table = true
 	end
 	
 	def create
 		if params[:commit] != 'Cancel'
 			@test = Test.new(params[:test])
-			@test.account_id = 1
 			if @test.save
 				flash[:success] = "test added"
 			else

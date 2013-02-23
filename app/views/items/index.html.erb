@@ -1,7 +1,9 @@
 <% content_for :thead do %>
-	<th>Item Code</th>
-	<th>Name</th>
-	<th></th>
+	<tr>
+		<th style="width: 40%">Item Code</th>
+		<th style="width: 40%">Name</th>
+		<th style="width: 20%"></th>
+	</tr>
 <% end %>
 
 <% content_for :table do %>
@@ -10,7 +12,7 @@
 		<tr>
 			<td><%= i.code %></td>
 			<td><%= i.name %></td>
-			<td><%= link_to "Edit", edit_item_path(i), :class => 'link' %>
+			<td class="centered"><%= link_to "Edit", edit_item_path(i), :class => 'link' %>
 					<%= link_to "Delete", item_path(i), :method => :delete, :confirm => "Are you sure?" %></td>
 		</tr>
 	<% end %>

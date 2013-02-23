@@ -15,7 +15,6 @@ class SpecsController < ApplicationController
 	def create
 		if params[:commit] != 'Cancel'
 			@spec = Spec.new(params[:spec])
-			@spec.account_id = 1
 			order = (params[:spec][:display_order]).to_i
 			@spec.reorder(order)
 			if @spec.save
@@ -54,7 +53,7 @@ class SpecsController < ApplicationController
 	end
 	
 	def find_specs
-		@specs = Spec.find(:all, :order => "display_order").paginate(:page => params[:page], :per_page => 20)
+		@specs = Spec.where(:deleted => false).order("display_order").paginate(:page => params[:page], :per_page => 20)
 		@index = @specs
 	end
 

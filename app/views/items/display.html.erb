@@ -36,11 +36,7 @@
 
 								<td class="spec-name"><%= s.spec.name %></td>
 
-								<td class="spec-limit">
-									<% if s.lsl %>
-										<%= s.lsl %>								
-									<% end %>
-								</td>
+								<td class="spec-limit"><%= s.lsl ||= nil %></td>
 
 								<td class="spec-value" style="text-align:center;">
 									
@@ -49,7 +45,6 @@
 									<% end %>
 
 									<% if !s.string_value.empty? %>
-
 										<%= s.string_value %>
 									<% end %>
 
@@ -57,17 +52,11 @@
 										<%= s.text_value %>								
 									<% end %>
 
-
 								</td>
 
-								<td class="spec-limit" style="text-align:right;">
-									<% if s.usl %>								
-										<%= s.usl %>								
-									<% end %>
-								</td>
+								<td class="spec-limit" style="text-align:right;"><%= s.usl ||= nil %></td>								
 
-								<td class="right-margin"></td>
-
+								<td class="right-margin"><%= simple_format(s.notes ||= "") %></td>
 								
 							</tr>										
 						<% end %>	

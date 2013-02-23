@@ -1,20 +1,20 @@
 <tr>
 	<%= form_for(@new_item_spec) do |f| %>
 		<td></td>
-		<td><%= f.collection_select :spec_id, @available_specs, :id, :code, {:prompt => :true}, {:style => "width:150px;"} %></td>
-		<td><%= f.text_field :string_value, :style => "width:150px;" %></td>
-		<td><%= f.text_field :text_value, :style => "width:150px;" %>
-		<td><%= f.text_field :numeric_value, :style => "width:100px;" %></td>
-		<td><%= f.text_field :usl, :style => "width:100px;" %></td>
-		<td><%= f.text_field :lsl, :style => "width:100px;" %></td>
-		<td><%= f.text_field :unit_of_measure, :style => "width:90px;" %></td>		
-		<td><%= f.collection_select :test_id, Test.all, :id, :code, {:prompt => :true}, {:style => "width:150px;"} %></td>
-		<td><%= f.text_field :eff_date, :style => "width:90px;" %></td>
+		<td><%= f.collection_select :spec_id, @available_specs, :id, :code, {:prompt => :true}, {:style => "width:100%;"} %></td>
+		<td><%= f.text_field :string_value, :style => "width:80%;" %></td>
+		<td><%= f.text_field :text_value, :style => "width:80%;" %>
+		<td><%= f.text_field :numeric_value, :style => "width:80%;" %></td>
+		<td><%= f.text_field :usl, :style => "width:80%;" %></td>
+		<td><%= f.text_field :lsl, :style => "width:80%;" %></td>
+		<td><%= f.text_field :unit_of_measure, :style => "width:80%;" %></td>		
+		<td><%= f.collection_select :test_id, Test.all, :id, :code, {:prompt => :true}, {:style => "width:100%;"} %></td>
+		<td><%= f.text_field :eff_date, :style => "width:80%;" %></td>
 		<td></td>
 		
 		<td></td>
-		<td><%= f.submit "Add Definition" %></td>
+		<td class="centered"><%= f.submit "Add Definition" %></td>
+		<%= f.hidden_field :item_id, :value => @item_id %>
 	<% end %>
-	<td><%= button_to "Copy to Items" %></td>
 </tr>
 

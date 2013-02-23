@@ -4,7 +4,7 @@
 
 		
 
-		<div class="span6">
+		<div class="span6 offset3">
 									
 			<%= image_tag "icons/factory.svg", :alt=>"Factory", :size=>"70x70" %>
 
@@ -12,7 +12,7 @@
 
 			<% resource.build_account %>
 			<%= form_for(resource, :as => resource_name, :url => registration_path(resource_name)) do |f| %>
-			  <%= devise_error_messages! %>
+			  <div class="devise_error"><%= devise_error_messages! %></div>
 
 			  	<%= f.fields_for :account do |ff| %>
 

@@ -1,9 +1,3 @@
-* { 
-  -moz-box-sizing: border-box; 
-  -webkit-box-sizing: border-box; 
-  box-sizing: border-box; 
-}
-
 html {
 	height: 100%;
 }
@@ -14,15 +8,6 @@ body {
 
 form {
 	margin: 0;
-}
-
-select, textarea, input[type="text"], input[type="password"], input[type="datetime"], 
-	input[type="datetime-local"], input[type="date"], input[type="month"], input[type="time"], 
-	input[type="week"], input[type="number"], input[type="email"], input[type="url"], 
-	input[type="search"], input[type="tel"], input[type="color"], .uneditable-input {
-	height: 29px;       /* To compensate for the use of border-box box sizing */
-	margin: 6px 0;      /* To compensate for the use of border-box box sizing */
-	margin-right: 1em;
 }
 
 input[type="file"] {
@@ -37,19 +22,28 @@ input[type="submit"] {
 	margin: .5em .5em .5em 0;
 }
 
+input[type="number"] {
+	width: 75px;
+}
 thead {
 	background-color: #D11616;
 }
 
 a {
-	padding-right: 20px;
+	padding-right: 10px;
 	color: #990000;
 }
 
-label {
-/*	display: inline; */
-	margin: 1em 1em 0 0;
-	padding: 0;
+label.checkbox {
+	margin-left: .5em;
+}
+
+.controls label input[type="checkbox"] {
+	margin-top: 3px;
+}
+
+.controls input[type="submit"] {
+	margin-left: .5em;
 }
 
 .pagination {
@@ -61,14 +55,14 @@ label {
 	display: inline;
 }
 
-.table {
-	margin-bottom: 0;
-}
-
 .form {
 	background-color: white;
 	padding: .5em;
 	border-radius: 6px;
+}
+
+.form-inline {
+	margin-top: 14px;
 }
 
 .title {
@@ -76,12 +70,11 @@ label {
 	font-weight: bold;
 	float: left;
 	margin: 0;
-	margin-right: 2em;
+	margin-right: 1em;
 	padding: 25px 0;
 }
 
 .controls {
-/*	line-height: 40px; */
 	padding: 0;
 	display: inline;
 	float: left;
@@ -93,25 +86,21 @@ label {
 	padding-bottom: 6px;
 }
 
-table .column-label {
-	text-align: center;
-	font-style: italic;
-	font-weight: bold;
-	font-size: .8em;
+.alert .close {
+	padding-right: 0;
+	top: 0px;
 }
 
-table .checked {
-	text-align: center;
+.navbar select {
+	margin-top: 5px;
+	margin-bottom: 5px;
+	margin-left: .5em;
 }
 
-td .tight {
-	
+.navbar label { 
+	margin-top: 5px;
+	margin-bottom: 0;
 }
-
-.table th, .table td {
-	vertical-align: middle;
-}
-
 
 #main {
 	padding-top: 50px;
@@ -119,4 +108,8 @@ td .tight {
 
 #factory { /* For factory icon in header */
 	padding: 3px;
+}
+
+#new_session_logo {
+	padding-top: 1em;
 }

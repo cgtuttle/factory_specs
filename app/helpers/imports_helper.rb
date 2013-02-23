@@ -57,10 +57,6 @@ module ImportsHelper
 			end
 			@save_row = @obj.new(@import_row)
 
-			if @save_row.has_attribute?(:account_id)
-				@save_row.account_id = 1
-			end
-
 			if @save_row.has_attribute?(:changed_by)
 				@save_row.changed_by = current_user.email
 			end

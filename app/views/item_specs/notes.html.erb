@@ -1,0 +1,16 @@
+<% content_for :edit_form do %>
+
+	<p>Item: <%= @item_spec.item.code %></p>
+	<p>Spec: <%= @item_spec.spec.code %></p>
+	
+	<%= form_for(@item_spec) do |f| %>
+		
+		<%= f.label "Notes" %>
+		<%= f.text_area :notes %>
+		
+		<div class="actions">
+			<%= f.submit "Update Notes" %>
+			<%= f.submit "Cancel" %>
+		</div>
+	<% end %>	
+<% end %>	

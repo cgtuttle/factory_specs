@@ -1,6 +1,8 @@
 class ItemsController < ApplicationController
 	include ApplicationHelper
 	require 'will_paginate/array' 
+
+
 	before_filter :find_items
 	
   def index
@@ -18,13 +20,17 @@ class ItemsController < ApplicationController
   end
 
   def update
-		@item = Item.find(params[:id])
-		@history = params[:history]
-		@future = params[:future]
-		if _update
-			flash[:success] = "Item updated"
-			redirect_to items_path
+  	if params[:commit] != 'Cancel'
+			@item = Item.find(params[:id])
+			@history = params[:history]
+			@future = params[:future]
+			if @item.update_attributes(params[:item])
+				flash[:success] = "Item updated"
+			else
+				flash[:error] = "Unable to update item"
+			end
 		end
+		redirect_to items_path
   end
 
   def new
@@ -33,7 +39,6 @@ class ItemsController < ApplicationController
 
   def create
 		@item = Item.new(params[:item])
-		@item.account_id = 1
 		if @item.save
 			flash[:success] = "Item added"
 			cookies[:item_id] = @item.id
@@ -70,12 +75,8 @@ class ItemsController < ApplicationController
 		render :layout => 'display_layout'
 	end
 	
-	def _update
-		@item.update_attributes(params[:item])
-	end
-	
 	def find_items
-		@items = Item.find(:all, :order => 'code').paginate(:page => params[:page], :per_page => 20)
+		@items = Item.where(:deleted => false).order('code').paginate(:page => params[:page], :per_page => 20)
 		@index = @items
 	end
 

@@ -1,11 +1,11 @@
 <% content_for :edit_form do %>
 	<%= form_for @category do |f| %>
 		<%= f.label :code %>
-		<%= f.text_field :code %>
+		<%= f.text_field :code, :class => "input-small" %>
 		<%= f.label :name %>
-		<%= f.text_field :name %>
+		<%= f.text_field :name, :class => "input-medium" %>
 		<%= f.label :display_order %>
-		<%= f.text_field :display_order %>
+		<%= f.text_field :display_order, :class => "input-mini" %>
 		<div>
 			<%= f.submit %>
 			<%= f.submit "Cancel" %>

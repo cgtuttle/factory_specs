@@ -1,12 +1,8 @@
 
 	<tr>
 		<%= form_for(@new_item) do |f| %>		
-			<div>
-				<td><%= f.text_field :code %></td>
-				<td><%= f.text_field :name %></td>
-			</div>
-			<div>
-				<td><%= f.submit "Submit New Item" %></td>
-			</div>
+			<td><%= f.text_field :code %></td>
+			<td><%= f.text_field :name %></td>
+			<td class="centered"><%= f.submit "Submit New Item" %></td>
 		<% end %>		
 	</tr>

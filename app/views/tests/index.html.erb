@@ -1,8 +1,8 @@
 <% content_for :thead do %>
 	<tr>
-		<th>Code</th>
-		<th>Name</th>
-		<th>Instructions</th>
+		<th style="width: 25%">Code</th>
+		<th style="width: 25%">Name</th>
+		<th style="width: 35%">Instructions</th>
 		<th></th>
 	</tr>
 <% end %>
@@ -15,8 +15,8 @@
 		<tr>
 			<td><%= t.code %></td>
 			<td><%= t.name %></td>
-			<td><%= link_to "Instructions", :controller => 'tests', :action => 'instructions', :id => t.id %></td>
-			<td><%= link_to "Edit", edit_test_path(t) %></td>
+			<td class="centered"><%= link_to "Instructions", :controller => 'tests', :action => 'instructions', :id => t.id %></td>
+			<td class="centered"><%= link_to "Edit", edit_test_path(t) %></td>
 		</tr>
 	<% end %>
 <% end %>

@@ -1,26 +1,40 @@
 <% content_for :edit_form do %>
 
+  <div class="span12" style="margin-left:0;">
+    <%= form_for @import, :html=>{:multipart=>true} do |f| %>
 
-  <%= form_for @import, :html=>{:multipart=>true} do |f| %>
+    <span class="badge">1</span>
+    <h4 style="display:inline"><small> Select File</small></h4>
 
-  <div class="row-fluid" style="padding:20px 0 0 0;">  	
-    <%= f.label 'upload file' do %>
-    	Select File: <%= file_field_tag :file %>
+    <div class="row-fluid" style="padding:20px 0 0 0;">  	
+      <%= f.label 'upload file' do %>
+      	<%= file_field_tag :file %>
+      <% end %>
+    </div>
+
+    <hr>
+
+    <span class="badge">2</span>
+    <h4 style="display:inline"><small> Select Target Table</small></h4>
+   	
+   	<div class="row-fluid" style="padding:20px 0 0 0;">  	    
+      <%= f.label 'import into', :style => "margin-left:2em;" do %>
+      	Import into <%= f.select :model, Import::MODELS.sort, :selected => @model, :include_blank => '--- Select Table ---' %>
+      <% end %>
+    </div>
+
+    <hr>
+
+    <span class="badge">3</span>
+    <h4 style="display:inline"><small> Load Content for Mapping</small></h4>
+
+    <div class="row-fluid" style="padding:20px 0 0 0;">  	
+      <%= submit_tag 'Continue', :name => 'import_file', :class => "btn", :style => "margin-left:2em;" %>	    
+      <%= submit_tag 'Cancel', :name => 'import_file', :class => "btn", :style => "margin-left:2em;" %>
+    </div>
+
     <% end %>
   </div>
- 	
- 	<div class="row-fluid" style="padding:20px 0 0 0;">  	    
-    <%= f.label 'import into' do %>
-    	Import into <%= f.select :model, Import::MODELS.sort, :selected => @model, :include_blank => '--- Select Table ---' %>
-    <% end %>
-  </div>
-
-  <div class="row-fluid" style="padding:20px 0 0 0;">  	
-    <%= submit_tag 'Continue', :name => 'import_file', :class => "btn" %>	    
-    <%= submit_tag 'Cancel', :name => 'import_file', :class => "btn", :style => "margin-left:2em;" %>
-  </div>
-
-  <% end %>
 <% end %> 
 
   

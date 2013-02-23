@@ -1,0 +1,52 @@
+table {
+	table-layout: fixed;
+}
+
+table .column-label {
+	text-align: center;
+	font-style: italic;
+	font-weight: bold;
+	font-size: .8em;
+}
+
+table .checked {
+	text-align: center;
+}
+
+.table {
+	margin-bottom: 0;
+}
+
+.table th, .table td {
+	vertical-align: middle;
+	max-width: 20em;
+}
+
+.table input {
+	margin-bottom: 0;
+}
+
+.table input[type="submit"] {
+	margin: 0;
+}
+
+.table select {
+	margin-top: 5px;
+	margin-bottom: 5px;
+}
+
+.table textarea {
+	margin: 0;
+	padding: 0;
+	height: 28px;
+}
+
+.table .centered {
+	text-align: center;
+}
+
+.table .breadcrumb {
+	margin: 0;
+	padding: 0;
+	background-color: transparent;
+}

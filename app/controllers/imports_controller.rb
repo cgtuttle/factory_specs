@@ -19,7 +19,6 @@ class ImportsController < ApplicationController
 		if params[:file]
 			if params[:import_file]=='Continue' # Continue button clicked
 				@import = Import.new(params[:import])
-				@import.account_id = 0 #current_account.id
 				@import.user_id = 0 #current_user.id
 				@model = @import.model #selected model
 				@import.save

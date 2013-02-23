@@ -1,6 +1,10 @@
 class Category < ActiveRecord::Base
 	validates :code, :presence => true, :uniqueness => {:scope => :account_id}
 	has_many :specs
+
+	default_scope { where(:account_id => Account.current_id)}
+
+	scope :active, where(:deleted => false)
 	
 	def reorder(new)
 		old = self.id ? self.display_order : 0

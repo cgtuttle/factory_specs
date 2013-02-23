@@ -1,6 +1,7 @@
 class Import < ActiveRecord::Base
 	has_many :cells
-	# belongs_to :account
+
+	default_scope { where(:account_id => Account.current_id)}
 	
 	accepts_nested_attributes_for :cells
 	

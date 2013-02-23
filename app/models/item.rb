@@ -1,9 +1,10 @@
 class Item < ActiveRecord::Base
-	validates :code, :presence => true, :uniqueness => {:scope => :account_id}
+	validates :code, :presence => true, :uniqueness => {:scope => :account_id} # validates uniqueness within an account
 	has_many :item_specs
 	has_many :specs, :through => :item_specs
-	
-	
+
+	default_scope { where(:account_id => Account.current_id)}
+		
 	def self.filtered(filter)
 		Item.where('code LIKE ?', filter).order('code') | Item.where('code NOT LIKE ?', filter).order('code')
 	end

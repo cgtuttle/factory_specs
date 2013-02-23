@@ -17,6 +17,7 @@ Factory::Application.routes.draw do
 	match 'item_specs/:id/cancel' => 'item_specs#cancel', :as => :cancel_item_spec
 	match 'item_specs/:id/copy' => 'item_specs#copy', :as => :copy_item_spec
 	match 'test/:id/instructions' => 'tests#instructions'
+	match 'item_specs/:id/notes' => 'item_specs#notes', :as => :notes
 
 	root :to => 'main#welcome'
 	

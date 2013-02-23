@@ -2,12 +2,12 @@
 	<%= form_for(@spec) do |f| %>
 			
 				<div>
-					<td><%= f.collection_select :category_id, Category.all, :id, :code, :prompt => :true %></td>
+					<td><%= f.collection_select :category_id, active_categories, :id, :code, :prompt => :true %></td>
 					<td><%= f.text_field :code, :class => 'text_field' %></td>
 					<td><%= f.text_field :name, :class => 'text_field' %></td>
 					<td><%= f.text_field :label, :class => 'text_field' %></td>
-					<td><%= f.number_field :display_order, :class => 'number_field_short' %></td>
-					<td><%= f.submit "Add Definition" %></td>
+					<td class="centered"><%= f.number_field :display_order, :class => 'number_field_short' %></td>
+					<td class="centered"><%= f.submit "Add Definition" %></td>
 				</div>
 			
 		<% end %>		

@@ -3,6 +3,8 @@ class ApplicationController < ActionController::Base
 	before_filter :authenticate_user!
 	before_filter :set_dflt_item
 	before_filter :set_dflt_content_id
+
+	around_filter :scope_current_account
 	
 	
 	def set_dflt_item
@@ -19,6 +21,20 @@ class ApplicationController < ActionController::Base
 	
 	def after_sign_in_path_for(resource)
 		display_items_path(:item_id => @item_id )
+	end
+
+private
+
+	def current_account
+			Account.find(current_user.account_id)
+	end
+	helper_method :current_account
+
+	def scope_current_account
+		Account.current_id = current_account.id
+		yield
+	ensure
+		Account.current_id = nil
 	end
 
 end

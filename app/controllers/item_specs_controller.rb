@@ -31,13 +31,13 @@ require 'will_paginate/array'
 	end
 	
 	def create
-		if params[:commit] != 'Cancel'
+		if params[:commit] != 'Cancel'		
 			@new_item_spec = ItemSpec.new(params[:item_spec])
-			@new_item_spec.item = @item
 			@new_item_spec.set_eff_date
 			@new_item_spec.set_version
 			@new_item_spec.set_editor(current_user.email)
-			if @new_item_spec.save
+logger.debug "@new_item_spec: #{@new_item_spec.inspect}"
+			if @new_item_spec.save!
 				flash[:success] = "Item Spec added/changed"
 				redirect_to item_specs_path :item_id => params[:item_spec][:item_id]
 			else
@@ -52,6 +52,9 @@ require 'will_paginate/array'
 		@item_spec = ItemSpec.find(params[:id])
 		@delete_item_spec = @item_spec.dup
 		@delete_item_spec.deleted = true
+		@delete_item_spec.set_eff_date
+		@delete_item_spec.set_version
+		@delete_item_spec.set_editor(current_user.email)
 		if @delete_item_spec.save
 			flash[:success] = "Item Spec deleted"
 			redirect_to item_specs_path :item_id => @item_spec.item_id
@@ -76,7 +79,25 @@ require 'will_paginate/array'
 			redirect_to item_specs_path :item_id => @item_spec.item_id
 		end
 	end
+
+	def notes
+		@item_spec = ItemSpec.find(params[:id])
+		@is_edit_form = true
+		@title = "Notes for #{@item_spec.item.code}"
+	end
 	
+	def update
+		@item_spec = ItemSpec.find(params[:id])
+		if params[:commit] != 'Cancel'			
+			if @item_spec.update_attributes(params[:item_spec])
+				flash[:success] = "Notes updated"
+			else
+				flash[:error] = "Unable to update notes"
+			end
+		end
+		redirect_to item_specs_path :item_id => @item_spec.item_id
+  end
+
 	def set_scope
 		if params[:item] && !params[:item].blank?
 			@item_id = params[:item]	

@@ -11,22 +11,23 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20130203151216) do
+ActiveRecord::Schema.define(:version => 20130210160655) do
 
   create_table "accounts", :force => true do |t|
     t.string   "name"
     t.datetime "created_at", :null => false
     t.datetime "updated_at", :null => false
+    t.string   "subdomain"
   end
 
   create_table "categories", :force => true do |t|
-    t.string   "code",          :limit => 64,  :null => false
+    t.string   "code",          :limit => 64,                     :null => false
     t.string   "name",          :limit => 256
     t.integer  "display_order"
     t.datetime "created_at"
     t.datetime "updated_at"
     t.integer  "account_id"
-    t.boolean  "deleted"
+    t.boolean  "deleted",                      :default => false
     t.datetime "deleted_at"
   end
 
@@ -76,16 +77,17 @@ ActiveRecord::Schema.define(:version => 20130203151216) do
     t.datetime "created_at"
     t.datetime "updated_at"
     t.boolean  "deleted",                        :default => false
-    t.boolean  "canceled",                       :default => false
+    t.boolean  "canceled"
+    t.text     "notes"
   end
 
   create_table "items", :force => true do |t|
-    t.string   "code",       :limit => 64,  :null => false
+    t.string   "code",       :limit => 64,                     :null => false
     t.string   "name",       :limit => 128
-    t.integer  "account_id",                :null => false
+    t.integer  "account_id",                                   :null => false
     t.datetime "created_at"
     t.datetime "updated_at"
-    t.boolean  "deleted"
+    t.boolean  "deleted",                   :default => false
     t.datetime "deleted_at"
   end
 
@@ -104,19 +106,19 @@ ActiveRecord::Schema.define(:version => 20130203151216) do
   add_index "roles", ["name"], :name => "index_roles_on_name"
 
   create_table "specs", :force => true do |t|
-    t.string   "code",          :limit => 64,  :null => false
+    t.string   "code",          :limit => 64,                     :null => false
     t.string   "name",          :limit => 128
     t.integer  "usl"
     t.integer  "lsl"
     t.string   "label",         :limit => 64
     t.integer  "display_order"
-    t.integer  "account_id",                   :null => false
+    t.integer  "account_id",                                      :null => false
     t.string   "created_by"
     t.string   "changed_by"
     t.datetime "created_at"
     t.datetime "updated_at"
     t.integer  "category_id"
-    t.boolean  "deleted"
+    t.boolean  "deleted",                      :default => false
     t.datetime "deleted_at"
   end
 
@@ -124,13 +126,13 @@ ActiveRecord::Schema.define(:version => 20130203151216) do
   add_index "specs", ["account_id"], :name => "spec_account"
 
   create_table "tests", :force => true do |t|
-    t.string   "code",         :limit => 64,  :null => false
+    t.string   "code",         :limit => 64,                     :null => false
     t.string   "name",         :limit => 128
     t.text     "instructions"
-    t.integer  "account_id",                  :null => false
+    t.integer  "account_id",                                     :null => false
     t.datetime "created_at"
     t.datetime "updated_at"
-    t.boolean  "deleted"
+    t.boolean  "deleted",                     :default => false
     t.datetime "deleted_at"
   end
 

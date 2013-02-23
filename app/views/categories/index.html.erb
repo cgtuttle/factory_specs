@@ -1,8 +1,10 @@
 <% content_for :thead do %>
-	<th>Code</th>
-	<th>Name</th>
-	<th>Display Order</th>
-	<th></th>
+	<tr>
+		<th style="width: 30%">Code</th>
+		<th style="width: 30%">Name</th>
+		<th style="width: 15%" class="centered">Display Order</th>
+		<th style="width: 25%"></th>
+	</tr>
 <% end %>
 
 
@@ -16,8 +18,13 @@
 		<tr>
 			<td><%= c.code %></td>
 			<td><%= c.name %></td>
-			<td><%= c.display_order %></td>
-			<td><%= link_to "Edit", edit_category_path(c) %><%= link_to "Delete",  c, :method => :delete, :confirm => "Are you sure?" %></td>
+			<td style="max-width:50px" class="centered"><%= c.display_order %></td>
+			<td>
+				<ul class="breadcrumb centered">
+					<li><%= link_to "Edit", edit_category_path(c) %></li>
+					<li><%= link_to "Delete",  c, :method => :delete, :confirm => "Are you sure?" %></li>
+				</ul>
+			</td>
 		</tr>
 	<% end %>	
 		

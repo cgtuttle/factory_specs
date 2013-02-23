@@ -1,4 +1,5 @@
 class AccountsController < ApplicationController
+  
 	def new
     @account = Account.new
     @account.users.build # build a blank user or the child form won't display

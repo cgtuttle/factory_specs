@@ -12,5 +12,15 @@ class User < ActiveRecord::Base
   # Setup accessible (or protected) attributes for your model
   attr_accessible :email, :password, :password_confirmation, :remember_me, :account_attributes
 
+  after_create :assign_user_role
+
+protected
+  
+  def assign_user_role
+    account = self.account
+    if account.users.count = 1
+      add_role(:admin)
+    end
+  end
 
 end

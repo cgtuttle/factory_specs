@@ -26,7 +26,7 @@ class ApplicationController < ActionController::Base
 private
 
 	def current_account
-			Account.find(current_user.account_id)
+		Account.find(current_user.account_id)
 	end
 	helper_method :current_account
 

@@ -1,6 +1,7 @@
 class ImportsController < ApplicationController
 	include ApplicationHelper
 	include ImportsHelper
+	load_and_authorize_resource
 	
 	def index
 		@import = params[:id]

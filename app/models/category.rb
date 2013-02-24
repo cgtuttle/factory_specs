@@ -1,6 +1,7 @@
 class Category < ActiveRecord::Base
 	validates :code, :presence => true, :uniqueness => {:scope => :account_id}
 	has_many :specs
+  resourcify
 
 	default_scope { where(:account_id => Account.current_id)}
 

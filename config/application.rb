@@ -50,7 +50,7 @@ module Factory
 
     config.to_prepare do
       Devise::SessionsController.skip_around_filter :scope_current_account
-      Devise::RegistrationsController.skip_around_filter :scope_current_account, :only => [:new]
+      Devise::RegistrationsController.skip_around_filter :scope_current_account, :only => [:new, :create]
     end
 
   end

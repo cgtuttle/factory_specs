@@ -1,4 +1,5 @@
 class SpecsController < ApplicationController
+	load_and_authorize_resource
 	before_filter :find_specs
 	
   def index

@@ -1,7 +1,8 @@
 class ItemSpecsController < ApplicationController
 
 include ApplicationHelper
-require 'will_paginate/array' 
+require 'will_paginate/array'
+load_and_authorize_resource 
 	
   def index
 		@history = params[:history]

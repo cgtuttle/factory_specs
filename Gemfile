@@ -13,6 +13,7 @@ gem 'rolify'
 gem 'ransack'
 gem 'admin_data', '>= 1.1.16'
 gem 'will_paginate-bootstrap'
+gem 'devise_invitable'
 
 # Gems used only for assets and not required
 # in production environments by default.

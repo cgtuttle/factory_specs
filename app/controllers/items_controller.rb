@@ -2,8 +2,7 @@ class ItemsController < ApplicationController
 	include ApplicationHelper
 	require 'will_paginate/array'
 	before_filter :find_items
-	load_and_authorize_resource
-#	skip_authorize_resource :only => :display 
+	load_and_authorize_resource 
 
   def index
 		@title = "Items"
@@ -56,8 +55,7 @@ class ItemsController < ApplicationController
 		redirect_to items_path
   end
 	
-	def display
-		
+	def display		
 		@content_id = "display"
 		if params.has_key?(:item)
 			@item = Item.find(params[:item][:id])
@@ -66,8 +64,8 @@ class ItemsController < ApplicationController
 		else
 			@item = Item.find(get_item_id)
 		end
-		authorize! :display, @item
 		if @item
+			authorize! :display, @item
 			cookies[:item_id] = @item.id
 			@title = @item.code
 			@item_specs = ItemSpec.joins(:spec => :category).where(:item_id => @item).order("categories.display_order")

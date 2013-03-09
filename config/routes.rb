@@ -2,9 +2,9 @@ Factory::Application.routes.draw do
 	
 	devise_for :users
 
-	resources :accounts, :only => [:index, :new, :create, :destroy]
+	resources :accounts
 	resources :imports
-  resources :item_specs
+  	resources :item_specs
 	resources :items do
 		collection do
 			get 'display'
@@ -13,6 +13,7 @@ Factory::Application.routes.draw do
 	resources :specs
 	resources :categories
 	resources :tests
+#	resources :users
 	
 	match 'item_specs/:id/cancel' => 'item_specs#cancel', :as => :cancel_item_spec
 	match 'item_specs/:id/copy' => 'item_specs#copy', :as => :copy_item_spec

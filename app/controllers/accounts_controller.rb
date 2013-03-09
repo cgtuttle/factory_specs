@@ -1,5 +1,5 @@
 class AccountsController < ApplicationController
-#  skip_around_filter :scope_current_account
+#  load_and_authorize_resource
   
 	def new
     @account = Account.new
@@ -15,4 +15,13 @@ class AccountsController < ApplicationController
       render 'new'
     end
   end
+
+  def edit
+    @is_edit_form = true
+  end
+
+  def show
+    
+  end
+
 end

@@ -32,6 +32,7 @@ private
 
 	def scope_current_account
 		Account.current_id = current_account.id
+logger.debug "running scope_current_account"
 		yield
 	ensure
 		Account.current_id = nil

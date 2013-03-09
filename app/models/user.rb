@@ -2,6 +2,7 @@ class User < ActiveRecord::Base
 	belongs_to :account, :inverse_of => :users
 	accepts_nested_attributes_for :account
 	validates :account, :presence => true
+#  default_scope { where(:account_id => Account.current_id)}
   rolify
 
   # Include default devise modules. Others available are:

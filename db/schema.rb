@@ -77,7 +77,7 @@ ActiveRecord::Schema.define(:version => 20130224221559) do
     t.datetime "created_at"
     t.datetime "updated_at"
     t.boolean  "deleted",                        :default => false
-    t.boolean  "canceled",                       :default => false
+    t.boolean  "canceled"
     t.text     "notes"
   end
 

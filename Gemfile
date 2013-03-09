@@ -30,6 +30,7 @@ group :development do
 	gem 'rspec-rails', '2.6.1.beta1'
 	gem 'rails-erd'
 	gem 'hirb'
+	gem 'guard-rspec', '1.2.1'
 end
 
 group :test do
@@ -37,6 +38,11 @@ group :test do
 	gem 'factory_girl_rails', '1.0'
 	gem 'webrat', '0.7.1'
 	gem 'spork', '0.9.0.rc5'
+	gem 'capybara', '1.1.2'
+	gem 'guard-rspec', '1.2.1'
+	gem 'rb-fchange', '0.0.5'
+  gem 'rb-notifu', '0.0.4'
+  gem 'win32console', '1.3.0'
 end
 
 
